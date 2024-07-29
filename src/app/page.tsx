@@ -13,15 +13,15 @@ export default function Home() {
       <div>
         haha
       </div>
-      <footer className="fixed bottom-0 left-50 min-w-16 h-14 flex justify-between pt-1 items-center bg-amber-600">
-        <span className="w-16 h-full flex flex-col items-center justify-between">
-          <Image src={"/assets/img/kakaotalk.webp"} alt="kakaotalk" width={40} height={40}/>
+      <footer className="fixed bottom-0 left-50 min-w-16 h-16 flex justify-between pt-2 px-1 items-center bg-neutral-800 bg-opacity-30 rounded-xl">
+        <span className="w-14 h-full flex flex-col items-center justify-between">
+          <Image src={"/assets/img/kakaotalk.webp"} alt="kakaotalk" className="rounded" width={40} height={40}/>
           <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="3" fill="white"/>
           </svg>
         </span>
-        <span className="w-16 h-full flex flex-col items-center justify-between">
-          <Image src={"/assets/img/obsidian.avif"} alt="obsidian" width={40} height={40}/>
+        <span className="w-14 h-full flex flex-col items-center justify-between">
+          <Image src={"/assets/img/obsidian.avif"} alt="obsidian" className="rounded" width={40} height={40}/>
           <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="3" fill="white"/>
           </svg>
