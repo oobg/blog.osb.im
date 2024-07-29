@@ -11,21 +11,31 @@ export default function Home() {
       </header>
       {/*<MainLogo />*/}
       <div>
-        haha
+        welcome!
       </div>
-      <footer className="fixed bottom-0 left-50 min-w-16 h-16 flex justify-between pt-2 px-1 items-center bg-neutral-800 bg-opacity-30 rounded-xl">
-        <span className="w-14 h-full flex flex-col items-center justify-between">
+      <footer className="fixed bottom-2 left-50 min-w-16 h-16 flex justify-between pt-2 px-1 items-center bg-neutral-600 bg-opacity-30 rounded-xl border border-neutral-600">
+        <div className="group w-14 h-full flex flex-col items-center justify-between relative">
+          <div
+            className="absolute bottom-[74px] text-xs rounded-lg py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap bg-neutral-600 bg-opacity-30 rounded-xl border border-neutral-600
+              after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:bottom-[-16px] after:border-8 after:border-transparent after:border-t-neutral-600">
+            카카오톡
+          </div>
           <Image src={"/assets/img/kakaotalk.webp"} alt="kakaotalk" className="rounded" width={40} height={40}/>
           <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="3" fill="white"/>
           </svg>
-        </span>
-        <span className="w-14 h-full flex flex-col items-center justify-between">
+        </div>
+        <div className="group w-14 h-full flex flex-col items-center justify-between relative">
+          <div
+            className="absolute bottom-[74px] text-xs rounded-lg py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap bg-neutral-600 bg-opacity-30 rounded-xl border border-neutral-600
+              after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:bottom-[-16px] after:border-8 after:border-transparent after:border-t-neutral-600">
+            옵시디언
+          </div>
           <Image src={"/assets/img/obsidian.avif"} alt="obsidian" className="rounded" width={40} height={40}/>
           <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="3" fill="white"/>
           </svg>
-        </span>
+        </div>
       </footer>
     </main>
   );
