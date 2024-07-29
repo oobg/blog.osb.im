@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: blog.osb.im
+    image: blog.osb.im:1.${BUILD_NUMBER}
+    restart: always
+    ports:
+      - 9050:80
+    networks:
+      - npm
+
+networks:
+  npm:
+    external:
+      name: npm
