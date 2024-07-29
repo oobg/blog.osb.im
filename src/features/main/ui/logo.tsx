@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export default function Logo() {
-	const image = "/logo-transparent.png";
+	const image = "/assets/img/logo-transparent.png";
 	return (
 		<div className="flex flex-col items-center justify-center gap-1">
 			<Image src={image} alt="logo" width={200} height={200} />

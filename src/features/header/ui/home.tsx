@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-	const image = "/logo-transparent.png";
+	const image = "/assets/img/logo-transparent.png";
 	return (
 		<div className="fixed top-3 left-3">
 			<Link href="/" className="w-12 h-12 rounded-full">
