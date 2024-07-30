@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "welcome to osb.im",
-  description: "playground for osb.im",
+  title: "BaeWoong's Blog",
+  description: "playground for blog.osb.im",
   icons: {
     icon: "/favicon.ico",
   },
