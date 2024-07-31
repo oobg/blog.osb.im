@@ -1,11 +1,12 @@
 
 export default function Home() {
   return (
-    <p>
+    <>
       <span>Welcome My Blog! 🚀</span>
       <br />
-      <span>I'm BaeWoong, a front-end developer.</span>
-      <span> I'm currently working on a project called "Blog" to improve my skills.</span>
-    </p>
+      <span>I&apos;m BaeWoong, a front-end developer.</span>
+      <br />
+      <span> I&apos;m currently working on a project called &quot;Blog&quot; to improve my skills.</span>
+    </>
   );
 }
