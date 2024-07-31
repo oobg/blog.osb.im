@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
-const MainLogo = dynamic(() => import("./ui/logo"));
+const MainWindow = dynamic(() => import("./ui/WindowControls"));
 
 export {
-	MainLogo,
+	MainWindow,
 };
