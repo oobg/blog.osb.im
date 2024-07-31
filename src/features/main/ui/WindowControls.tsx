@@ -15,9 +15,9 @@ const WindowControls: React.FC<WindowControlsProps> = ({ children }) => {
           <IconSvg color="green" />
         </span>
 			</div>
-			<div className="bg-neutral-600 w-full flex-grow rounded-b-xl">
+			<main className="bg-neutral-600 w-full flex-grow rounded-b-xl">
 				{children}
-			</div>
+			</main>
 		</div>
 	);
 }

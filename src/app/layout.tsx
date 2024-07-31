@@ -1,6 +1,11 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
+import { Header } from "@/features/header";
+import { MainWindow } from "@/features/main";
+import { Footer } from "@/features/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,14 +17,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = {
   children: React.ReactNode;
-}>) {
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="kr">
-      <body className={inter.className}>{children}</body>
+    <body className={`${inter.className} flex flex-col min-h-screen items-center justify-center`}>
+    <Header />
+    <MainWindow>
+      {children}
+    </MainWindow>
+    <Footer />
+    </body>
     </html>
   );
 }
