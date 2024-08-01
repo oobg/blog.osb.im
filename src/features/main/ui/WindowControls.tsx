@@ -7,7 +7,7 @@ interface WindowControlsProps {
 
 const WindowControls: React.FC<WindowControlsProps> = ({ children }) => {
 	return (
-		<div className="flex flex-col flex-grow h-full p-3 w-full">
+		<div className="flex flex-col flex-grow w-full h-full p-3">
 			<div className="bg-neutral-700 w-full h-8 rounded-t-xl flex items-center px-3">
         <span className="flex space-x-2">
           <IconSvg color="red" />
@@ -15,8 +15,10 @@ const WindowControls: React.FC<WindowControlsProps> = ({ children }) => {
           <IconSvg color="green" />
         </span>
 			</div>
-			<main className="bg-neutral-600 w-full flex-grow rounded-b-xl">
-				{children}
+			<main className="flex flex-grow justify-center bg-neutral-600 overflow-auto rounded-b-xl max-h-[calc(100vh-10rem)]">
+				<div className="w-[90%] sm:w-[80%] md:w-[75%]">
+					{children}
+				</div>
 			</main>
 		</div>
 	);
