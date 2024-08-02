@@ -3,7 +3,7 @@ import IconItem from "./icon";
 const icons = [
 	{ imageSrc: "/assets/img/kakaotalk.png", label: "카카오톡" },
 	{ imageSrc: "/assets/img/obsidian.png", label: "옵시디언" },
-	// 필요한 만큼 더 추가하세요
+	{ imageSrc: "/assets/img/github.png", label: "프로젝트" },
 ];
 
 const Footer: React.FC = () => {

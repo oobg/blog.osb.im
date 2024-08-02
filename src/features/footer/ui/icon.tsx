@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 
 interface IconItemProps {
@@ -8,7 +9,9 @@ interface IconItemProps {
 const IconItem: React.FC<IconItemProps> = ({ imageSrc, label }) => {
 	return (
 		<div className="group mt-2 w-14 h-full flex flex-col items-center justify-between relative">
-			<div className="absolute bottom-[74px] text-xs rounded-lg py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap bg-neutral-600 bg-opacity-30 rounded-xl border border-neutral-600 after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:bottom-[-16px] after:border-8 after:border-transparent after:border-t-neutral-600">
+			<div
+				className="absolute bottom-[74px] text-xs py-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap bg-neutral-600 bg-opacity-80 rounded border border-neutral-600
+					after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:bottom-[-16px] after:border-8 after:border-transparent after:border-t-neutral-600">
 				{label}
 			</div>
 			<div className="relative w-14 h-14">
