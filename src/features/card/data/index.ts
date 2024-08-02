@@ -31,7 +31,7 @@ const dataList: CardData[] = [
 		goToLink: "https://editor.osb.im/ckeditor/virtual-scroll",
 	},
 	{
-		imageSrc: "/assets/img/logo-transparent.png",
+		imageSrc: "https://images.unsplash.com/photo-1678257355149-6eda1755b1a2?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D;auto=format&amp;fit=crop&amp;w=800&amp;q=80",
 		imageAlt: "개인 사이트 구축 배너 이미지",
 		title: "개인 프로젝트 허브",
 		description: "개발 실력의 향상을 위해 Playground 사이트를 구축했습니다.",
