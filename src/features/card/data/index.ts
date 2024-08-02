@@ -40,6 +40,16 @@ const dataList: CardData[] = [
 		readLink: "#",
 		goToLink: "https://osb.im/",
 	},
+	{
+		imageSrc: "https://images.unsplash.com/photo-1504507926084-34cf0b939964?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D;auto=format&amp;fit=crop&amp;w=800&amp;q=80",
+		imageAlt: "포커스 제어 스크립트 배너 이미지 ",
+		title: "포커스 제어 스크립트",
+		description: "전역으로 포커스를 제어하는 스크립트를 작성했습니다.",
+		stack: ["Javascript"],
+		gitLink: "https://github.com/oobg/focus.js",
+		readLink: "#",
+		goToLink: "#",
+	},
 ];
 
 export default dataList;
