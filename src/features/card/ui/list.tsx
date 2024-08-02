@@ -7,22 +7,7 @@ import CardContent from "@/shared/ui/mainCard/content";
 import StackTag from "@/shared/ui/mainCard/stack";
 import ALink from "@/shared/ui/mainCard/alink";
 
-interface CardProps {
-	imageSrc: string;
-	imageAlt?: string;
-	title: string;
-	description: string;
-	stack: Array<string>;
-	gitLink?: string;
-	readLink?: string;
-	goToLink?: string;
-}
-
-interface CardListProps {
-	cards: CardProps[];
-}
-
-const CardList: React.FC<CardListProps> = () => {
+const CardList: React.FC = () => {
 	return (
 		<List>
 			{dataList.map(({imageSrc, imageAlt, title, description, stack, gitLink, readLink, goToLink}, index) => (
