@@ -11,7 +11,7 @@ interface CardData {
 
 const dataList: CardData[] = [
 	{
-		imageSrc: "https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D;",
+		imageSrc: "https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3;",
 		imageAlt: "기술 블로그 개발 배너 이미지",
 		title: "기술 블로그",
 		description: "기술 블로그를 구축했습니다.",
