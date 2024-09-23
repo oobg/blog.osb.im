@@ -14,8 +14,8 @@ const IconItem: React.FC<IconItemProps> = ({ imageSrc, label }) => {
 					after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:bottom-[-16px] after:border-8 after:border-transparent after:border-t-neutral-600">
 				{label}
 			</div>
-			<div className="relative w-14 h-14">
-				<Image src={imageSrc} alt={label} className="rounded" layout="fill" objectFit="cover" />
+			<div className="relative w-14 h-14 -m-1 overflow-hidden">
+				<Image src={imageSrc} alt={label} className="rounded" layout="fill" objectFit="contain" />
 			</div>
 			<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<circle cx="10" cy="10" r="3" fill="white" />
