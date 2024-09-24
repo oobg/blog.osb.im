@@ -1,13 +1,39 @@
-import React from 'react';
+import React from "react";
 
-interface IconProps {
-	color: string;
+interface ButtonProps {
+	normalSrc: string;
+	hoverSrc: string;
+	alt: string;
+	ariaLabel: string;
+	isHovered: boolean;
+	onHover: () => void;
+	onLeave: () => void;
 }
 
-const Icon: React.FC<IconProps> = ({ color }) => (
-	<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-		<circle cx="6" cy="6" r="6" fill={color} />
-	</svg>
-);
+const MacButton: React.FC<ButtonProps> = ({
+  normalSrc,
+  hoverSrc,
+  alt,
+  ariaLabel,
+  isHovered,
+  onHover,
+  onLeave,
+}) => {
+	return (
+		<button
+			onMouseEnter={onHover}
+			onMouseLeave={onLeave}
+			aria-label={ariaLabel}
+		>
+			<img
+				src={isHovered ? hoverSrc : normalSrc}
+				alt={alt}
+				className={isHovered ? "iconData.ts" : "normal"}
+				width={12}
+				height={12}
+			/>
+		</button>
+	);
+};
 
-export default Icon;
+export default MacButton;

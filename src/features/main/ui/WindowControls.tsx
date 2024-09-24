@@ -1,26 +1,32 @@
-import React from 'react';
-import IconSvg from "@/shared/ui/macButton/icon";
+"use client";
+
+import React, { useState } from "react";
+import MacButton from "@/shared/ui/macButton/icon";
+import HoverIcons from "@/shared/ui/macButton/iconData";
 
 interface WindowControlsProps {
 	children?: React.ReactNode;
 }
 
 const WindowControls: React.FC<WindowControlsProps> = ({ children }) => {
+	// 각 버튼의 호버 상태를 관리하는 state
+	const [isHovered, setHovered] = useState<boolean>(false);
+
 	return (
-		<div className="flex flex-col flex-grow w-full h-full p-3">
-			<div className="bg-neutral-700 w-full h-8 rounded-t-xl flex items-center px-3">
-        <span className="flex space-x-2">
-          <IconSvg color="red" />
-          <IconSvg color="yellow" />
-          <IconSvg color="green" />
-        </span>
-			</div>
-			<main className="flex flex-grow justify-center bg-neutral-600 overflow-auto rounded-b-xl max-h-[calc(100vh-10rem)]">
-				<div className="w-[90%] sm:w-[80%] md:w-[75%]">
-					{children}
-				</div>
-			</main>
-		</div>
+		<>
+			{HoverIcons.map((icon, index) => (
+				<MacButton
+					key={index}
+					normalSrc={icon.normalSrc}
+					hoverSrc={icon.hoverSrc}
+					alt={icon.alt}
+					ariaLabel={icon.ariaLabel}
+					isHovered={isHovered}
+					onHover={() => setHovered(true)}
+					onLeave={() => setHovered(false)}
+				/>
+			))}
+		</>
 	);
 }
 
