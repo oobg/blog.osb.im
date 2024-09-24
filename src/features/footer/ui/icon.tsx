@@ -10,8 +10,8 @@ const IconItem: React.FC<IconItemProps> = ({ imageSrc, label }) => {
 	return (
 		<div className="group mt-2 w-14 h-full flex flex-col items-center justify-between relative">
 			<div
-				className="absolute bottom-[74px] text-xs py-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap bg-neutral-600 bg-opacity-80 rounded border border-neutral-600
-					after:content-[''] after:absolute after:left-1/2 after:transform after:-translate-x-1/2 after:bottom-[-16px] after:border-8 after:border-transparent after:border-t-neutral-600">
+				className="absolute bottom-[74px] text-xs py-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap rounded-lg bg-[#333] border border-[#565656] text-[#ddd] shadow-[0_0_0_1px_#3f3f3f]"
+			>
 				{label}
 			</div>
 			<div className="relative w-14 h-14 -m-1 overflow-hidden">
