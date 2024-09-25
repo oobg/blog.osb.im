@@ -24,13 +24,15 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="kr">
-    <body className={`${inter.className} flex flex-col items-center overflow-hidden h-screen`}>
-      <Header />
-      <MainWindow>
-        {children}
-      </MainWindow>
-      <Footer />
-    </body>
+      <body className={`${inter.className} relative overflow-hidden w-dvw h-dvh`}>
+        <div className="flex flex-col items-center w-full h-full">
+          <Header/>
+          <MainWindow>
+            {children}
+          </MainWindow>
+          <Footer/>
+        </div>
+      </body>
     </html>
   );
 }

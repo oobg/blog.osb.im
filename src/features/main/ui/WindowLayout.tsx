@@ -13,8 +13,8 @@ const WindowLayout: React.FC<WindowControlsProps> = ({ children }) => {
 					<WindowControls />
         </span>
 			</div>
-			<main className="flex flex-grow justify-center bg-neutral-600 overflow-auto rounded-b-xl max-h-[calc(100vh-10rem)]">
-				<div className="w-[90%] sm:w-[80%] md:w-[75%]">
+			<main className="flex flex-grow justify-center bg-neutral-600 overflow-auto rounded-b-xl relative max-h-full">
+				<div className="w-[90%] sm:w-[80%] md:w-[75%] max-h-1">
 					{children}
 				</div>
 			</main>
