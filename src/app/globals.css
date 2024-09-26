@@ -69,3 +69,9 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgb(var(--foreground-rgb)) transparent;
 }
+
+
+main > * {
+  width: 100%;
+  max-height: 1rem;
+}
