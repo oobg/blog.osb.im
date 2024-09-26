@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="kr">
       <body className={`${inter.className} relative overflow-hidden w-dvw h-dvh`}>
-        <div className="flex flex-col items-center w-full h-full text-white bg-stone-800">
+        <div className="flex flex-col items-center w-full h-full text-white bg-[#2E2E2E]">
           <Header/>
           <MainWindow>
             {children}
