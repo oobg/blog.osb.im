@@ -9,8 +9,8 @@ import ALink from "@/shared/ui/mainCard/alink";
 
 const CardList: React.FC = () => {
 	return (
-		<List>
-			{dataList.map(({imageSrc, imageAlt, title, description, stack, gitLink, readLink, goToLink}, index) => (
+	<List>
+		{dataList.map(({ imageSrc, imageAlt, title, description, stack, gitLink, readLink, goToLink}, index) => (
 				<Card key={index}>
 					<CardImage imageSrc={imageSrc} imageAlt={imageAlt}/>
 					<div className="p-4 pt-2 pb-1">

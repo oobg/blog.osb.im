@@ -8,7 +8,7 @@ const icons = [
 
 const Footer: React.FC = () => {
 	return (
-		<footer className="min-w-16 h-16 flex justify-between mb-3 px-1 items-center bg-neutral-600 bg-opacity-30 rounded-xl border border-neutral-600">
+		<footer className="min-w-16 h-16 flex justify-between mb-2 px-1 items-center bg-neutral-600 bg-opacity-30 rounded-xl border border-neutral-600">
 			{icons.map((icon, index) => (
 				<IconItem key={index} imageSrc={icon.imageSrc} label={icon.label} />
 			))}
