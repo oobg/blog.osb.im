@@ -1,3 +1,5 @@
+import nextra from "nextra";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
@@ -5,9 +7,14 @@ const nextConfig = {
 			{
 				protocol: "https",
 				hostname: "images.unsplash.com",
-			}
+			},
 		],
-	}
+	},
 };
 
-export default nextConfig;
+const withNextra = nextra({
+	theme: "nextra-theme-docs",
+	themeConfig: "./nextra.config.tsx",
+});
+
+export default withNextra(nextConfig);
