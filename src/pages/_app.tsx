@@ -1,13 +1,13 @@
-import type { AppProps } from "next/app";
+import { AppProps } from "next/app";
+import { OsxLayout } from "@/features/layout";
 import "@/app/globals.css";
-import { HomeButton } from "@/features/header";
+import "@/app/nextra.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<>
-			<HomeButton />
-			<Component {...pageProps} />
-		</>
+		<OsxLayout>
+			<Component {...pageProps} className="bg-none" />
+		</OsxLayout>
 	);
 }
 
