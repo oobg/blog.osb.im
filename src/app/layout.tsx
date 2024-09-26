@@ -1,13 +1,9 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-import { Header } from "@/features/header";
-import { MainWindow } from "@/features/main";
-import { Footer } from "@/features/footer";
+import { OsxLayout } from "@/features/layout";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "BaeWoong's Blog",
@@ -24,13 +20,11 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="kr">
-      <body className={`${inter.className} relative overflow-hidden w-dvw h-dvh`}>
-        <div className="flex flex-col items-center w-full h-full text-white bg-[#2E2E2E]">
-          <Header/>
-          <MainWindow>
+      <body>
+        <div id="__next">
+          <OsxLayout>
             {children}
-          </MainWindow>
-          <Footer/>
+          </OsxLayout>
         </div>
       </body>
     </html>
