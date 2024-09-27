@@ -19,7 +19,7 @@ const config: DocsThemeConfig = {
 		link: "https://github.com/oobg/blog.osb.im",
 	},
 	darkMode: false,
-	docsRepositoryBase: "https://github.com/oobg/blog.osb.im/blob/main/src/pages/posts",
+	docsRepositoryBase: "https://github.com/oobg/blog-obsidian",
 	useNextSeoProps() {
 		return {
 			titleTemplate: "[post] %s"
@@ -28,8 +28,9 @@ const config: DocsThemeConfig = {
 	head: () => {
 		const { asPath, defaultLocale, locale } = useRouter();
 		const { frontMatter } = useConfig();
+		const formattedPath = asPath.replace("/posts", "");
 		const url =
-			`${process.env.NEXT_PUBLIC_URL}${(defaultLocale === locale ? asPath : `/${locale}${asPath}`)}`;
+			`${process.env.NEXT_PUBLIC_URL}${(defaultLocale === locale ? formattedPath : `/${locale}${formattedPath}`)}`;
 		return (
 			<>
 				<meta property="og:url" content={url} />
