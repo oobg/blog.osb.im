@@ -10,14 +10,12 @@ interface WindowControlsProps {
 
 const OsxLayout: React.FC<WindowControlsProps> = ({ children }) => {
 	return (
-		<div className="absolute overflow-hidden w-dvw h-dvh">
-			<div className="flex flex-col items-center justify-between w-full h-full text-white bg-[#2E2E2E]">
-				<Header/>
-				<MainWindow>
-					{children}
-				</MainWindow>
-				<Footer/>
-			</div>
+		<div className="flex flex-col items-center justify-between w-dvw h-dvh text-white bg-[#2E2E2E]">
+			<Header />
+			<MainWindow>
+				{children}
+			</MainWindow>
+			<Footer />
 		</div>
 	);
 }

@@ -6,7 +6,7 @@ import "@/app/nextra.css";
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<OsxLayout>
-			<Component {...pageProps} className="bg-none" />
+			<Component {...pageProps} />
 		</OsxLayout>
 	);
 }

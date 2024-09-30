@@ -1,5 +1,6 @@
 main:has(> div[dir]) {
     background-color: #000;
+    overflow: hidden;
 }
 
 main > div[dir] > :nth-child(3) > :nth-child(1),

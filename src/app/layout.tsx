@@ -21,11 +21,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="kr">
       <body>
-        <div id="__next">
-          <OsxLayout>
-            {children}
-          </OsxLayout>
-        </div>
+        <OsxLayout>
+          {children}
+        </OsxLayout>
       </body>
     </html>
   );
