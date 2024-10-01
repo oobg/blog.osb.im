@@ -10,6 +10,7 @@ const nextConfig = {
 			},
 		],
 	},
+	assetPrefix: ".",
 };
 
 const withNextra = nextra({
