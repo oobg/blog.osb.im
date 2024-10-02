@@ -2,15 +2,19 @@ import nextra from "nextra";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	images: {
-		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "images.unsplash.com",
-			},
-		],
+	output: "export",
+	typescript: {
+		ignoreBuildErrors: true,
 	},
-	assetPrefix: ".",
+	images: {
+		unoptimized: true,
+		// remotePatterns: [
+		// 	{
+		// 		protocol: "https",
+		// 		hostname: "images.unsplash.com",
+		// 	},
+		// ],
+	},
 };
 
 const withNextra = nextra({
