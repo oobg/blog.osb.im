@@ -3,26 +3,24 @@
 import { useState, useEffect } from "react";
 
 const DisplayTime: React.FC = () => {
-	const [dateTime, setDateTime] = useState(new Date());
+	const [clientTime, setClientTime] = useState<string | null>(null);
 
 	useEffect(() => {
-		const updateDateTime = () => setDateTime(new Date());
+		const now = new Date().toISOString();
+		setClientTime(now);
 
-		const now = new Date();
-		const seconds = now.getSeconds();
-		const delay = (60 - seconds) * 1000;
+		const interval = setInterval(() => {
+			const newTime = new Date().toISOString();
+			setClientTime(newTime);
+		}, 60000); // 1분마다 업데이트
 
-		const initialTimeout = setTimeout(() => {
-			updateDateTime(); // 초기 업데이트
-			const interval = setInterval(updateDateTime, 60000); // 1분마다 업데이트
-
-			return () => clearInterval(interval); // 클린업 함수
-		}, delay);
-
-		return () => clearTimeout(initialTimeout); // 클린업 함수
+		return () => clearInterval(interval); // 클린업 함수
 	}, []);
 
-	const formattedDateTime = dateTime.toLocaleDateString("ko-KR", {
+	// 클라이언트에서 시간이 설정되지 않으면 null을 반환하여 초기 렌더링 시 시간 값을 서버와 비교하지 않도록 합니다.
+	if (!clientTime) return null;
+
+	const formattedDateTime = new Date(clientTime).toLocaleDateString("ko-KR", {
 		month: "long",
 		day: "numeric",
 		weekday: "short",
@@ -30,7 +28,7 @@ const DisplayTime: React.FC = () => {
 		minute: "2-digit",
 	});
 
-	return <time dateTime={dateTime.toISOString()}>{formattedDateTime}</time>;
+	return <time dateTime={clientTime}>{formattedDateTime}</time>;
 };
 
 export default DisplayTime;
