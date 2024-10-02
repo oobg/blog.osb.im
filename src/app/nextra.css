@@ -25,7 +25,7 @@ main > div[dir] aside {
 
 main > div[dir] > :nth-child(3) {
     background-color: black;
-    opacity: 0.6;
+    /*opacity: 0.6;*/
 }
 
 main > div[dir] > footer {
