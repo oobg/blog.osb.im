@@ -6,6 +6,8 @@
   "posts": {
     "title": "Posts",
     "type": "page",
-    "display": "hidden"
+    "theme": {
+      "footer": false
+    }
   }
 }

@@ -47,7 +47,3 @@ main > div[dir] > :nth-child(3) {
     min-height: 0;
     height: 100%;
 }
-
-main > div[dir] > footer {
-    display: none;
-}
