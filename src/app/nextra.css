@@ -3,6 +3,17 @@ main:has(> div[dir]) {
     overflow: hidden;
 }
 
+main > div[dir] {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+}
+
+main > div[dir] > div:has(> aside) {
+    width: 100%;
+}
+
 main > div[dir] > :nth-child(3) > :nth-child(1),
 main > div[dir] > :nth-child(3) > :nth-child(2) {
     @media screen and (max-width: 768px) {
@@ -23,9 +34,18 @@ main > div[dir] aside {
     }
 }
 
+main > div[dir] aside,
+main > div[dir] article {
+    overflow: auto;
+    min-height: 0;
+    height: 100%;
+}
+
 main > div[dir] > :nth-child(3) {
     background-color: black;
     /*opacity: 0.6;*/
+    min-height: 0;
+    height: 100%;
 }
 
 main > div[dir] > footer {
