@@ -10,10 +10,6 @@ main > div[dir] {
     height: 100%;
 }
 
-main > div[dir] > div:has(> aside) {
-    width: 100%;
-}
-
 main > div[dir] > :nth-child(3) > :nth-child(1),
 main > div[dir] > :nth-child(3) > :nth-child(2) {
     @media screen and (max-width: 768px) {
@@ -30,7 +26,7 @@ main > div[dir] > :nth-child(3) > :nth-child(2) {
 main > div[dir] aside {
     @media screen and (max-width: 768px) {
         background-color: black;
-        opacity: 1;
+        left: 0;
     }
 }
 
@@ -43,7 +39,7 @@ main > div[dir] article {
 
 main > div[dir] > :nth-child(3) {
     background-color: black;
-    /*opacity: 0.6;*/
     min-height: 0;
     height: 100%;
+    width: 100%;
 }
