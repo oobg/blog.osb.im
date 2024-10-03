@@ -1,4 +1,9 @@
 {
-  "index": "My Homepage",
-  "test": "My Test Page"
+  "index": {
+    "title": "시작하기",
+  },
+  "--": {
+    "type": "separator"
+  },
+  "programmers": "프로그래머스"
 }
