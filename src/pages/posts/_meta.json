@@ -2,8 +2,10 @@
   "index": {
     "title": "시작하기",
   },
-  "--": {
+  "---": {
     "type": "separator"
   },
-  "programmers": "프로그래머스"
+  "programmers": {
+    "title": "프로그래머스"
+  }
 }
