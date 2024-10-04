@@ -19,7 +19,7 @@ const config: DocsThemeConfig = {
 		link: "https://github.com/oobg/blog.osb.im",
 	},
 	darkMode: false,
-	docsRepositoryBase: "https://github.com/oobg/blog-obsidian",
+	docsRepositoryBase: "https://github.com/oobg/blog.osb.im/src/pages/posts",
 	useNextSeoProps() {
 		return {
 			titleTemplate: "[post] %s"
