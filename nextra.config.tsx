@@ -47,12 +47,21 @@ const config: DocsThemeConfig = {
 	},
 	editLink: {
 		text: "",
+		component: null,
 	},
 	feedback: {
 		content: null
 	},
 	toc: {
 		float: true,
+		backToTop: true,
+		extraContent: () => {
+			return <div className="nextra-toc-hidden"></div>;
+		},
+		title: props => {
+			const { frontMatter } = useConfig();
+			return frontMatter.title;
+		}
 	},
 }
 

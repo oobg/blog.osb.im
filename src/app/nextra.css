@@ -43,3 +43,7 @@ main > div[dir] > :nth-child(3) {
     height: 100%;
     width: 100%;
 }
+
+main > div[dir] div:has(> div.nextra-toc-hidden) {
+    display: none;
+}
