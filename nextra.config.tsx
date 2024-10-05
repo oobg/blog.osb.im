@@ -66,7 +66,7 @@ const config: DocsThemeConfig = {
 	sidebar: {
 		titleComponent({ title, type }) {
 			if (type === "separator") {
-				return <div className="border-gray-500"></div>
+				return <hr />
 			}
 			if (title === "programmers") {
 				return <>프로그래머스</>
