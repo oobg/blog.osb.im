@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { OsxLayout } from "@/features/layout";
-
+import { TagManager } from "@/features/googleTagManager";
 
 export const metadata: Metadata = {
   title: "BaeWoong's Blog",
@@ -20,6 +20,7 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="kr">
+      <TagManager />
       <body>
         <OsxLayout>
           {children}
