@@ -1,0 +1,70 @@
+---
+title: V8 JavaScript 엔진
+date: 2024-10-07 19:33:00 +0900
+tags: ["nodejs"]
+---
+
+import { Callout } from "nextra/components";
+
+# V8 JavaScript 엔진
+
+V8 JavaScript 엔진은 Chromium 계열의 브라우저에서 JavaScript 코드를 해석하고 실행하는 엔진입니다.
+
+<Callout type="info" emoji="✅">
+	**Chromium**은 Google 이 개발한 오픈 소스 웹 브라우저 프로젝트입니다.
+</Callout>
+
+V8은 브라우저에서 JavaScript 코드를 실행할 때 사용하는 핵심 요소이며, DOM 및 기타 웹 플랫폼 API 는 브라우저에서 제공하는 런타임 환경의 일부입니다.
+
+V8은 브라우저와 독립적으로 동작하는 JavaScript 엔진으로, 이를 통해 Node.js의 탄생이 가능해졌습니다.
+2009년에 V8은 Node.js를 구동하는 엔진으로 선택되었으며, Node.js의 성장과 함께 V8은 서버 측 JavaScript 코드를 실행하는 중요한 엔진이 되었습니다.
+V8은 Electron 과 같은 프로젝트에서도 활용되며, 데스크톱 애플리케이션을 구동하는 데 기여하고 있습니다.
+
+## Chromium 프로젝트
+
+Chromium 은 Google이 개발한 오픈 소스 웹 브라우저 프로젝트로, Chrome, Microsoft Edge, Opera, Naver Whale 등 다양한 브라우저의 기반이 되는 엔진입니다.
+Chromium 은 웹 페이지를 렌더링하고 JavaScript 코드를 실행하는 엔진(V8)과 브라우저의 다른 핵심 기능들을 포함하고 있습니다.
+
+주요 특징은 다음과 같습니다.
+
+- **오픈 소스**: 누구나 Chromium의 코드를 수정하고 배포할 수 있습니다.
+- **기반 브라우저**: 여러 브라우저들이 Chromium 을 기반으로 만들어졌습니다.
+- **빠른 업데이트**: Chromium 프로젝트는 빠르게 업데이트되며, 새로운 웹 표준과 기술이 빠르게 반영됩니다.
+
+결과적으로, Chromium 은 웹 브라우저의 핵심적인 기능을 제공하는 플랫폼으로, 다양한 브라우저가 이를 사용하여 각자의 특화된 기능을 추가합니다.
+
+## 다른 JavaScript 엔진
+
+브라우저마다 자체 JavaScript 엔진을 사용합니다.
+
+- Firefox는 SpiderMonkey를 사용합니다.
+- Safari는 JavaScriptCore(Nitro로도 불림)를 사용합니다.
+- Microsoft Edge는 원래 Chakra 엔진을 사용했으나, 최근에는 Chromium 기반으로 변경되면서 V8을 사용하게 되었습니다.
+
+이 모든 엔진은 ECMAScript 표준([ECMA-262](https://ecma-international.org/publications-and-standards/standards/ecma-262/))을 준수하며, JavaScript 가 이 표준을 따르는 언어임을 보장합니다.
+
+## 성능 향상 노력
+
+V8 엔진은 C++로 작성되었으며, 지속적으로 성능 최적화를 위해 개선되고 있습니다.
+V8은 다양한 플랫폼(Mac, Windows, Linux 등)에서 동작하도록 설계되었습니다.
+
+V8의 구현 세부 사항은 지속적으로 변하고 있으므로, 최신 정보는 V8의 공식 문서를 참조하시기 바랍니다.<br />
+V8은 성능을 지속적으로 향상시키기 위해 다른 JavaScript 엔진들과 함께 발전하고 있습니다.
+웹 환경에서 성능 경쟁은 오랫동안 이어져 왔으며, 이러한 경쟁 덕분에 사용자와 개발자는 더 빠르고 최적화된 환경을 사용할 수 있습니다.
+
+## 컴파일 방식
+
+JavaScript 는 일반적으로 인터프리터 언어로 알려져 있지만, 현대 JavaScript 엔진은 단순히 코드를 해석하는 것을 넘어, 실행 속도를 높이기 위해 컴파일합니다.
+2009년, Firefox 3.5의 SpiderMonkey JavaScript 컴파일러가 추가된 이후, 주요 JavaScript 엔진들이 이를 채택했습니다.
+
+V8은 JIT(Just-In-Time) 컴파일을 사용하여 JavaScript 코드를 컴파일하고, 이를 통해 실행 성능을 높입니다.
+이 방식은 코드 실행 전에 미리 컴파일하여 성능을 최적화하는 것으로, 단순히 해석하는 것보다 효율적입니다.
+
+JavaScript 는 이제 브라우저에서 간단한 스크립트 실행을 넘어, 수천에서 수십만 줄의 코드를 실행하는 복잡한 애플리케이션을 지원합니다.
+JavaScript 의 이러한 확장에 따라 컴파일 방식은 성능 향상에 중요한 역할을 하게 되었습니다.
+
+## 결론
+
+V8은 Google Chrome 및 Node.js 에서 JavaScript 코드를 실행하는 핵심 엔진으로, 다른 브라우저 엔진들과 함께 ECMAScript 표준을 준수합니다.
+V8은 JIT 컴파일을 통해 성능을 최적화하고 있으며, Node.js와 Electron 을 통해 서버 및 데스크톱 애플리케이션에도 사용되고 있습니다.
+V8의 성능 최적화는 지속적으로 발전하고 있으며, 최신 JavaScript 엔진 경쟁은 웹과 서버 환경의 성능 향상을 이끌고 있습니다.
