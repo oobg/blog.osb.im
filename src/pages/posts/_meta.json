@@ -5,13 +5,18 @@
       "pagination": false
     }
   },
-  "---": {
+  "separator-1": {
+    "title": "---",
     "type": "separator"
   },
-  "nodejs": {
-    "title": "Node.js"
+  "separator-2": {
+    "title": "언어",
+    "type": "separator"
   },
-  "programmers": {
-    "title": "프로그래머스"
-  }
+  "nodejs": "Node.js",
+  "separator-3": {
+    "title": "알고리즘",
+    "type": "separator"
+  },
+  "programmers": "프로그래머스"
 }

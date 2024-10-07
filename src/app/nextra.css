@@ -56,4 +56,10 @@ main > div[dir] article {
 
 main > div[dir] aside ul li:has(> hr) {
     margin: 0;
+    border: none !important;
+    transform: scaleY(0.2);
+}
+
+main > div[dir] aside ul li:has(> span.cursor-default) {
+    margin: 0;
 }

@@ -66,8 +66,13 @@ const config: DocsThemeConfig = {
 	sidebar: {
 		titleComponent({ title, type }) {
 			if (type === "separator") {
-				return <hr />
+				if (title !== "---") {
+					return <span className="cursor-default">{title}</span>
+				} else {
+					return <hr />
+				}
 			}
+
 			if (title === "programmers") {
 				return <>프로그래머스</>
 			}
