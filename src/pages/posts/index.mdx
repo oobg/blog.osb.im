@@ -4,4 +4,34 @@ date: 2024-10-04 00:12:20 +0900
 tags: ['history']
 ---
 
+import { Cards, Card } from "nextra/components";
+import {
+	IconNodeJS,
+	IconProgrammers,
+} from "/public/assets/nextra-icon/icons";
+
 # 시작하기
+
+## 언어
+
+<Cards>
+	<Card
+		icon={<IconNodeJS />}
+		title="Node.js"
+		href="/posts/nodejs/00"
+		children=""
+		arrow
+	/>
+</Cards>
+
+## 알고리즘
+
+<Cards>
+	<Card
+		icon={<IconProgrammers />}
+		title="프로그래머스"
+		href="/posts/programmers/00"
+		children=""
+		arrow
+	/>
+</Cards>
