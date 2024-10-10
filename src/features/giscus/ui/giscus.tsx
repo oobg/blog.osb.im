@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 
 export default function Giscus() {
 	const ref = useRef<HTMLDivElement>(null);
-	const { resolvedTheme } = useTheme();
+	// const { resolvedTheme } = useTheme();
 
 	// https://github.com/giscus/giscus/tree/main/styles/themes
-	const theme = resolvedTheme === "dark" ? "dark" : "light";
+	// const theme = resolvedTheme === "dark" ? "dark" : "light";
+	const theme = "dark";
 
 	useEffect(() => {
 		if (!ref.current || ref.current.hasChildNodes()) return;
