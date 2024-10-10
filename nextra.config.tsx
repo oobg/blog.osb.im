@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
+import { Giscus } from "@/features/giscus";
 
 const src = "/assets/img/logo.png";
 
@@ -78,6 +79,16 @@ const config: DocsThemeConfig = {
 			}
 			return <>{title}</>
 		}
+	},
+	main: ({ children }) => {
+		const { asPath } = useRouter();
+		const isSegmentFirst = asPath.split("/").length === 2;
+		return (
+			<>
+				{children}
+				{!isSegmentFirst && <Giscus />}
+			</>
+		)
 	}
 }
 
