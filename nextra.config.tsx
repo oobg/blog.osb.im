@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { Giscus } from "@/features/giscus";
 
 const src = "/assets/img/logo.png";
@@ -83,6 +84,18 @@ const config: DocsThemeConfig = {
 	main: ({ children }) => {
 		const { asPath } = useRouter();
 		const isSegmentFirst = asPath.split("/").length === 2;
+
+		useEffect(() => {
+			const contentElement = document.querySelector("article.nextra-content");
+			if (contentElement) {
+				contentElement.scrollTo({
+					top: 0,
+					left: 0,
+					behavior: "auto",
+				});
+			}
+		}, [asPath]);
+
 		return (
 			<>
 				{children}
