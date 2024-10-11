@@ -30,7 +30,7 @@ export default function Giscus() {
 		scriptElem.setAttribute("data-input-position", "top");
 		scriptElem.setAttribute("data-theme", theme);
 		scriptElem.setAttribute("data-lang", "ko");
-		scriptElem.setAttribute("data-loading", "lazy");
+		// scriptElem.setAttribute("data-loading", "lazy");
 
 		ref.current.appendChild(scriptElem);
 	}, [theme]);
