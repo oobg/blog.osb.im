@@ -13,12 +13,24 @@ const icons = [
 
 const Footer: React.FC = () => {
 	const currentPath = usePathname();
+	const isActive = (href: string) => {
+		if (!currentPath) return false;
+		if (href === "/") {
+			return currentPath === href;
+		}
+		return currentPath.startsWith(href);
+	};
 
 	return (
 		<footer className="min-w-16 h-16 flex justify-between mb-2 px-1 items-center bg-neutral-600 bg-opacity-30 rounded-xl border border-neutral-600">
 			{icons.map(({href, imageSrc, label}, index) => (
 				<Link href={href} key={index}>
-					<IconItem key={index} imageSrc={imageSrc} label={label} isActive={currentPath === href} />
+					<IconItem
+						key={index}
+						imageSrc={imageSrc}
+						label={label}
+						isActive={isActive(href)}
+					/>
 				</Link>
 			))}
 		</footer>
