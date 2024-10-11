@@ -4,9 +4,10 @@ import Image from "next/image";
 interface IconItemProps {
 	imageSrc: string;
 	label: string;
+	isActive: boolean;
 }
 
-const IconItem: React.FC<IconItemProps> = ({ imageSrc, label }) => {
+const IconItem: React.FC<IconItemProps> = ({ imageSrc, label, isActive }) => {
 	return (
 		<div className="group mt-2 w-14 h-full flex flex-col items-center justify-between relative">
 			<div
@@ -16,10 +17,15 @@ const IconItem: React.FC<IconItemProps> = ({ imageSrc, label }) => {
 				{label}
 			</div>
 			<div className="relative w-14 h-14 -mt-1 -mb-2">
-				<Image src={imageSrc} alt={label} width={56} height={56} className="rounded object-contain" />
+				<Image src={imageSrc} alt={label} width={56} height={56} className="rounded object-contain"/>
 			</div>
-			<svg width="16" height="16" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="10" cy="10" r="3" fill="white" />
+			<svg
+				width="16"
+				height="16"
+				viewBox="0 0 20 20"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<circle cx="10" cy="10" r="3" fill={isActive ? "white" : "transparent"}/>
 			</svg>
 		</div>
 	);
