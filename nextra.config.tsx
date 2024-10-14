@@ -27,6 +27,9 @@ const config: DocsThemeConfig = {
 			titleTemplate: "[post] %s"
 		}
 	},
+	nextThemes: {
+		forcedTheme: "dark",
+	},
 	head: () => {
 		const { asPath, defaultLocale, locale } = useRouter();
 		const { frontMatter } = useConfig();
