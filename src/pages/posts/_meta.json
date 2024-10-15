@@ -13,10 +13,20 @@
     "title": "웹 개발",
     "type": "separator"
   },
-  "nodejs": "Node.js",
+  "nodejs": {
+    "title": "Node.js",
+    "theme": {
+      "pagination": false
+    }
+  },
   "separator-3": {
     "title": "알고리즘",
     "type": "separator"
   },
-  "programmers": "프로그래머스"
+  "programmers": {
+    "title": "프로그래머스",
+    "theme": {
+      "pagination": false
+    }
+  }
 }

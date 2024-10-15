@@ -86,7 +86,8 @@ const config: DocsThemeConfig = {
 	},
 	main: ({ children }) => {
 		const { asPath } = useRouter();
-		const isSegmentFirst = asPath.split("/").length === 2;
+		const blackList = ["/posts", "/posts/nodejs", "/posts/programmers"];
+		const hideGiscus = blackList.some((path) => asPath === path);
 
 		useEffect(() => {
 			const contentElement = document.querySelector("article.nextra-content");
@@ -102,7 +103,7 @@ const config: DocsThemeConfig = {
 		return (
 			<>
 				{children}
-				{!isSegmentFirst && <Giscus />}
+				{!hideGiscus && <Giscus />}
 			</>
 		)
 	}

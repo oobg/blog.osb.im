@@ -1,0 +1,26 @@
+---
+title: 프로그래머스 목차
+date: 2024-10-15 20:23:00 +0900
+tags: ['navigation']
+---
+
+import { Cards, Card } from "nextra/components";
+import { IconCode } from "/public/assets/nextra-icon/icons";
+
+# 프로그래머스
+
+<Cards>
+	{[
+		{ title: "짝수와 홀수의 개수", href: "/posts/programmers/00" },
+		{ title: "문자열 뒤집기", href: "/posts/programmers/01" },
+	].map((card, index) => (
+		<Card
+			key={index}
+			icon={<IconCode />}
+			title={card.title}
+			href={card.href}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>
