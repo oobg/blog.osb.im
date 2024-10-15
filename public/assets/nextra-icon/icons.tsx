@@ -20,7 +20,17 @@ const IconProgrammers = () => {
 	return <ImageComponent name="programmers" />;
 }
 
+const IconText = () => {
+	return <ImageComponent name="text" />;
+}
+
+const IconCode = () => {
+	return <ImageComponent name="code" />;
+}
+
 export {
 	IconNodeJS,
 	IconProgrammers,
+	IconText,
+	IconCode,
 };
