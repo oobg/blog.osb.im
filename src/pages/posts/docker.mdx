@@ -1,0 +1,25 @@
+---
+title: docker 목차
+date: 2024-10-17 00:57:00 +0900
+tags: ['navigation']
+---
+
+import { Cards, Card } from "nextra/components";
+import { IconText } from "/public/assets/nextra-icon/icons";
+
+# Docker
+
+<Cards>
+	{[
+		{ title: "소개와 특징", href: "/posts/docker/00" },
+	].map((card, index) => (
+		<Card
+			key={index}
+			icon={<IconText />}
+			title={card.title}
+			href={card.href}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>

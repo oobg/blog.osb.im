@@ -1,10 +1,10 @@
 {
-  "index": {
-    "title": "시작하기",
+  "*": {
     "theme": {
       "pagination": false
     }
   },
+  "index": "시작하기",
   "separator-1": {
     "title": "---",
     "type": "separator"
@@ -13,20 +13,15 @@
     "title": "웹 개발",
     "type": "separator"
   },
-  "nodejs": {
-    "title": "Node.js",
-    "theme": {
-      "pagination": false
-    }
-  },
+  "nodejs": "Node.js",
   "separator-3": {
+    "title": "서버",
+    "type": "separator"
+  },
+  "docker": "Docker",
+  "separator-4": {
     "title": "알고리즘",
     "type": "separator"
   },
-  "programmers": {
-    "title": "프로그래머스",
-    "theme": {
-      "pagination": false
-    }
-  }
+  "programmers": "프로그래머스"
 }
