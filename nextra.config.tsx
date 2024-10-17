@@ -87,13 +87,13 @@ const config: DocsThemeConfig = {
 	},
 	main: ({ children }) => {
 		const { asPath } = useRouter();
-		const blackList = [
+		const blackList = new Set([
 			"/posts",
 			"/posts/nodejs",
 			"/posts/programmers",
 			"/posts/docker",
-		];
-		const hideGiscus = blackList.some((path) => asPath === path);
+		]);
+		const hideGiscus = blackList.has(asPath);
 
 		useEffect(() => {
 			const contentElement = document.querySelector("article.nextra-content");
