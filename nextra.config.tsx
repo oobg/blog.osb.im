@@ -69,6 +69,7 @@ const config: DocsThemeConfig = {
 		}
 	},
 	sidebar: {
+		defaultMenuCollapseLevel: 1,
 		titleComponent({ title, type }) {
 			if (type === "separator") {
 				if (title !== "---") {
@@ -82,11 +83,16 @@ const config: DocsThemeConfig = {
 				return <>프로그래머스</>
 			}
 			return <>{title}</>
-		}
+		},
 	},
 	main: ({ children }) => {
 		const { asPath } = useRouter();
-		const blackList = ["/posts", "/posts/nodejs", "/posts/programmers"];
+		const blackList = [
+			"/posts",
+			"/posts/nodejs",
+			"/posts/programmers",
+			"/posts/docker",
+		];
 		const hideGiscus = blackList.some((path) => asPath === path);
 
 		useEffect(() => {
