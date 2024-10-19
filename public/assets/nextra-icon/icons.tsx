@@ -1,42 +1,23 @@
 import Image from "next/image";
+import { memo, NamedExoticComponent } from "react";
 
-interface ImageComponentProps {
+interface NextraIconProps {
 	name: string;
 	extension?: string;
 }
 
-const srcPrefix = "/assets/nextra-icon/";
+const srcPrefix: string = "/assets/nextra-icon/";
 
-const ImageComponent = ({ name, extension = "png" }: ImageComponentProps) => {
+const NextraIcon: NamedExoticComponent<NextraIconProps> =
+	memo(({ name, extension = "png" }: NextraIconProps) => {
 	return (
-		<Image src={srcPrefix + name + "." + extension} alt={name + " icon"} width={24} height={24} />
+		<Image
+			src={`${srcPrefix}${name}.${extension}`}
+			alt={`${name} icon`}
+			width={24}
+			height={24}
+		/>
 	);
-}
+});
 
-const IconNodeJS = () => {
-	return <ImageComponent name="nodejs" />;
-};
-
-const IconDocker = () => {
-	return <ImageComponent name="docker" extension="webp" />;
-}
-
-const IconProgrammers = () => {
-	return <ImageComponent name="programmers" />;
-}
-
-const IconText = () => {
-	return <ImageComponent name="text" />;
-}
-
-const IconCode = () => {
-	return <ImageComponent name="code" />;
-}
-
-export {
-	IconNodeJS,
-	IconDocker,
-	IconProgrammers,
-	IconText,
-	IconCode,
-};
+export default NextraIcon;

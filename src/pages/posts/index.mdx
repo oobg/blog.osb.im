@@ -5,11 +5,7 @@ tags: ['navigation']
 ---
 
 import { Cards, Card } from "nextra/components";
-import {
-	IconDocker,
-	IconNodeJS,
-	IconProgrammers,
-} from "/public/assets/nextra-icon/icons";
+import NextraIcon from "/public/assets/nextra-icon/icons";
 
 # 시작하기
 
@@ -17,7 +13,7 @@ import {
 
 <Cards>
 	<Card
-		icon={<IconNodeJS />}
+		icon={<NextraIcon name="nodejs" />}
 		title="Node.js"
 		href="/posts/nodejs"
 		children=""
@@ -29,7 +25,7 @@ import {
 
 <Cards>
 	<Card
-		icon={<IconDocker />}
+		icon={<NextraIcon name="docker" extension="webp" />}
 		title="Docker"
 		href="/posts/docker"
 		children=""
@@ -41,7 +37,7 @@ import {
 
 <Cards>
 	<Card
-		icon={<IconProgrammers />}
+		icon={<NextraIcon name="programmers" />}
 		title="프로그래머스"
 		href="/posts/programmers"
 		children=""

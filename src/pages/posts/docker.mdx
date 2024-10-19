@@ -5,7 +5,7 @@ tags: ['navigation']
 ---
 
 import { Cards, Card } from "nextra/components";
-import { IconText } from "/public/assets/nextra-icon/icons";
+import NextraIcon from "/public/assets/nextra-icon/icons";
 
 # Docker
 
@@ -15,7 +15,7 @@ import { IconText } from "/public/assets/nextra-icon/icons";
 	].map((card, index) => (
 		<Card
 			key={index}
-			icon={<IconText />}
+			icon={<NextraIcon name="text" />}
 			title={card.title}
 			href={card.href}
 			children=""
