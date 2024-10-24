@@ -1,0 +1,93 @@
+---
+title: 점의 위치 구하기
+date: 2023-11-29 23:11:00 +0900
+tags: ['프로그래머스']
+---
+
+# 점의 위치 구하기
+
+## 문제 설명
+
+사분면은 한 평면을 x축과 y축을 기준으로 나눈 네 부분입니다. 사분면은 아래와 같이 1부터 4까지 번호를매깁니다.
+
+## 제한 사항
+
+![img](https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/b58d4788-42fa-44fa-af50-481907e65473/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-07-07%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.27.04%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%84%87%E1%85%A9%E1%86%AB.png)
+
+- x 좌표와 y 좌표가 모두 양수이면 제1사분면에 속합니다.
+- x 좌표가 음수, y 좌표가 양수이면 제2사분면에 속합니다.
+- x 좌표와 y 좌표가 모두 음수이면 제3사분면에 속합니다.
+- x 좌표가 양수, y 좌표가 음수이면 제4사분면에 속합니다.
+
+x 좌표 (x, y)를 차례대로 담은 정수 배열 `dot`이 매개변수로 주어집니다. 좌표 `dot`이 사분면 중 어디에 속하는지 1, 2, 3, 4 중 하나를 return 하도록 solution 함수를 완성해주세요.
+
+## 입출력 예
+
+- `dot`의 길이 = 2
+- `dot[0]`은 x좌표를, `dot[1]`은 y좌표를 나타냅니다
+- 500 ≤ `dot`의 원소 ≤ 500
+- `dot`의 원소는 0이 아닙니다.
+
+## 입출력 예 설명
+
+| dot | result |
+| --- | --- |
+| [2, 4] | 1 |
+| [-7, 9] | 2 |
+
+## 문제풀이 (나)
+
+```jsx
+function solution(dot) {
+    let result = 0;
+    dot.forEach((d, i) => {
+        dot[i] = Math.sign(d);
+    });
+    if (checkSign(dot, [1, 1])) {
+        result = 1;
+    } else if (checkSign(dot, [-1, 1])) {
+        result = 2;
+    } else if (checkSign(dot, [-1, -1])) {
+        result = 3;
+    } else if (checkSign(dot, [1, -1])) {
+        result = 4;
+    }
+    return result;
+}
+
+function checkSign(dot, array) {
+    return dot.toString() === array.toString();
+}
+```
+
+- 오늘은 소스를 정리하면서 하려다 더 어렵게 되어버린 것 같다.
+1. 우선 숫자를 음수인지 양수인지 확인을 하려고 Math.sign 메서드를 사용했다.
+ - 양수이면 `+1`, 음수이면 `-1`을 리턴한다.
+2. 변경된 배열로 사분면을 구해보려고 했다.
+3. 배열 비교하는 부분은 소스가 길어지는 것 같아서 함수로 만들었다.
+4. 배열끼리 서로 자체적으로 비교가 안되서 문자열이나 JSON 형태로 변환한 후 비교를 해주어야 했다.
+ - 나는 문자열로 변환해서 비교했다.
+
+## 문제풀이 (다른사람)
+
+```jsx
+function solution(dot) {
+    const [num,num2] = dot;
+    const check = num * num2 > 0;
+    return num > 0 ? (check ? 1 : 4) : (check ? 3 : 2);
+}
+```
+
+- 가장 많은 좋아요를 받은 사람의 풀이를 가져왔다.
+1. 구조분해 / 비구조 할당하여 dot 의 인자를 한 개씩 가져온다.
+2. 가져온 인자를 서로 곱하고 0보다 큰지 비교한다.
+ - 1 or 3 분면인지, 2 or 4 분면인지 확인하려고 한 것 같다.
+3. dot 의 첫 번째 인자가 양수인지 확인한다.
+ - 1 or 4 분면인지, 2 or 3 분면인지 확인하려고 한 것 같다.
+4. 이제 나온 비교값으로 제 몇 사분면인지 리턴해준다.
+
+## 레퍼런스
+
+- [Math.sign() - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/sign)
+
+- [구조 분해 할당 - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
