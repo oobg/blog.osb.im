@@ -11,17 +11,17 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 
 <Cards>
 	{[
-		{ title: "짝수와 홀수의 개수", href: "/posts/programmers/00" },
-		{ title: "문자열 뒤집기", href: "/posts/programmers/01" },
-		{ title: "점의 위치 구하기", href: "/posts/programmers/02" },
-		{ title: "삼각형의 완성조건 (1)", href: "/posts/programmers/03" },
-		{ title: "편지", href: "/posts/programmers/04" },
+		{ title: "짝수와 홀수의 개수" },
+		{ title: "문자열 뒤집기" },
+		{ title: "점의 위치 구하기" },
+		{ title: "삼각형의 완성조건 (1)" },
+		{ title: "편지" },
 	].map((card, index) => (
 		<Card
 			key={index}
 			icon={<NextraIcon name="code" />}
 			title={card.title}
-			href={card.href}
+			href={"/posts/programmers/" + index.toString().padStart(2, "0")}
 			children=""
 			arrow
 		/>

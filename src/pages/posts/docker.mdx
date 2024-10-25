@@ -11,14 +11,14 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 
 <Cards>
 	{[
-		{ title: "소개", href: "/posts/docker/00" },
-		{ title: "가상화", href: "/posts/docker/01" },
+		{ title: "소개" },
+		{ title: "가상화" },
 	].map((card, index) => (
 		<Card
 			key={index}
 			icon={<NextraIcon name="text" />}
 			title={card.title}
-			href={card.href}
+			href={"/posts/docker/" + index.toString().padStart(2, "0")}
 			children=""
 			arrow
 		/>

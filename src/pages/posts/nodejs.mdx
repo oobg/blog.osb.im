@@ -11,20 +11,20 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 
 <Cards>
 	{[
-		{ title: "소개와 특징", href: "/posts/nodejs/00" },
-		{ title: "설치 방법", href: "/posts/nodejs/01" },
-		{ title: "브라우저와의 차이점", href: "/posts/nodejs/02" },
-		{ title: "V8 엔진", href: "/posts/nodejs/03" },
-		{ title: "패키지 매니저", href: "/posts/nodejs/04" },
-		{ title: "package.json", href: "/posts/nodejs/05"},
-		{ title: "npm", href: "/posts/nodejs/06"},
-		{ title: "비동기 프로그래밍과 콜백", href: "/posts/nodejs/07"},
+		{ title: "소개와 특징" },
+		{ title: "설치 방법" },
+		{ title: "브라우저와의 차이점" },
+		{ title: "V8 엔진" },
+		{ title: "패키지 매니저" },
+		{ title: "package.json" },
+		{ title: "npm" },
+		{ title: "비동기 프로그래밍과 콜백" },
 	].map((card, index) => (
 		<Card
 			key={index}
 			icon={<NextraIcon name="text" />}
 			title={card.title}
-			href={card.href}
+			href={"/posts/nodejs/" + index.toString().padStart(2, "0")}
 			children=""
 			arrow
 		/>
