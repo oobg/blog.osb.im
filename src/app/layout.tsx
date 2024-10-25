@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { OsxLayout } from "@/features/layout";
-import { TagManager, AnalyticsManager } from "../features/googleManager";
+import { TagManager, AnalyticsManager, GoogleAdSense } from "../features/googleManager";
 
 export const metadata: Metadata = {
   title: "BaeWoong's Blog",
@@ -21,6 +21,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="kr">
       <TagManager />
+      <GoogleAdSense />
       <body>
         <OsxLayout>
           {children}
