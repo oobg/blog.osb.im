@@ -44,3 +44,20 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 		arrow
 	/>
 </Cards>
+
+## 기타
+
+<Cards>
+	{[
+		{ title: "기술 면접", href: "interview" },
+	].map((card, index) => (
+		<Card
+			key={index}
+			icon={<NextraIcon name="interview" width={22} height={22} />}
+			title={card.title}
+			href={"/posts/" + card.href}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>

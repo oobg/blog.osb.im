@@ -23,5 +23,10 @@
     "title": "알고리즘",
     "type": "separator"
   },
-  "programmers": "프로그래머스"
+  "programmers": "프로그래머스",
+  "separator-5": {
+    "title": "기타",
+    "type": "separator"
+  },
+  "interview": "기술 면접"
 }
