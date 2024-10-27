@@ -63,3 +63,7 @@ main > div[dir] aside ul li:has(> hr) {
 main > div[dir] aside ul li:has(> span.cursor-default) {
     margin: 0;
 }
+
+main > div[dir] article code {
+    color: #EB5757;
+}
