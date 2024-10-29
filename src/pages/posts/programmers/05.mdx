@@ -1,0 +1,69 @@
+---
+title: 머쓱이보다 키 큰 사람
+date: 2023-12-02 00:00:00 +0900
+tags: ['프로그래머스']
+---
+
+# 머쓱이보다 키 큰 사람
+
+## 문제 설명
+
+머쓱이는 학교에서 키 순으로 줄을 설 때 몇 번째로 서야 하는지 궁금해졌습니다. 머쓱이네 반 친구들의 키가 담긴 정수 배열 `array`와 머쓱이의 키 `height`가 매개변수로 주어질 때, 머쓱이보다 키 큰 사람 수를 return 하도록 solution 함수를 완성해보세요.
+
+## **제한 사항**
+
+- 1 ≤ `array`의 길이 ≤ 100
+- 1 ≤ `height` ≤ 200
+- 1 ≤ `array`의 원소 ≤ 200
+
+## **입출력 예**
+
+| array | height | result |
+| --- | --- | --- |
+| [149, 180, 192, 170] | 167 | 3 |
+| [180, 120, 140] | 190 | 0 |
+
+## **입출력 예 설명**
+
+입출력 예 #1
+
+- 149, 180, 192, 170 중 머쓱이보다 키가 큰 사람은 180, 192, 170으로 세 명입니다.
+
+입출력 예 #2
+
+- 180, 120, 140 중 190보다 큰 수는 없으므로 0명입니다.
+
+## **문제풀이 (나)**
+
+```jsx
+function solution(array, height) {
+    let count = 0;
+    array.map(friend => count = friend > height == true ? ++count : count);
+    return count;
+}
+```
+
+map을 사용해서 배열을 순회하면서 1개씩 검사후 조건 성립시 선언된 count 의 횟수를 1개 늘렸다.
+
+다른 풀이를 보다보니 map의 경우 새 배열을 return 하는거라 배열을 순회하면서 메서드만 실행하고 싶으면 map 대신 forEach를 사용하는게 좋다고 한다.
+
+## **문제풀이 (다른사람)**
+
+
+```jsx
+function solution(array, height) {
+    var answer = array.filter(item => item > height);
+    return answer.length;
+}
+```
+
+가장 좋아요를 많이 받은 사람의 풀이를 찾아보니 다음과 같이 필터를 사용했다.
+
+찾아보니 filter 메서드의 동작은 아래와 같다.
+
+1. 주어진 배열( `array` )에 대해 얕은 복사본을 생성한다.
+2. 주어진 배열( `array` )에서 제공된 함수( `item => item > height` )에 의해 구현된 테스트를 통과한 요소만 필터링해서 리턴한다.
+
+## **레퍼런스**
+
+- [Array.prototype.filter() - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
