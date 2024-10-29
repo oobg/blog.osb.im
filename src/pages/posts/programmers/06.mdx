@@ -1,0 +1,99 @@
+---
+title: 특정 문자 제거하기
+date: 2023-12-03 00:00:00 +0900
+tags: ['프로그래머스']
+---
+
+import { Callout } from "nextra/components";
+
+# 특정 문자 제거하기
+
+## 문제 설명
+
+문자열 `my_string`과 문자 `letter`이 매개변수로 주어집니다. `my_string`에서 `letter`를 제거한 문자열을 return하도록 solution 함수를 완성해주세요.
+
+## **제한 사항**
+
+- 1 ≤ `my_string`의 길이 ≤ 100
+- `letter`은 길이가 1인 영문자입니다.
+- `my_string`과 `letter`은 알파벳 대소문자로 이루어져 있습니다.
+- 대문자와 소문자를 구분합니다.
+
+## **입출력 예**
+
+| my_string | letter | result |
+| --- | --- | --- |
+| "abcdef" | "f" | "abcde" |
+| "BCBdbe" | "B" | "Cdbe" |
+
+## **입출력 예 설명**
+
+입출력 예 #1
+
+- "abcdef" 에서 "f"를 제거한 "abcde"를 return합니다.
+
+입출력 예 #2
+
+- "BCBdbe" 에서 "B"를 모두 제거한 "Cdbe"를 return합니다.
+
+## **문제풀이 (나)**
+
+```jsx
+function solution(my_string, letter) {
+    return my_string.replaceAll(letter, "");
+}
+```
+
+문자열의 replaceAll 메서드를 사용했다.
+
+ES2021 부터 String.prototype.replaceAll 로 String 프로토타입에 추가되었다.
+
+## **문제풀이 (다른사람)**
+
+```jsx
+function solution(my_string, letter) {
+    const answer = my_string.split(letter).join('')
+    return answer;
+}
+```
+
+split 의 인자를 기준으로 분리해 배열로 반환한다.
+
+join 메서드를 사용해 배열을 다시 문자열로 합친다.
+
+차라리 이렇게 하는 것 보다는 전역 정규식을 사용해 부분 문자열을 대체하는 식으로 하는 것이 좋을것 같다.
+
+다만, letter의 경우는 변수이기 때문에 아래와 같은 방식( `/regExp/g` ) 은 불가능하다.
+
+```jsx
+function solution(my_string, letter) {
+    return my_string.replace(/letter/g, "");
+}
+```
+
+<Callout emoji="⚠️">
+	위와 같은 방식( `/regExp/g` )은 my_string 변수에 담긴 문자열 중 letter 라는 문자열을 치환한다.
+</Callout>
+
+검색하려는 값이 변수에 담겨있다면 아래와 같은 정규식 풀이로 진행해야 한다.
+
+```jsx
+function solution(my_string, letter) {
+    let reg = new RegExp(letter, "g");
+    return my_string.replace(reg, "");
+}
+```
+
+<Callout type="info" emoji="💡">
+	위와 같은 방식( `new RegExp(pattern, flag)` )은 my_string 변수에 담긴 문자열 중 letter 변수의 값을 가져와 치환한다.
+</Callout>
+
+## **레퍼런스**
+
+- https://ui.toast.com/weekly-pick/ko_20210202 - replaceAll 은 ES2021 부터 적용됨
+
+- [간단한 예제로 알아보는 자바스크립트 ES2021 기능](https://ui.toast.com/weekly-pick/ko_20210202)
+
+- [JS-📚-정규식-RegExp-누구나-이해하기-쉽게-정리](https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EC%A0%95%EA%B7%9C%EC%8B%9D-RegExp-%EB%88%84%EA%B5%AC%EB%82%98-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%89%BD%EA%B2%8C-%EC%A0%95%EB%A6%AC) - 전역 정규식 정리
+
+- [📚 JavaScript 정규 표현식 문법 총정리 + 응용 예제](https://inpa.tistory.com/entry/JS-📚-정규식-RegExp-누구나-이해하기-쉽게-정리)
