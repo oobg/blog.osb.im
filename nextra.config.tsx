@@ -93,6 +93,7 @@ const config: DocsThemeConfig = {
 			"/posts/programmers",
 			"/posts/docker",
 			"/posts/interview",
+			"/posts/exception",
 		]);
 		const hideGiscus = blackList.has(asPath);
 

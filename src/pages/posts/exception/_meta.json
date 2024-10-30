@@ -1,0 +1,8 @@
+{
+  "*": {
+    "theme": {
+      "pagination": true
+    }
+  },
+  "00": "Input 태그 숫자 입력 제한"
+}
