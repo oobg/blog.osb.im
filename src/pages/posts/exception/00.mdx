@@ -39,8 +39,9 @@ import { Callout } from "nextra/components";
 이 input 태그에 숫자만 입력할 수 있도록 제한하려면, 다음과 같이 **JavaScript**에서 해당 태그에 `input` 이벤트를 걸어 사용할 수 있습니다.
 
 ```javascript copy filename="index.ts"
-const numberInput = document.getElementById("numberInput")
-numberInput.addEventListener("input", (e) => {
+const numberInput = document.getElementById("numberInput");
+
+numberInput.addEventListener("input", (e: InputEvent) => {
 	const inputElement: HTMLInputElement = e.target;
 	const inputValue = e.data;
 
@@ -78,14 +79,18 @@ numberInput.addEventListener("input", (e) => {
 
 ## Vue.js 사용 시
 
-Vue.js를 사용하는 경우, `v-bind`를 사용하여 input 태그의 값과 연결하고, `@input` 이벤트를 사용하여 아래와 같은 로직을 구현할 수 있습니다.
+Vue.js 에서 `v-bind`를 사용하여 input 태그의 값을 바인딩하고, `v-on`을 사용해 input 이벤트를 수신할 수 있습니다.
+이 방법을 통해 input 의 값과 이벤트를 Vue 컴포넌트 내에서 효과적으로 관리할 수 있습니다.
+
+아래는 **Vue.js의 빌트인 디렉티브** 중 **축약어**를 사용한 예시 코드입니다.
 
 ```vue copy filename="index.vue"
 <template>
 	<input
 		type="number"
 		:value="numberInput"
-		@input="onInput" />
+		@input="onInput"
+	/>
 </template>
 
 <script setup lang="ts">
