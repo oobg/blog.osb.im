@@ -49,11 +49,12 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 
 <Cards>
 	{[
-		{ title: "기술 면접", href: "interview" },
+		{ title: "기술 면접", href: "interview", icon: "interview" },
+		{ title: "예외 처리", href: "exception", icon: "retry" },
 	].map((card, index) => (
 		<Card
 			key={index}
-			icon={<NextraIcon name="interview" width={22} height={22} />}
+			icon={<NextraIcon name={card.icon} width={22} height={22} />}
 			title={card.title}
 			href={"/posts/" + card.href}
 			children=""
