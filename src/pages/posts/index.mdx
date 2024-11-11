@@ -4,7 +4,7 @@ date: 2024-10-04 00:12:20 +0900
 tags: ['navigation']
 ---
 
-import { Cards, Card } from "nextra/components";
+import { Cards } from "nextra/components";
 import NextraIcon from "/public/assets/nextra-icon/icons";
 
 # 시작하기
@@ -16,7 +16,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 		{ title: "Node.js", href: "nodejs", icon: "nodejs", size: 22 },
 		{ title: "CSS", href: "css", icon: "css", size: 26 },
 	].map((card, index) => (
-		<Card
+		<Cards.Card
 			key={index}
 			icon={<NextraIcon name={card.icon} width={card.size} height={card.size} />}
 			title={card.title}
@@ -30,7 +30,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 ## 서버
 
 <Cards>
-	<Card
+	<Cards.Card
 		icon={<NextraIcon name="docker" extension="webp" width={26} height={26} />}
 		title="Docker"
 		href="/posts/docker"
@@ -42,7 +42,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 ## 알고리즘
 
 <Cards>
-	<Card
+	<Cards.Card
 		icon={<NextraIcon name="programmers" width={20} height={20} />}
 		title="프로그래머스"
 		href="/posts/programmers"
@@ -58,7 +58,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 		{ title: "기술 면접", href: "interview", icon: "interview", size: 22 },
 		{ title: "예외 처리", href: "exception", icon: "retry", size: 22 },
 	].map((card, index) => (
-		<Card
+		<Cards.Card
 			key={index}
 			icon={<NextraIcon name={card.icon} width={card.size} height={card.size} />}
 			title={card.title}

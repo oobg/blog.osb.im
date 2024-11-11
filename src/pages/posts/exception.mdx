@@ -4,7 +4,7 @@ date: 2024-10-31 01:40:00 +0900
 tags: ['navigation']
 ---
 
-import { Cards, Card } from "nextra/components";
+import { Cards } from "nextra/components";
 import NextraIcon from "/public/assets/nextra-icon/icons";
 
 # 예외 처리
@@ -13,7 +13,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 	{[
 		{ title: "Input 태그 숫자 입력 제한" },
 	].map((card, index) => (
-		<Card
+		<Cards.Card
 			key={index}
 			icon={<NextraIcon name="exception" />}
 			title={card.title}

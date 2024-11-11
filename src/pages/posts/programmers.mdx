@@ -4,7 +4,7 @@ date: 2024-10-15 20:23:00 +0900
 tags: ['navigation']
 ---
 
-import { Cards, Card } from "nextra/components";
+import { Cards } from "nextra/components";
 import NextraIcon from "/public/assets/nextra-icon/icons";
 
 # 프로그래머스
@@ -25,7 +25,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 		{ title: "양꼬치" },
 		{ title: "피자 나눠 먹기 (1)" },
 	].map((card, index) => (
-		<Card
+		<Cards.Card
 			key={index}
 			icon={<NextraIcon name="code" />}
 			title={card.title}

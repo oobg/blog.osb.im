@@ -4,7 +4,7 @@ date: 2024-10-17 00:57:00 +0900
 tags: ['navigation']
 ---
 
-import { Cards, Card } from "nextra/components";
+import { Cards } from "nextra/components";
 import NextraIcon from "/public/assets/nextra-icon/icons";
 
 # Docker
@@ -15,7 +15,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 		{ title: "가상화" },
 		{ title: "설치 방법" },
 	].map((card, index) => (
-		<Card
+		<Cards.Card
 			key={index}
 			icon={<NextraIcon name="text" />}
 			title={card.title}

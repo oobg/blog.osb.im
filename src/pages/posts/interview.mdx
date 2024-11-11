@@ -4,7 +4,7 @@ date: 2024-10-26 01:41:00 +0900
 tags: ['navigation']
 ---
 
-import { Cards, Card } from "nextra/components";
+import { Cards } from "nextra/components";
 import NextraIcon from "/public/assets/nextra-icon/icons";
 
 # 기술 면접
@@ -13,7 +13,7 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 	{[
 		{ title: "Javascript" },
 	].map((card, index) => (
-		<Card
+		<Cards.Card
 			key={index}
 			icon={<NextraIcon name="javascript" width={18} height={18} />}
 			title={card.title}
