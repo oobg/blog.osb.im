@@ -67,3 +67,8 @@ main > div[dir] aside ul li:has(> span.cursor-default) {
 main > div[dir] article code {
     color: #EB5757;
 }
+
+main .nextra-card,
+main .nextra-card span{
+    max-height: 56px;
+}
