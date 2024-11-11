@@ -12,13 +12,19 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 ## 웹 개발
 
 <Cards>
-	<Card
-		icon={<NextraIcon name="nodejs" />}
-		title="Node.js"
-		href="/posts/nodejs"
-		children=""
-		arrow
-	/>
+	{[
+		{ title: "Node.js", href: "nodejs", icon: "nodejs", size: 22 },
+		{ title: "CSS", href: "css", icon: "css", size: 26 },
+	].map((card, index) => (
+		<Card
+			key={index}
+			icon={<NextraIcon name={card.icon} width={card.size} height={card.size} />}
+			title={card.title}
+			href={"/posts/" + card.href}
+			children=""
+			arrow
+		/>
+	))}
 </Cards>
 
 ## 서버
@@ -49,12 +55,12 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 
 <Cards>
 	{[
-		{ title: "기술 면접", href: "interview", icon: "interview" },
-		{ title: "예외 처리", href: "exception", icon: "retry" },
+		{ title: "기술 면접", href: "interview", icon: "interview", size: 22 },
+		{ title: "예외 처리", href: "exception", icon: "retry", size: 22 },
 	].map((card, index) => (
 		<Card
 			key={index}
-			icon={<NextraIcon name={card.icon} width={22} height={22} />}
+			icon={<NextraIcon name={card.icon} width={card.size} height={card.size} />}
 			title={card.title}
 			href={"/posts/" + card.href}
 			children=""

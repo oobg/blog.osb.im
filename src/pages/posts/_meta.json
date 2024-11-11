@@ -14,6 +14,7 @@
     "type": "separator"
   },
   "nodejs": "Node.js",
+  "css": "CSS",
   "separator-3": {
     "title": "서버",
     "type": "separator"

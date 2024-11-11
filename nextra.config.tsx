@@ -90,6 +90,7 @@ const config: DocsThemeConfig = {
 		const blackList = new Set([
 			"/posts",
 			"/posts/nodejs",
+			"/posts/css",
 			"/posts/programmers",
 			"/posts/docker",
 			"/posts/interview",
