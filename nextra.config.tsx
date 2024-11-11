@@ -90,16 +90,7 @@ const config: DocsThemeConfig = {
 	},
 	main: ({ children }) => {
 		const { asPath } = useRouter();
-		const blackList = new Set([
-			"/posts",
-			"/posts/nodejs",
-			"/posts/css",
-			"/posts/programmers",
-			"/posts/docker",
-			"/posts/interview",
-			"/posts/exception",
-		]);
-		const hideGiscus = blackList.has(asPath);
+		const hideGiscus = /^\/posts\/[^/]+$/.test(asPath);
 
 		useEffect(() => backToTop(), [asPath]);
 
@@ -108,8 +99,8 @@ const config: DocsThemeConfig = {
 				{children}
 				{!hideGiscus && <Giscus />}
 			</>
-		)
-	}
+		);
+	},
 }
 
 export default config;
