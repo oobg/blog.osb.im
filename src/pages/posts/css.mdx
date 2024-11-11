@@ -1,0 +1,25 @@
+---
+title: Css 목차
+date: 2024-10-31 01:40:00 +0900
+tags: ['navigation']
+---
+
+import { Cards, Card } from "nextra/components";
+import NextraIcon from "/public/assets/nextra-icon/icons";
+
+# Css
+
+<Cards>
+	{[
+		{ title: "Flexbox" },
+	].map((card, index) => (
+		<Card
+			key={index}
+			icon={<NextraIcon name="css" />}
+			title={card.title}
+			href={"/posts/css/" + index.toString()}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>
