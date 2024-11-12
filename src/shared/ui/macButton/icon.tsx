@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface ButtonProps {
 	normalSrc: string;
@@ -25,7 +26,7 @@ const MacButton: React.FC<ButtonProps> = ({
 			onMouseLeave={onLeave}
 			aria-label={ariaLabel}
 		>
-			<img
+			<Image
 				src={isHovered ? hoverSrc : normalSrc}
 				alt={alt}
 				className={isHovered ? "iconData.ts" : "normal"}
