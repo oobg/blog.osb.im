@@ -90,7 +90,7 @@ const config: DocsThemeConfig = {
 	},
 	main: ({ children }) => {
 		const { asPath } = useRouter();
-		const hideGiscus = /^\/posts\/[^/]+$/.test(asPath);
+		const hideGiscus = /^\/posts(\/[^/]+)?$/.test(asPath);
 
 		useEffect(() => backToTop(), [asPath]);
 
