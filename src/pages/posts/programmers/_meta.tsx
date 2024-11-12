@@ -1,5 +1,3 @@
-import { useConfig } from "nextra-theme-docs";
-
 export default {
   "*": {
     theme: {
@@ -18,5 +16,6 @@ export default {
   9: "중복된 숫자 개수",
   10: "배열의 유사도",
   11: "양꼬치",
-  12: "피자 나눠 먹기 (1)"
+  12: "피자 나눠 먹기 (1)",
+  13: "피자 나눠 먹기 (2)",
 }
