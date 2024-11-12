@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build && mv ./src/pages .",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:standalone": "next build && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/",
+    "start:standalone": "node .next/standalone/server.js"
   },
   "dependencies": {
     "@next/third-parties": "^14.2.14",
