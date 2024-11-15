@@ -35,4 +35,5 @@ export default {
   },
   interview: "기술 면접",
   exception: "예외 처리",
+  "yh-2024": "윤하 2024",
 }

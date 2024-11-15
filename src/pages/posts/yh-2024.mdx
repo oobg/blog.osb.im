@@ -1,0 +1,25 @@
+---
+title: 윤하 2024 응원법 목차
+date: 2024-11-15 12:14:00 +0900
+tags: ['navigation']
+---
+
+import { Cards } from "nextra/components";
+import NextraIcon from "/public/assets/nextra-icon/icons";
+
+# 윤하 2024 응원법
+
+<Cards>
+	{[
+		{ title: "hope" },
+	].map((card, index) => (
+		<Cards.Card
+			key={index}
+			icon={<NextraIcon name="music" />}
+			title={card.title}
+			href={"/posts/yh-2024/" + card.title}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>
