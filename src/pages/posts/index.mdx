@@ -51,6 +51,23 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 	/>
 </Cards>
 
+## 토이 프로젝트
+
+<Cards>
+	{[
+		{ title: "MariOver", href: "mariover", icon: "tgr", size: 24 },
+	].map((card, index) => (
+		<Cards.Card
+			key={index}
+			icon={<NextraIcon name={card.icon} width={card.size} height={card.size} />}
+			title={card.title}
+			href={"/posts/" + card.href}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>
+
 ## 기타
 
 <Cards>

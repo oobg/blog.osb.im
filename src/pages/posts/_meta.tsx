@@ -30,6 +30,11 @@ export default {
   },
   programmers: "프로그래머스",
   separator4: {
+    title: cursorDefault("토이 프로젝트"),
+    type: "separator",
+  },
+  mariover: "MariOver",
+  separator5: {
     title: cursorDefault("기타"),
     type: "separator",
   },
