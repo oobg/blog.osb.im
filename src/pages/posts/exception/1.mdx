@@ -1,0 +1,110 @@
+---
+title: 이미지 로딩 실패 시 재호출
+date: 2024-11-22 20:16:00 +0900
+tags: ["exception"]
+---
+
+import { Callout } from "nextra/components";
+import NextraImages from "../../../../public/assets/nextra-docs/images";
+
+# 이미지 로딩 실패 시 재호출
+
+이번 글에서는 이미지 태그에서 이미지 로딩 실패 시 이미지를 재호출하는 방법에 대해 알아보겠습니다.
+
+이미지 로딩 실패가 발생하는 원인은 다양합니다.<br />
+네트워크 상태, 이미지 경로, 이미지 파일 자체의 문제 등이 있을 수 있습니다.
+
+이 중, 제가 이 글을 작성하는 시점에서 가장 많이 발생하는 문제는 **네트워크 상태**였습니다.
+
+개인 프로젝트를 진행하면서, 이미지를 로딩하는 과정에서 네트워크 상태가 불안정한 경우가 종종 발생했습니다.<br />
+혹은, API 요청 횟수가 제한되어 이미지 로딩이 실패하는 경우도 있었습니다.
+일반적으로 429 상태 코드가 반환되는 경우가 많았습니다.
+429 상태 코드는 **너무 많은 요청**을 보낸 경우에 발생하는 상태 코드입니다.
+
+브라우저에서 개발자 도구를 열어 네트워크 탭을 확인해 보겠습니다.
+이미지 로딩이 실패한 경우에는 **429 Too Many Request**가 반환되는 것을 확인할 수 있습니다.
+아래 이미지는 개발자 도구에서 확인한 이미지 로딩 실패 시의 화면입니다.
+
+<br />
+<NextraImages name="too-many-request-429" />
+
+## 이미지 호출 실패 감지
+
+이미지 호출 실패는 어떻게 알 수 있을까요?
+`setInterval` 을 이용하여 주기적으로 DOM 을 확인해야 할까요?
+
+물론, 이 방법도 틀린 것은 아니지만 더 좋은 방법이 있습니다.
+
+[MDN 의 이미지 태그 섹션](https://developer.mozilla.org/ko/docs/Web/HTML/Element/img)에서는, 다음과 같이 설명합니다.
+
+<Callout type="info">
+	이미지를 불러오거나 그릴 때 오류가 발생했고, onerror 속성에 오류 처리기를 등록했다면 error 이벤트와 함께 처리기를 호출합니다.
+</Callout>
+
+이걸 참고해서 이미지 태그에 `onerror` 이벤트를 등록하여 이미지 로딩 실패 시에 호출할 함수를 등록하면 됩니다.
+
+## 이미지 다시 호출
+
+이미지를 다시 호출하는 기본적인 로직은 다음과 같이 적용할 수 있습니다.
+
+```javascript copy
+const retryImage = (img) => {
+	const src = img.src;
+	img.src = "";
+	img.src = src;
+};
+```
+
+위 코드는 아주 기본적인 로직으로, 이미지의 src 속성을 초기화한 후 다시 할당하는 방식으로 이미지를 다시 호출합니다.
+필요하다면 로딩 이미지를 띄워주고, 이미지 로딩이 성공했을 때 로딩 이미지를 제거하는 등의 추가적인 로직을 구현할 수 있습니다.
+혹은 일정 횟수 이상 이미지 로딩이 실패했을 때, 사용자에게 알림을 띄워주는 등의 추가적인 로직을 구현할 수도 있습니다.
+
+## 바닐라 자바스크립트로 구현
+
+이제 실제로 onError 이벤트를 사용하여 이미지 로딩 실패 시 다시 호출하는 방법을 알아보겠습니다.
+바닐라 자바스크립트로 구현한 예시 코드는 다음과 같습니다.
+
+```javascript copy
+const img = document.querySelector("img");
+
+img.onerror = () => {
+	console.log("이미지 로딩 실패");
+	// 이미지 로딩 실패 시 다시 호출하는 로직 작성
+	retryImage(img);
+};
+```
+
+혹은 addEventListener 를 사용하여 다음과 같이 구현할 수도 있습니다.
+
+```javascript copy
+const img = document.querySelector("img");
+
+img.addEventListener("error", () => {
+	console.log("이미지 로딩 실패");
+	// 이미지 로딩 실패 시 다시 호출하는 로직 작성
+	retryImage(img);
+});
+```
+
+## Vue.js 사용 시
+
+Vue.js 에서는 `v-on` 디렉티브를 사용하여 이벤트를 수신할 수 있습니다.<br />
+아래는 Vue.js 에서 이미지 로딩 실패 시 다시 호출하는 방법을 구현한 예시 코드입니다.
+
+```vue copy
+<template>
+	<img :src="imageSrc" @error="retryImage" />
+</template>
+
+<script setup>
+const imageSrc = "https://example.com/image.jpg";
+
+const retryImage = (event) => {
+	const img = event.target;
+	const src = img.src;
+	img.src = "";
+	img.src = src;
+};
+</script>
+```
+
