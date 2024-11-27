@@ -1,0 +1,147 @@
+---
+title: Dockerfile 살펴보기
+date: 2024-11-27 10:55:00 +0900
+tags: ["docker"]
+---
+
+import NextraImages from "../../../../public/assets/nextra-docs/images";
+
+# Dockerfile 살펴보기
+
+이 글에서는 **Dockerfile**에 대해 살펴보겠습니다.
+
+## Dockerfile 이란?
+
+Docker 는 Dockerfile 이라는 파일을 사용하여 **이미지를 빌드**합니다.
+Dockerfile 은 소스 코드를 컨테이너화하기 위한 명령어가 들어 있는 텍스트 파일입니다.
+Dockerfile의 명령어는 이미지 빌드 과정과 실행 시 동작을 정의합니다.
+자세한 명령어는 [공식 사양 문서](https://docs.docker.com/reference/dockerfile/)의 사양 문서를 참조하세요.
+
+## Dockerfile 명령어
+
+Dockerfile 의 가장 일반적인 지침 유형에 대해, **공식문서**에서는 다음과 같이 작성되어 있습니다.
+
+| 지침                   | 설명                                                                                                                                                 |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `FROM <image>`        | 이미지의 기준이 되는 것을 정의합니다.                                                                                                                        |
+| `RUN <command>`       | 현재 이미지 위의 새 레이어에서 모든 명령을 실행하고 결과를 커밋합니다. `RUN` 명령을 실행하기 위한 셸 형식도 있습니다.                                                         |
+| `WORKDIR <directory>` | Dockerfile 에서 뒤에 오는 모든 `RUN`, `CMD`, `ENTRYPOINT`, `COPY` 그리고 `ADD` 명령어에 대한 작업 디렉터리를 설정합니다.                                            |
+| `COPY <src> <dest>`   | `<src>` 컨테이너의 `<dest>` 경로에 있는 파일 시스템에서 새 파일이나 디렉토리를 복사하여 추가합니다.                                                                     |
+| `CMD <command>`       | 컨테이너를 이 이미지를 기반으로 시작했을 때 실행되는 기본 프로그램을 정의할 수 있습니다. 각 `Dockerfile`에는 하나의 `CMD`만 존재하며, 여러 `CMD`가 있는 경우 마지막 `CMD`만 적용됩니다. |
+
+위에 대해서는 제가 개인적으로 사용하고 있는 **Dockerfile**을 예시 코드로 가져와 대응시켜가며 설명하겠습니다.
+
+```dockerfile filename="Dockerfile" copy
+# 이미지의 기반이 되는 이미지
+FROM node:18
+
+# 시간대 설정
+ENV TZ=Asia/Seoul
+
+# 필요한 패키지 설치 및 SSH 설정
+RUN apt-get update
+RUN apt-get install -y openssh-server
+RUN apt-get clean
+
+# SSH 데몬을 위한 디렉토리 생성
+RUN mkdir /var/run/sshd
+
+# root 비밀번호 설정
+RUN echo 'root:1111' | chpasswd
+
+# SSH 설정 수정 (루트 로그인 허용)
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# 포트 22 개방
+EXPOSE 22
+
+# 포트 80 개방
+EXPOSE 80
+
+# SSH 데몬 실행
+CMD ["/usr/sbin/sshd", "-D"]
+```
+
+### `FROM <image>`
+
+`FROM` 지시어는 **이미지의 기반이 되는 것을 정의**합니다.
+위의 예시 코드에서는 `node:18` 이미지를 기반으로 하고 있습니다.
+
+그렇다면, `node:18` 이미지는 무엇이고, 다른 버전을 설치하고 싶다면 어떻게 해야 할까요?
+우선 `node:18` 이미지는 **Node.js**의 18 버전을 설치한 이미지입니다.
+
+<br />
+<NextraImages name="dockerhub-filter-node" />
+
+이는 [Docker Hub](https://hub.docker.com/search?q=node%3A18&badges=official)에서 확인이 가능합니다.
+위 사이트에서 추천드릴 점은, 좌측에 있는 **Docker Official Images** 뱃지를 체크하시고 사용하시는 것을 추천드립니다.
+공식 이미지는 **Docker**에서 직접 관리하고 있어, 안정성과 신뢰성이 높습니다.
+
+이제 node 를 눌러 진입하면 다음과 같은 화면을 볼 수 있습니다.
+
+<br />
+<NextraImages name="dockerhub-overview-node" />
+
+아래 `Supported tags and respective Dockerfile links` 에서 지원 가능한 다른 버전을 확인할 수 있습니다.
+원하는 버전을 선택하고, `Dockerfile`에서 `FROM` 지시어에 해당 버전을 입력하면 됩니다.
+
+예를들어, 20 버전을 사용하고 싶다면, `node:20` 을 사용하면 됩니다.
+또는 18 버전중 배포만을 위해 가벼운 이미지를 사용하고 싶다면, `node:18-alpine` 을 사용하면 됩니다.
+저 같은 경우는, openssh-server 를 설치하고, SSH 설정을 위해 기본 패키지가 포함된 `node:18` 이미지를 사용하였습니다.
+
+### `RUN <command>`
+
+`RUN` 지시어는 **현재 이미지 위의 새 레이어에서 모든 명령을 실행**하고 결과를 커밋합니다.<br />
+조금 말이 어려울 수도 있습니다.
+간단하게 설명하자면 **이미지 빌드시점에 실행되는 CLI 명령어**라고 생각하시면 됩니다.
+
+더 큰 조각으로 나눠보겠습니다. CLI 명령어가 실행되는 위치가 다르다고 생각하시면 됩니다.
+아래 이미지를 보시면 이해가 빠르실 것입니다.
+
+<NextraImages name="docker-run_vs_nomal" />
+
+위의 소스에서 `RUN apt-get update` 는 **패키지 업데이트**를 실행합니다.
+그리고 `RUN` 지시어를 사용했기 때문에, 좌측 부분에서 사용될 것이라고 생각하시면 됩니다.
+
+### `WORKDIR <directory>`
+
+`WORKDIR` 지시어는 **Dockerfile 에서 뒤에 오는 모든 `RUN`, `CMD`, `ENTRYPOINT`, `COPY` 그리고 `ADD` 명령어에 대한 작업 디렉터리를 설정**합니다.
+
+이 부분은 예시 코드에 나오지는 않았습니다만, 간단하게 살펴 보겠습니다.
+
+일반적으로 `WORKDIR` 지시어를 사용하지 않으면, **루트 디렉토리**에서 나머지 지시어들이 실행됩니다.
+하지만, `WORKDIR` 지시어를 사용하면, **해당 디렉토리**에서 나머지 지시어들이 실행됩니다.
+
+예를들어, `WORKDIR /app` 이라고 작성하면, `/app` 디렉토리에서 나머지 지시어들이 실행됩니다.
+따라서, `WORKDIR /app` 이후 `RUN npm install` 이라고 작성하면, `/app` 디렉토리에서 `npm install` 이 실행되는 것입니다.
+
+
+### `COPY <src> <dest>`
+
+`COPY` 지시어는 **컨테이너의 `<dest>` 경로에 있는 파일 시스템에서 새 파일이나 디렉토리를 복사하여 추가**합니다.
+
+Dockerfile 의 경우 다음과 같이 실행될 것 입니다.
+
+```bash
+docker build -t my-node-app .
+```
+
+위 명령어는 현재 디렉토리에 있는 Dockerfile 을 찾아, 이미지를 빌드합니다.
+이때, Dockerfile 안에서 `COPY` 지시어를 사용하면, **현재 디렉토리**에 있는 파일을 **컨테이너**에 복사할 수 있습니다.
+
+여기서 **현재 디렉토리**는 `docker build` 명령어를 실행한 위치를 의미합니다.
+그리고 **컨테이너**는 이미지를 실행하여 만들어진 **실제 컨테이너**를 의미합니다.
+
+따라서, `COPY ./src /app` 이라고 작성하면, 현재 디렉토리에 있는 `src` 디렉토리를 `/app` 디렉토리에 복사합니다.
+만약 **현재 디렉토리**의 모든 파일을 **컨테이너 내부**로 복사하고 싶다면, `COPY . .` 이라고 작성하면 됩니다.
+
+### `CMD <command>`
+
+`CMD` 지시어는 **컨테이너를 이 이미지를 기반으로 시작했을 때 실행되는 기본 프로그램을 정의**할 수 있습니다.
+
+사실상 `CMD` 지시어는 상속의 개념을 가지고 있습니다.
+따라서, 원본 이미지에서 `CMD` 지시어가 있을 경우, 기본적으로 따로 작성하지 않는다면 원본 이미지의 `CMD` 지시어가 실행됩니다.
+
+만약, `CMD` 지시어를 작성하고 싶다면, **하나의 `Dockerfile`에는 하나의 `CMD`만 존재**해야 합니다.
+
+위의 예시 코드에서는 `CMD ["/usr/sbin/sshd", "-D"]` 를 작성하였습니다.
