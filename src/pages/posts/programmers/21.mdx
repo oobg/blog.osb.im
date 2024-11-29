@@ -1,0 +1,59 @@
+---
+title: 문자 반복 출력하기
+date: 2023-12-18 00:00:00 +0900
+tags: ['프로그래머스']
+---
+
+# 문자 반복 출력하기
+
+## 문제 설명
+
+문자열 `my_string`과 정수 `n`이 매개변수로 주어질 때, `my_string`에 들어있는 각 문자를 `n`만큼 반복한 문자열을 return 하도록 solution 함수를 완성해보세요.
+
+## 제한 사항
+
+- 2 ≤ `my_string` 길이 ≤ 5
+- 2 ≤ `n` ≤ 10
+- "my_string"은 영어 대소문자로 이루어져 있습니다.
+
+## 입출력 예
+
+| my_string | n | result |
+| --- | --- | --- |
+| "hello" | 3 | "hhheeellllllooo" |
+
+## 입출력 예 설명
+
+입출력 예 #1
+
+- "hello"의 각 문자를 세 번씩 반복한 "hhheeellllllooo"를 return 합니다.
+
+## 문제풀이 (나)
+
+```jsx
+function solution(my_string, n) {
+    let a = [];
+    my_string.split("").forEach(v => a.push(v.repeat(n)));
+    return a.join("");
+}
+```
+
+먼저 문자열을 한 단어씩 배열화 시킨다.
+
+그 다음, repeat 메서드를 사용해서 n 만큼 반복해서 새로운 배열에 push 한다.
+
+마지막으로 join 메서드를 사용해서 한 문자열로 합쳐준다.
+
+## 문제풀이 (다른사람)
+
+```jsx
+function solution(my_string, n) {
+    var answer = [...my_string].map(v => v.repeat(n)).join("");
+    console.log(answer);
+    return answer;
+}
+```
+
+구조분해로 텍스트를 나누는 방법이 있었다. 좋은 방법인 것 같다.
+
+## 레퍼런스
