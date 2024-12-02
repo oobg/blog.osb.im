@@ -30,13 +30,26 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 ## 서버
 
 <Cards>
-	<Cards.Card
-		icon={<NextraIcon name="docker" extension="webp" width={26} height={26} />}
-		title="Docker"
-		href="/posts/docker"
-		children=""
-		arrow
-	/>
+	{[
+		{ title: "Docker", href: "docker", icon: "docker", extension: "webp", size: 26 },
+		{ title: "Jenkins", href: "jenkins", icon: "jenkins", size: 28 },
+	].map((card, index) => (
+		<Cards.Card
+			key={index}
+			icon={
+				<NextraIcon
+					name={card.icon}
+					extension={card.extension ?? undefined}
+					width={card.size}
+					height={card.size}
+				/>
+			}
+			title={card.title}
+			href={"/posts/" + card.href}
+			children=""
+			arrow
+		/>
+	))}
 </Cards>
 
 ## 알고리즘

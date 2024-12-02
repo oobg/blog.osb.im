@@ -24,6 +24,7 @@ export default {
     type: "separator",
   },
   docker: "Docker",
+  jenkins: "Jenkins",
   separator3: {
     title: cursorDefault("알고리즘"),
     type: "separator",

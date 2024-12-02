@@ -1,0 +1,25 @@
+---
+title: Jenkins 목차
+date: 2024-12-02 10:47:00 +0900
+tags: ['navigation']
+---
+
+import { Cards } from "nextra/components";
+import NextraIcon from "/public/assets/nextra-icon/icons";
+
+# Jenkins
+
+<Cards>
+	{[
+		{ title: "재시도 로직" },
+	].map((card, index) => (
+		<Cards.Card
+			key={index}
+			icon={<NextraIcon name="jenkins" width={28} height={28} />}
+			title={card.title}
+			href={"/posts/jenkins/" + index.toString()}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>
