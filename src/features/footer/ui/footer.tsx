@@ -8,7 +8,7 @@ import React from "react";
 const icons = [
 	{ imageSrc: "/assets/img/osx-finder.png", label: "Home", href: "/" },
 	{ imageSrc: "/assets/img/osx-memo.png", label: "Post", href: "/posts" },
-	{ imageSrc: "/assets/img/music.png", label: "Music", href: "/music" },
+	{ imageSrc: "/assets/img/osx-music.png", label: "Music", href: "/music" },
 	{ imageSrc: "/assets/img/github.png", label: "Project", href: "/project" },
 ];
 
