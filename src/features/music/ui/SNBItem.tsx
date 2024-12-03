@@ -25,7 +25,7 @@ const SNBItem = ({
         w-full h-8 min-w-0
         rounded-lg focus:bg-[#${activeHexColor}] hover:bg-[#${activeHexColor}]
         flex items-center justify-start gap-2
-        text-left text-white text-sm px-2 whitespace-nowrap text-ellipsis
+        text-left text-white text-sm px-2 whitespace-nowrap
         ${pathname === href ? `bg-[#${activeHexColor}]` : ""}
       `}
 		>
@@ -36,7 +36,9 @@ const SNBItem = ({
 				height={10}
 				className="w-auto h-auto text-red"
 			/>
-			{children}
+			<span className={"flex gap-2 overflow-hidden text-ellipsis"}>
+				{children}
+			</span>
 		</Link>
 	);
 }
