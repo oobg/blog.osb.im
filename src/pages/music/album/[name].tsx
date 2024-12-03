@@ -39,6 +39,8 @@ export default function Page() {
 
 	// 데이터 가져오기
 	useEffect(() => {
+		setLoading(true);
+		setData(null);
 		fetchData();
 	}, [name]);
 
