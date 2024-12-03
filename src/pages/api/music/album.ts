@@ -130,4 +130,21 @@ const album = [
 			{ title: "Propose", duration: "3:36" },
 		],
 	},
+	{
+		id: "unstable-mindset",
+		album: {
+			title: "UNSTABLE MINDSET",
+			description: "YOUNHA Mini Album",
+			kind: "Mini 5th Album",
+		},
+		imgSrc: "Mini_5th-UNSTABLE MINDSET.jpg",
+		imgAlt: "UNSTABLE MINDSET Album Cover",
+		tracks: [
+			{ title: "Winter Flower (feat. RM)", duration: "3:41" },
+			{ title: "먹구름", duration: "4:00" },
+			{ title: "다음에 봐", duration: "3:18" },
+			{ title: "스무살 어느 날", duration: "3:26" },
+			{ title: "26", duration: "3:19" },
+		],
+	},
 ]
