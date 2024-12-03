@@ -7,10 +7,8 @@ import {
 
 export default function Page() {
   return (
-    <MusicLayout>
-      <article className="flex flex-col flex-1 p-6 gap-4 overflow-y-auto">
-        <h1 className="text-white text-3xl font-bold">홈</h1>
-        <hr className="border border-[#2E2E2E]"/>
+    <MusicLayout title={"홈"}>
+      <article className="flex flex-col gap-4">
         <h2 className="text-white text-2xl font-bold">발매 앨범</h2>
         <MusicGrid>
           <MusicGridCellAlbum
