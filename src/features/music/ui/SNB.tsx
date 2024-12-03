@@ -27,25 +27,25 @@ const SNB = () => {
 			<FlexColBox>
 				<div className="text-xs text-gray-400 px-1">정규앨범</div>
 				<FlexColBox className="gap-2">
-					<SNBItem href="/music/album/growth-theory-re" imageName="lullaby">
+					<SNBItem href="/music/album/growth-theory-repackage" imageName="yacht">
 						<Badge color="pink">7th</Badge>
 						Growth Theory
 						<Badge color="purple">RE</Badge>
 					</SNBItem>
-					<SNBItem href="/music/album/growth-theory" imageName="lullaby">
+					<SNBItem href="/music/album/growth-theory" imageName="yacht">
 						<Badge color="pink">7th</Badge>
 						Growth Theory
 					</SNBItem>
-					<SNBItem href="/music/album/end-theory-re" imageName="lullaby">
+					<SNBItem href="/music/album/end-theory-repackage" imageName="rocket">
 						<Badge color="pink">6th</Badge>
 						End Theory
 						<Badge color="purple">RE</Badge>
 					</SNBItem>
-					<SNBItem href="/music/album/end-theory" imageName="lullaby">
+					<SNBItem href="/music/album/end-theory" imageName="rocket">
 						<Badge color="pink">6th</Badge>
 						End Theory
 					</SNBItem>
-					<SNBItem href="/music/album/rescue" imageName="lullaby">
+					<SNBItem href="/music/album/rescuE" imageName="mailbox-closed-flag-up">
 						<Badge color="pink">5th</Badge>
 						RescuE
 					</SNBItem>

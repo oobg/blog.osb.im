@@ -30,7 +30,7 @@ const SNBItem = ({
       `}
 		>
 			<Image
-				src={`https://img.icons8.com/ios/250/${imageHexColor}/${imageName}.png`}
+				src={`https://img.icons8.com/ios/100/${imageHexColor}/${imageName}.png`}
 				alt={imageName + " icon"}
 				width={10}
 				height={10}
