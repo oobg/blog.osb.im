@@ -1,14 +1,13 @@
 import React from "react";
 import {
   MusicGrid,
-  MusicGridCellAlbum, SNB,
+  MusicGridCellAlbum,
+  MusicLayout,
 } from "@/features/music";
-import { FlexColBox } from "@/shared/ui/common/FlexBox";
 
 export default function Page() {
   return (
-    <div className="flex relative w-full h-full bg-[rgba(31,31,31,1)]">
-      <SNB />
+    <MusicLayout>
       <article className="flex flex-col flex-1 p-6 gap-4 overflow-y-auto">
         <h1 className="text-white text-3xl font-bold">홈</h1>
         <hr className="border border-[#2E2E2E]"/>
@@ -96,6 +95,6 @@ export default function Page() {
           </MusicGridCellAlbum>
         </MusicGrid>
       </article>
-    </div>
+    </MusicLayout>
   );
 }
