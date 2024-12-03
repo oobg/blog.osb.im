@@ -147,4 +147,21 @@ const album = [
 			{ title: "26", duration: "3:19" },
 		],
 	},
+	{
+		id: "stable-mindset",
+		album: {
+			title: "STABLE MINDSET",
+			description: "YOUNHA Mini Album",
+			kind: "Mini 4th Album",
+		},
+		imgSrc: "Mini_4th-STABLE MINDSET.jpg",
+		imgAlt: "STABLE MINDSET Album Cover",
+		tracks: [
+			{ title: "사계", duration: "3:12" },
+			{ title: "Lonely", duration: "2:53" },
+			{ title: "비가 내리는 날에는", duration: "3:32" },
+			{ title: "어려운 일", duration: "3:35" },
+			{ title: "Rainy Night", duration: "3:56" },
+		],
+	},
 ]
