@@ -107,4 +107,27 @@ const album = [
 			{ title: "Savior", duration: "3:34" },
 		],
 	},
+	{
+		id: "rescuE",
+		album: {
+			title: "RESCUE",
+			description: "YOUNHA 5th Album",
+			kind: "Studio Album",
+		},
+		imgSrc: "5th-RescuE.jpg",
+		imgAlt: "RescuE Album Cover",
+		tracks: [
+			{ title: "RescuE", duration: "3:35" },
+			{ title: "종이비행기 (feat. pH-1)", duration: "3:20" },
+			{ title: "Parade", duration: "3:13" },
+			{ title: "없던 일처럼", duration: "3:55" },
+			{ title: "Airplane Mode", duration: "4:33" },
+			{ title: "예지몽", duration: "3:33" },
+			{ title: "Feel (feat. 챈슬러)", duration: "2:43" },
+			{ title: "Drive", duration: "3:13" },
+			{ title: "가", duration: "2:40" },
+			{ title: "답을 찾지 못한 날", duration: "3:53" },
+			{ title: "Propose", duration: "3:36" },
+		],
+	},
 ]
