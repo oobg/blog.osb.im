@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-	const { name } = req.query;
-	const result = album.find((item) => item.id === name);
+	const { id } = req.query;
+	const result = album.find((item) => item.id === id);
 	if (result) {
 		res.status(200).json(result);
 	} else {

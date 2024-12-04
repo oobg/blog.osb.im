@@ -15,7 +15,7 @@ interface AlbumData {
 
 export default function Page() {
 	const router = useRouter();
-	const { name } = router.query;
+	const { id } = router.query;
 
 	const title = "앨범정보";
 
@@ -23,11 +23,11 @@ export default function Page() {
 	const [loading, setLoading] = useState(true); // 로딩 상태
 
 	const fetchData = async () => {
-		if (!name) return;
+		if (!id) return;
 
 		try {
 			const url = `/api/music/album`;
-			const config = { params: { name } };
+			const config = { params: { id } };
 			const response = await axios.get(url, config);
 			setData(response.data);
 		} catch (error) {
@@ -42,7 +42,7 @@ export default function Page() {
 		setLoading(true);
 		setData(null);
 		fetchData();
-	}, [name]);
+	}, [id]);
 
 	if (loading) {
 		return (
