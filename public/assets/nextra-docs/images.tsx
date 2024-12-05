@@ -12,9 +12,9 @@ const NextraImages = ({ name, extension = "png" }: NextraIconProps) => {
 		<Image
 			src={`${srcPrefix}${name}.${extension}`}
 			alt={`${name} icon`}
-			layout="responsive"
 			width={500}
 			height={500}
+			className={"object-contain"}
 		/>
 	);
 };
