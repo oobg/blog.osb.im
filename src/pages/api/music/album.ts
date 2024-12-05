@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import type { AlbumData } from "@/features/music/lib/types";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
 	const { id } = req.query;
@@ -10,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 	}
 }
 
-const album = [
+const album: AlbumData[] = [
 	{
 		id: "growth-theory-repackage",
 		album: {

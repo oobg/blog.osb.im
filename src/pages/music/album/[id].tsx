@@ -4,14 +4,7 @@ import { FlexColBox } from "@/shared/ui/common/FlexBox";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-interface AlbumData {
-	id: string;
-	album: { title: string; description: string; kind: string };
-	imgSrc: string;
-	imgAlt: string;
-	tracks: { title: string; duration: string }[];
-}
+import type { AlbumData } from "@/features/music/lib/types";
 
 export default function Page() {
 	const router = useRouter();
