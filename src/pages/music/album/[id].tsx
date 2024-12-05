@@ -26,7 +26,7 @@ export default function Page() {
 		} catch (error) {
 			console.error("Failed to fetch album data:", error);
 		} finally {
-			setLoading(false);
+			setTimeout(() => setLoading(false), 500);
 		}
 	};
 
@@ -40,7 +40,33 @@ export default function Page() {
 	if (loading) {
 		return (
 			<MusicLayout title={title}>
-				<p className="text-white text-center">Loading...</p>
+				<article className="flex flex-col gap-8 justify-start items-center w-full h-full px-5 animate-pulse">
+					<FlexColBox className={"md:flex-row gap-5 justify-center items-center"}>
+						<div className="w-[270px] h-[270px] bg-gray-700 rounded-lg"></div>
+						<FlexColBox className={"justify-center flex-1 gap-1"}>
+							<div className="h-8 sm:h-10 md:h-12 w-3/4 bg-gray-500 rounded"></div>
+							<div className="h-6 sm:h-8 md:h-10 w-2/3 bg-gray-600 rounded"></div>
+							<div className="h-4 sm:h-6 md:h-8 w-1/2 bg-gray-700 rounded"></div>
+						</FlexColBox>
+					</FlexColBox>
+					<table className="w-full table-fixed">
+						<tbody>
+						{Array.from({ length: 5 }).map((_, index) => (
+							<tr key={index} className="odd:bg-[rgb(42,42,42)] hover:bg-[rgb(55,55,55)] h-12">
+								<td className="relative w-14 rounded-l-md">
+									<div className="w-6 h-6 bg-gray-700 rounded translate-x-1/2"></div>
+								</td>
+								<td className="flex-1 w-full">
+									<div className="h-6 w-4/5 bg-gray-700 rounded"></div>
+								</td>
+								<td className="relative w-20 rounded-r-md">
+									<div className="h-6 w-10 bg-gray-700 rounded translate-x-1/2"></div>
+								</td>
+							</tr>
+						))}
+						</tbody>
+					</table>
+				</article>
 			</MusicLayout>
 		);
 	}
@@ -56,7 +82,7 @@ export default function Page() {
 	return (
 		<MusicLayout title={title}>
 			<article className="flex flex-col gap-8 justify-start items-center w-full h-full px-5">
-				<FlexColBox className={"sm:flex-row gap-5 justify-center items-center"}>
+				<FlexColBox className={"md:flex-row gap-5 justify-center items-center"}>
 					<Image
 						src={"/assets/img/music/" + data.imgSrc}
 						alt={data.imgAlt ?? ""}
@@ -75,7 +101,7 @@ export default function Page() {
 					{data.tracks.map((track: { title: string; duration: string }, index: number) => (
 						<tr key={index} className={"odd:bg-[rgb(42,42,42)] hover:bg-[rgb(55,55,55)] h-12"}>
 							<td className={"text-center w-14 rounded-l-md"}>{index + 1}</td>
-							<td className={"text-left flex-1 w-full"}>{track.title}</td>
+							<td className={"text-left flex-1 w-full truncate"}>{track.title}</td>
 							<td className={"text-center w-20 rounded-r-md"}>{track.duration}</td>
 						</tr>
 					))}
