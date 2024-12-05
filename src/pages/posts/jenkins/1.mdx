@@ -1,0 +1,154 @@
+---
+title: 동적 노드 버전
+date: 2024-12-05 12:30:00 +0900
+tags: ["jenkins"]
+---
+
+import { Steps } from "nextra/components";
+import NextraImages from "../../../../public/assets/nextra-docs/images";
+
+# 동적 노드 버전
+
+Jenkins Pipeline 에서 동적으로 노드 버전을 지정하는 방법에 대해 알아보겠습니다.
+
+## 도입하게 된 계기
+
+이 방법을 찾게 된 계기는 Jenkins Pipeline 을 사용하면서, 하나의 빌드 스크립트로 여러 버전의 Node.js 프로젝트를 빌드하고 싶었습니다.
+
+현재 블로그 같은 경우는, Node.js 18 버전을 사용하고 있습니다.
+하지만, 다른 프로젝트는 Node.js 20 버전을 사용하려고 합니다.
+
+일반적으로는 파이프라인에서 `tools` 를 사용하여 노드 버전을 지정할 수 있지만, 이는 정적으로 지정하는 방법입니다.
+이럴 경우, Jenkins Pipeline 을 사용하면서, 동적으로 노드 버전을 지정하는 방법이 필요했습니다.
+
+## 환경
+
+저는 groovy 를 사용하여 Jenkins Pipeline 을 작성하고 있습니다.
+그래서 이 글에서는 groovy 를 사용하여 동적 노드 버전을 지정하는 방법에 대해 설명하겠습니다.
+
+## 사전작업
+
+구현에 앞서, Jenkins 에서 Node.js 를 설치하고, 노드 버전을 지정하는 `tools` 를 설정해야 합니다.
+
+다음 순서를 따라 진행하시면 됩니다.
+
+<Steps>
+	### **Jenkins 관리** 페이지로 들어갑니다.
+
+	일반적으로는 다음 주소와 동일합니다.<br />
+	`https://${서버 주소}/manage/`
+
+	<br />
+	<NextraImages name="jenkins-management-home" />
+
+	### **Plugins** 설정으로 이동합니다.
+
+	<br />
+	<NextraImages name="jenkins-system-configuration-plugins" />
+
+	**Available plugins** 에서 **NodeJS Plugin** 을 검색하여 설치합니다.
+
+	<br />
+	<NextraImages name="jenkins-available-plugins-nodejs" />
+
+	만약, 검색이 안된다면 이미 설치되었을 수 있습니다.
+	이때는 **Installed plugins** 에서 **NodeJS Plugin** 을 확인해주세요.
+
+	<br />
+	<NextraImages name="jenkins-installed-plugins-nodejs" />
+
+	### **Tools** 설정으로 이동합니다.
+
+	다시 **Jenkins 관리** 로 돌아가서,
+	**System Configuration** 에서 **Tools** 설정을 클릭합니다.
+
+	<br />
+	<NextraImages name="jenkins-system-configuration-tools" />
+
+	### **NodeJS installations**
+
+	**NodeJS installations** 에서 **Add NodeJS** 버튼을 클릭합니다.
+
+	<br />
+	<NextraImages name="jenkins-tools-nodejs" />
+
+	### **Name** 설정
+
+	이 부분은 중요합니다!<br />
+	나중에 Jenkins Pipeline 에서 사용할 이름을 지정합니다.<br />
+	사용하시는 버전에 맞게 이름을 지정해주세요.
+
+	저는 `NodeJS_v18.20.0` 과 `NodeJS_v20.17.0` 으로 지정했습니다.
+
+	### **Version** 설정
+
+	설치할 Node.js 버전을 선택합니다.
+	방금 전 **Name** 에 지정한 이름과 버전을 일치시켜주세요.
+
+	<br />
+	<NextraImages name="jenkins-tools-nodejs18" />
+
+	### 저장하기
+
+	**Save** 버튼을 클릭하여 저장합니다.
+</Steps>
+
+## 구현
+
+이제 pipeline 에서 동적으로 노드 버전을 지정하는 방법에 대해 알아보겠습니다.
+
+```groovy copy filename="pipeline.groovy"
+pipeline {
+	agent any
+
+	environment {
+		NODE_VERSION = "${params.NODE_VERSION}"
+	}
+
+	stages {
+		stage("Declarative: Tool Install") {
+			steps {
+				script {
+					// 선택한 Node.js 버전 설정
+					def nodeTool
+					switch (NODE_VERSION) {
+						case "18":
+							nodeTool = tool(name: "NodeJS_v18.20.0")
+							break
+						case "20":
+							nodeTool = tool(name: "NodeJS_v20.17.0")
+							break
+						default:
+							error("Unsupported Node.js version: ${NODE_VERSION}")
+				}
+
+				// Node.js 실행 경로 환경 변수에 반영
+				env.PATH = "${nodeTool}/bin:${env.PATH}"
+			}
+		}
+	}
+}
+```
+
+## 사용법
+
+위 코드에서는 `params.NODE_VERSION` 으로 사용자가 선택한 노드 버전을 받아옵니다.
+
+Jenkins 의 경우, pipeline 에서 **구성** 화면으로 진입하게되면,
+
+<br />
+<NextraImages name="jenkins-pipeline-configure" />
+
+**이 빌드는 매개변수가 있습니다** 라는 항목이 있습니다.
+
+<br />
+<NextraImages name="jenkins-pipeline-configure-build-parameter" />
+
+여기서 **매개변수 추가** 를 클릭하여 **Choice Parameter** 를 추가하고, **매개변수 명** 을 `NODE_VERSION`, **Choices** 에 `18` 과 `20` 을 입력합니다.
+
+이렇게 설정하면, 사용자가 빌드를 실행할 때, 노드 버전을 선택할 수 있습니다.
+
+<br />
+<NextraImages name="jenkins-pipeline-build-start-parameter" />
+
+이제 pipeline 을 실행하면, 선택한 노드 버전에 따라 빌드가 실행됩니다.
