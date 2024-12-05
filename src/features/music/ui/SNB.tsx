@@ -1,20 +1,48 @@
 import React from "react";
 import { Logo, SNBItem } from "@/features/music";
-import { FlexColBox } from "@/shared/ui/common/FlexBox";
+import { FlexColBox, FlexRowBox } from "@/shared/ui/common/FlexBox";
 import Badge from "@/shared/ui/common/Badge";
+import useSNBClose from "@/features/music/lib/useSNBClose";
+import Image from "next/image";
 
-const SNB = () => {
+interface SNBProps {
+	open: boolean;
+	onClose: () => void;
+}
+
+const SNB = ({ open, onClose }: SNBProps) => {
+	const imageName = "delete-sign";
+
+	useSNBClose({ open, onClose });
+
 	return (
 		<aside
-			className="
-        w-0 sm:w-48 md:w-52 lg:w-72 h-full bg-[rgba(35,35,36,1)]
-        transform -translate-x-full sm:translate-x-0
-        transition-all duration-500 ease-in-out
-        hidden sm:flex flex-col items-start gap-5
-        p-4 overflow-x-hidden overflow-y-auto
-      "
+			className={`
+				sm:w-72 h-full bg-[rgba(35,35,36,1)]
+				transform -translate-x-full sm:translate-x-0
+				transition-all duration-500 ease-in-out
+				flex flex-col items-start gap-5
+				overflow-x-hidden overflow-y-auto sm:p-6
+				${open ? "w-full" : "w-0 hidden sm:flex"}
+				${open ? "translate-x-0" : ""}
+				${open ? "p-6" : "p-0"}
+			`}
 		>
-			<Logo/>
+			<FlexRowBox className="relative justify-between w-full items-center h-8 pr-2">
+				<Logo />
+				<button
+					onClick={onClose}
+					className={`sm:hidden`}
+				>
+					<Image
+						src={`https://img.icons8.com/ios/150/FFFFFF/${imageName}.png`}
+						alt={imageName + " icon"}
+						width={20}
+						height={20}
+						className="w-auto h-auto text-red"
+					/>
+				</button>
+			</FlexRowBox>
 			<input
 				name="query"
 				type="text"
@@ -71,7 +99,7 @@ const SNB = () => {
 				</FlexColBox>
 			</FlexColBox>
 		</aside>
-	)
-}
+	);
+};
 
 export default SNB;
