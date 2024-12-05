@@ -15,7 +15,7 @@ const FlexColBox = ({ children, className = "" }: FlexColBoxProps) => {
 
 const FlexRowBox = ({ children, className = "" }: FlexColBoxProps) => {
 	return (
-		<div className={`flex flex-row h-full ${className}`}>
+		<div className={`flex flex-row w-full ${className}`}>
 			{children}
 		</div>
 	);
