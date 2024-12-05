@@ -18,7 +18,7 @@ const album = [
 			description: "YOUNHA 7th Album",
 			kind: "Studio Album Repackage",
 		},
-		imgSrc: "7th-GROWTH THEORY-Repackage.jpg",
+		imgSrc: "7th-GROWTH THEORY-Repackage.webp",
 		imgAlt: "GROWTH THEORY : FINAL EDITION Album Cover",
 		tracks: [
 			{ title: "죽음의 나선", duration: "3:56" },
@@ -43,7 +43,7 @@ const album = [
 			description: "YOUNHA 7th Album",
 			kind: "Studio Album",
 		},
-		imgSrc: "7th-GROWTH THEORY.jpg",
+		imgSrc: "7th-GROWTH THEORY.webp",
 		imgAlt: "GROWTH THEORY Album Cover",
 		tracks: [
 			{ title: "맹그로브", duration: "2:59" },
@@ -65,7 +65,7 @@ const album = [
 			description: "YOUNHA 6th Album",
 			kind: "Studio Album Repackage",
 		},
-		imgSrc: "6th-END THEORY-Repackage.jpg",
+		imgSrc: "6th-END THEORY-Repackage.webp",
 		imgAlt: "END THEORY : FINAL EDITION Album Cover",
 		tracks: [
 			{ title: "오르트구름", duration: "3:26" },
@@ -91,7 +91,7 @@ const album = [
 			description: "YOUNHA 6th Album",
 			kind: "Studio Album",
 		},
-		imgSrc: "6th-END THEORY.jpg",
+		imgSrc: "6th-END THEORY.webp",
 		imgAlt: "END THEORY Album Cover",
 		tracks: [
 			{ title: "P.R.R.W.", duration: "3:14" },
@@ -114,7 +114,7 @@ const album = [
 			description: "YOUNHA 5th Album",
 			kind: "Studio Album",
 		},
-		imgSrc: "5th-RescuE.jpg",
+		imgSrc: "5th-RescuE.webp",
 		imgAlt: "RescuE Album Cover",
 		tracks: [
 			{ title: "RescuE", duration: "3:35" },
@@ -137,7 +137,7 @@ const album = [
 			description: "YOUNHA Mini Album",
 			kind: "Mini 5th Album",
 		},
-		imgSrc: "Mini_5th-UNSTABLE MINDSET.jpg",
+		imgSrc: "Mini_5th-UNSTABLE MINDSET.webp",
 		imgAlt: "UNSTABLE MINDSET Album Cover",
 		tracks: [
 			{ title: "Winter Flower (feat. RM)", duration: "3:41" },
@@ -154,7 +154,7 @@ const album = [
 			description: "YOUNHA Mini Album",
 			kind: "Mini 4th Album",
 		},
-		imgSrc: "Mini_4th-STABLE MINDSET.jpg",
+		imgSrc: "Mini_4th-STABLE MINDSET.webp",
 		imgAlt: "STABLE MINDSET Album Cover",
 		tracks: [
 			{ title: "사계", duration: "3:12" },
