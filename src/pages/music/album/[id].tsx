@@ -44,9 +44,10 @@ export default function Page() {
 					<FlexColBox className={"md:flex-row gap-5 justify-center items-center"}>
 						<div className="w-[270px] h-[270px] bg-gray-700 rounded-lg"></div>
 						<FlexColBox className={"justify-center flex-1 gap-1"}>
-							<div className="h-8 sm:h-10 md:h-12 w-3/4 bg-gray-500 rounded"></div>
-							<div className="h-6 sm:h-8 md:h-10 w-2/3 bg-gray-600 rounded"></div>
-							<div className="h-4 sm:h-6 md:h-8 w-1/2 bg-gray-700 rounded"></div>
+							<div className="h-8 sm:h-10 md:h-10 w-3/4 bg-gray-500 rounded"></div>
+							<div className="h-6 sm:h-8 md:h-8 w-2/3 bg-gray-600 rounded"></div>
+							<div className="h-4 sm:h-6 md:h-7 w-1/2 bg-gray-700 rounded"></div>
+							<div className="h-4 sm:h-6 md:h-7 w-1/3 bg-gray-700 rounded"></div>
 						</FlexColBox>
 					</FlexColBox>
 					<table className="w-full table-fixed">
@@ -94,6 +95,7 @@ export default function Page() {
 						<h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold">{data.album.title}</h2>
 						<p className={"text-xl sm:text-2xl md:text-3xl"}>{data.album.description}</p>
 						<p className={"sm:text-xl text-gray-400"}>{data.album.kind}</p>
+						<p className={"sm:text-lg text-gray-400"}>{data.album.date}</p>
 					</FlexColBox>
 				</FlexColBox>
 				<table className={"w-full table-fixed"}>
