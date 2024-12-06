@@ -53,7 +53,7 @@ const SNB = ({ open, onClose }: SNBProps) => {
 				<SNBItem href="/music" imageName="home">홈</SNBItem>
 			</FlexColBox>
 			<FlexColBox>
-				<div className="text-xs text-gray-400 px-1">정규앨범</div>
+				<div className="text-xs text-gray-400 px-1 mb-1">정규앨범</div>
 				<FlexColBox className="gap-2">
 					<SNBItem href="/music/album/growth-theory-repackage" imageName="yacht">
 						<Badge color="pink">7th</Badge>
@@ -80,7 +80,7 @@ const SNB = ({ open, onClose }: SNBProps) => {
 				</FlexColBox>
 			</FlexColBox>
 			<FlexColBox>
-				<div className="text-xs text-gray-400 px-1">미니앨범</div>
+				<div className="text-xs text-gray-400 px-1 mb-1">미니앨범</div>
 				<FlexColBox className="gap-2">
 					<SNBItem href="/music/album/unstable-mindset" imageName="lullaby">
 						<Badge color="pink">5th</Badge>
@@ -93,7 +93,7 @@ const SNB = ({ open, onClose }: SNBProps) => {
 				</FlexColBox>
 			</FlexColBox>
 			<FlexColBox>
-				<div className="text-xs text-gray-400 px-1">응원법</div>
+				<div className="text-xs text-gray-400 px-1 mb-1">응원법</div>
 				<FlexColBox className="gap-2">
 					<SNBItem href="/music/cheer/2024" imageName="chat">2024 연말콘</SNBItem>
 				</FlexColBox>
