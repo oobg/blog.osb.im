@@ -47,7 +47,7 @@ const SNB = ({ open, onClose }: SNBProps) => {
 				name="query"
 				type="text"
 				placeholder="Search"
-				className="w-full h-8 bg-[#3F3F3F] text-white border border-[#8F8F8F] rounded-lg px-2"
+				className="w-full min-h-8 max-h-8 bg-[#3F3F3F] text-white border border-[#8F8F8F] rounded-lg px-2"
 			/>
 			<FlexColBox className="gap-2">
 				<SNBItem href="/music" imageName="home">홈</SNBItem>
