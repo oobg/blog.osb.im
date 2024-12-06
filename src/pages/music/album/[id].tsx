@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { MusicLayout } from "@/features/music";
 import { FlexColBox } from "@/shared/ui/common/FlexBox";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import type { AlbumData } from "@/features/music/lib/types";
 
@@ -15,7 +15,7 @@ export default function Page() {
 	const [data, setData] = useState<AlbumData | null>(null); // 서버에서 가져온 데이터 저장
 	const [loading, setLoading] = useState(true); // 로딩 상태
 
-	const fetchData = async () => {
+	const fetchData = useCallback(async () => {
 		if (!id) return;
 
 		try {
@@ -28,14 +28,14 @@ export default function Page() {
 		} finally {
 			setTimeout(() => setLoading(false), 500);
 		}
-	};
+	}, [id]);
 
 	// 데이터 가져오기
 	useEffect(() => {
 		setLoading(true);
 		setData(null);
-		fetchData();
-	}, [id]);
+		fetchData().then();
+	}, [fetchData]);
 
 	if (loading) {
 		return (
