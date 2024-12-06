@@ -15,8 +15,9 @@ export default function Page() {
       <article className="flex flex-col gap-4">
         <h2 className="text-white text-2xl font-bold">발매 앨범</h2>
         <MusicGrid>
-          {albumList.map((album: AlbumList) => (
+          {albumList.map((album: AlbumList, index: number) => (
             <MusicGridCellAlbum
+              key={index}
               imageSrc={album.imgSrc}
               imageAlt={album.imgAlt}
             >
