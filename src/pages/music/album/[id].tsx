@@ -2,40 +2,15 @@ import { useRouter } from "next/router";
 import { MusicLayout } from "@/features/music";
 import { FlexColBox } from "@/shared/ui/common/FlexBox";
 import Image from "next/image";
-import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
-import type { AlbumData } from "@/features/music/lib/types";
+import React from "react";
+import useRenderAlbum from "@/features/music/lib/useRenderAlbum";
 
 export default function Page() {
 	const router = useRouter();
 	const { id } = router.query;
+	const { data, loading } = useRenderAlbum(id as string);
 
 	const title = "앨범정보";
-
-	const [data, setData] = useState<AlbumData | null>(null); // 서버에서 가져온 데이터 저장
-	const [loading, setLoading] = useState(true); // 로딩 상태
-
-	const fetchData = useCallback(async () => {
-		if (!id) return;
-
-		try {
-			const url = `/api/music/album`;
-			const config = { params: { id } };
-			const response = await axios.get(url, config);
-			setData(response.data);
-		} catch (error) {
-			console.error("Failed to fetch album data:", error);
-		} finally {
-			setTimeout(() => setLoading(false), 500);
-		}
-	}, [id]);
-
-	// 데이터 가져오기
-	useEffect(() => {
-		setLoading(true);
-		setData(null);
-		fetchData().then();
-	}, [fetchData]);
 
 	if (loading) {
 		return (
