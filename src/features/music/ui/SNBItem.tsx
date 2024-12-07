@@ -19,6 +19,10 @@ const SNBItem = ({
 	children,
 }: SNBItemProps) => {
 	const pathname = usePathname();
+	const onError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+		e.currentTarget.src = "";
+		e.currentTarget.src = `https://img.icons8.com/ios/100/${imageHexColor}/${imageName}.png`;
+	}
 	return (
 		<Link href={href}
       className={`
@@ -35,6 +39,7 @@ const SNBItem = ({
 				width={10}
 				height={10}
 				className="w-auto h-auto text-red"
+				onError={onError}
 			/>
 			<span className={"flex gap-2 overflow-hidden text-ellipsis"}>
 				{children}
