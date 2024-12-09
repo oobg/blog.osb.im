@@ -1,0 +1,113 @@
+---
+title: 서브모듈 클론
+date: 2024-12-09 18:03:00 +0900
+tags: ["jenkins"]
+---
+
+import { Callout } from "nextra/components";
+
+# 서브모듈 클론
+
+Jenkins Pipeline 에서 깃 프로젝트를 클론받을때, 서브모듈까지 클론하는 방법에 대해 알아보겠습니다.
+
+## 서브모듈이란?
+
+먼저 서브모듈이 무엇인지 알아보겠습니다.
+
+[이 곳](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EC%84%9C%EB%B8%8C%EB%AA%A8%EB%93%88)에서는 서브모듈을 이렇게 설명합니다.
+
+<Callout type="info">
+	Git의 서브모듈은 이런 문제를 다루는 도구다.
+	Git 저장소 안에 다른 Git 저장소를 디렉토리로 분리해 넣는 것이 서브모듈이다.
+	다른 독립된 Git 저장소를 Clone 해서 내 Git 저장소 안에 포함할 수 있으며 각 저장소의 커밋은 독립적으로 관리한다.
+</Callout>
+
+## 도입하게 된 계기
+
+개인 프로젝트 환경을 구성하면서 크게 2가지를 생각하며 서브모듈을 적용했습니다.
+
+1. **공통 모듈**
+	- 여러 프로젝트에서 공통으로 사용하는 모듈을 따로 관리하고 싶었습니다.
+	- 하지만 매번 프로젝트에서 복사 붙여넣기를 하기에는 번거로웠습니다.
+2. **환경 변수**
+	- 프로젝트에서 사용하는 환경 변수 관리의 어려움을 해결하고 싶었습니다.
+	- 환경 변수는 `.env` 파일로 로컬 환경에서 관리하고 있었는데요, 다른 컴퓨터에서 프로젝트를 실행할 때마다 `.env` 파일을 복사해야 했습니다.
+	- 그렇다고 `.env` 파일을 public git 저장소에 올리기에는 보안상 문제가 있다고 판단했습니다.
+	- 이걸 위해서 git 저장소를 private 로 만들기에는 프로젝트를 남들에게 보여줄 수 없다는 단점이 있습니다.
+	- 따라서 환경 변수를 private 저장소에 따로 저장하고, 프로젝트에서는 서브모듈로 가져오는 방법을 선택했습니다.
+
+위 내용을 바탕으로 깃 프로젝트에 서브모듈을 적용했습니다만, 일반적인 Jenkins Pipeline 의 깃 클론은 서브모듈을 클론받지 않습니다.
+그래서 이 글에서는 제가 찾은 방법을 공유하겠습니다.
+
+## 환경
+
+저는 groovy 를 사용하여 Jenkins Pipeline 을 작성하고 있습니다.
+그래서 이 글에서는 groovy 를 사용하여 서브모듈까지 클론받는 방법에 대해 설명합니다.
+
+## 주의사항
+
+1. git scm 을 사용합니다.
+	- 만약 아래 방법이 안된다면 git scm 플러그인이 설치되어 있는지 확인해보세요.
+2. Jenkins Credential 을 사용합니다.
+	- Jenkins Credential 을 사용하여 private 저장소에 접근할 수 있도록 설정해야 합니다.
+
+## 구현
+
+이제 pipeline 에서 서브모듈까지 클론받는 방법에 대해 알아보겠습니다.<br />
+젠킨스에서 파이프라인에 params 를 전달하는 방법에 대해서는 [이전 글](/posts/jenkins/1#%EC%82%AC%EC%9A%A9%EB%B2%95)을 참고해주세요.
+
+```groovy copy filename="pipeline.groovy"
+pipeline {
+	agent any
+
+	environment {
+		CREDENTIALS_ID = "${params.CREDENTIALS_ID}"
+		GIT_URL = "${params.PROJECT_REPO_URL}"
+		GIT_BRANCH = "${params.PROJECT_REPO_BRANCH}"
+	}
+
+	stages {
+		stage("Git: Clone Repository") {
+			steps {
+				script {
+					checkout scmGit(
+						branches: [[name: "*/${GIT_BRANCH}"]],
+						userRemoteConfigs: [[
+						    url: GIT_URL,
+						    credentialsId: CREDENTIALS_ID,
+						]],
+						extensions: [
+							submodule(
+								parentCredentials: true,
+								recursiveSubmodules: true,
+								reference: "",
+								trackingSubmodules: true,
+							)
+						],
+					)
+				}
+			}
+		}
+	}
+}
+```
+
+## 설명
+
+1. **checkout scmGit**
+	- scmGit 을 사용하여 git 저장소를 클론받습니다.
+2. **branches**
+	- 클론받을 브랜치를 지정합니다.
+3. **userRemoteConfigs**
+	- 클론받을 저장소의 URL 을 지정합니다.
+	- credentialsId 는 Jenkins Credential 을 사용합니다.
+4. extensions - **submodule**
+	* 서브모듈을 클론받습니다.
+	* parentCredentials: true
+		- 부모 저장소의 credentials 를 사용합니다.
+	* recursiveSubmodules: true
+		- 서브모듈의 서브모듈까지 클론받습니다.
+	* reference: ""
+		- 서브모듈을 클론받을 때 참조할 저장소를 지정합니다.
+	* trackingSubmodules: true
+		- 서브모듈을 추적합니다.
