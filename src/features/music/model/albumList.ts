@@ -71,6 +71,13 @@ const result: AlbumList[] = [
 		imgSrc: "5th-RescuE.webp",
 		imgAlt: "RescuE Album Cover",
 	},
+	{
+		title: "SUPER SONIC",
+		description: "YOUNHA 4th Album",
+		kind: "Studio Album",
+		imgSrc: "4th-SUPER SONIC.webp",
+		imgAlt: "RescuE Album Cover",
+	},
 ];
 
 export default result;
