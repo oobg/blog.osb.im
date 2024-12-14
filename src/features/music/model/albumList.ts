@@ -76,7 +76,7 @@ const result: AlbumList[] = [
 		description: "YOUNHA 4th Album",
 		kind: "Studio Album",
 		imgSrc: "4th-SUPER SONIC.webp",
-		imgAlt: "RescuE Album Cover",
+		imgAlt: "SUPER SONIC Album Cover",
 	},
 ];
 
