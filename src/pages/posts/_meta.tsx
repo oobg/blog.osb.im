@@ -18,6 +18,7 @@ export default {
     type: "separator",
   },
   nodejs: "Node.js",
+  javascript: "JavaScript",
   css: "CSS",
   separator2: {
     title: cursorDefault("서버"),

@@ -1,0 +1,25 @@
+---
+title: Javascript 목차
+date: 2024-12-18 08:23:00 +0900
+tags: ['navigation']
+---
+
+import { Cards, Card } from "nextra/components";
+import NextraIcon from "/public/assets/nextra-icon/icons";
+
+# Javascript
+
+<Cards>
+	{[
+		{ title: "페이지 이동 로직" },
+	].map((card, index) => (
+		<Cards.Card
+			key={index}
+			icon={<NextraIcon name="text" />}
+			title={card.title}
+			href={"/posts/javascript/" + index.toString()}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>

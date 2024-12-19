@@ -1,0 +1,59 @@
+---
+title: 페이지 이동 로직
+date: 2024-12-18 08:29:00 +0900
+tags: ["javascript"]
+---
+
+# 페이지 이동 로직
+
+이전, 또는 다음 페이지로 이동 버튼을 눌렀을 때, 동작하는 로직을 작성합니다.
+
+## 특정 번호까지만 이동
+
+처음, 또는 마지막 페이지까지만 이동할 경우 사용하는 로직입니다.
+
+현재 페이지 번호를 `currentPage`, 최대 페이지 번호를 `maxPage`로 설정합니다.
+또한 페이지 이동 버튼을 눌렀을때 사용할 함수를 `movePage`로 설정하겠습니다.
+
+```javascript filename="index.js" copy
+let currentPage = 1;
+const maxPage = 10;
+
+const movePage = (direction) => {
+	switch (direction) {
+		case "prev":
+			currentPage = Math.max(1, currentPage - 1);
+			break;
+		case "next":
+			currentPage = Math.min(maxPage, currentPage + 1);
+			break;
+		default:
+			break;
+	}
+};
+```
+
+## 순환 이동
+
+처음 페이지에서 이전 버튼을 누르면 마지막 페이지로 이동하고, 마지막 페이지에서 다음 버튼을 누르면 처음 페이지로 이동하는 로직입니다.
+
+위 로직과 마찬가지로 현재 페이지 번호를 `currentPage`, 최대 페이지 번호를 `maxPage`로 설정합니다.
+또한 페이지 이동 버튼을 눌렀을때 사용할 함수를 `movePage`로 설정하겠습니다.
+
+```javascript filename="index.js" copy
+let currentPage = 1;
+const maxPage = 10;
+
+const movePage = (direction) => {
+	switch (direction) {
+		case "prev":
+			currentPage = (currentPage - 2 + maxPage) % maxPage + 1;
+			break;
+		case "next":
+			currentPage = currentPage % maxPage + 1;
+			break;
+		default:
+			break;
+	}
+};
+```
