@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { MusicLayout } from "@/features/music";
 import { FlexColBox } from "@/shared/ui/common/FlexBox";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import useRenderAlbum from "@/features/music/lib/useRenderAlbum";
 
 export default function Page() {
@@ -11,76 +11,6 @@ export default function Page() {
 	const { data, loading } = useRenderAlbum(id as string);
 
 	const title = "앨범정보";
-
-	const dtmArray = [
-		"20", "01", "00", "20", "20", "29", "15", "17", "1E", "00", "20", "20", "0D", "01", "1D", "25", "01", "07", "00",
-		"20", "20", "15", "1D", "00", "20", "20", "32", "01", "0C", "3B", "20", "20", "0F", "17", "11", "0F", "1C", "2B",
-		"30", "0E", "08", "2F", "38", "39", "3C", "09", "19", "06", "20", "1C", "1E", "0A", "09", "07", "11", "0E", "00",
-		"0F", "17", "15", "27", "0A", "19", "2B", "00", "03", "3D", "3A", "0A", "05", "0A", "20", "13", "2A", "02", "00"
-	];
-
-	const wordWrap = (array: string[]) => {
-		const maxColSize = 20; // 최대 열 크기
-
-		// 1. "00" 기준으로 데이터 분리
-		const splitByZero = (input: string[]): string[] => {
-			const currentArray: string[] = [];
-			const splitResult: string[] = [];
-
-			input.forEach(value => {
-				if (value === "00") {
-					splitResult.push(currentArray.length > 0 ? currentArray.join("") : "00");
-					currentArray.length = 0;
-				} else {
-					currentArray.push(value);
-				}
-			});
-
-			if (currentArray.length > 0) {
-				splitResult.push(currentArray.join(""));
-			}
-			return splitResult;
-		};
-
-		// 2. 워드랩 처리
-		const processWordWrap = (lines: string[]): string[] => {
-			const wrappedResult: string[] = [];
-			for (let i = 0; i < lines.length; i++) {
-				const currentSize = lines[i].length / 2;
-				const nextSize = i + 1 < lines.length ? lines[i + 1].length / 2 : 0;
-
-				if (currentSize + nextSize + 1 <= maxColSize) {
-					wrappedResult.push(lines[i] + "00" + lines[i + 1]);
-					i++; // 다음 라인 스킵
-				} else {
-					while (lines[i].length > maxColSize * 2) {
-						wrappedResult.push(lines[i].slice(0, maxColSize * 2));
-						lines[i] = lines[i].slice(maxColSize * 2);
-					}
-					wrappedResult.push(lines[i]);
-				}
-			}
-			return wrappedResult;
-		};
-
-		// 3. 결과 배열 패딩 처리
-		const padLines = (lines: string[]): string[] => {
-			return lines.map(line => line.padEnd(maxColSize * 2, "00"));
-		};
-
-		// 함수 호출 순서
-		const splitResult = splitByZero(array); // "00"으로 나눔
-		const wrappedResult = processWordWrap(splitResult); // 워드랩 처리
-		const paddedResult = padLines(wrappedResult); // 패딩 처리
-
-		// 최종 결과 출력
-		console.log("Result:", paddedResult);
-		return paddedResult;
-	};
-
-	useEffect(() => {
-		wordWrap(dtmArray);
-	}, []);
 
 	if (loading) {
 		return (
