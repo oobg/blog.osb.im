@@ -4,6 +4,7 @@ import { FlexColBox, FlexRowBox } from "@/shared/ui/common/FlexBox";
 import Badge from "@/shared/ui/common/Badge";
 import useSNBClose from "@/features/music/lib/useSNBClose";
 import Image from "next/image";
+import albumSNB, { AlbumSNB } from "@/features/music/model/albumSNB";
 
 interface SNBProps {
 	open: boolean;
@@ -30,10 +31,7 @@ const SNB = ({ open, onClose }: SNBProps) => {
 		>
 			<FlexRowBox className="relative justify-between w-full items-center h-8 pr-2">
 				<Logo />
-				<button
-					onClick={onClose}
-					className={`sm:hidden`}
-				>
+				<button onClick={onClose} className={`sm:hidden`}>
 					<Image
 						src={`https://img.icons8.com/ios/150/FFFFFF/${imageName}.png`}
 						alt={imageName + " icon"}
@@ -52,46 +50,20 @@ const SNB = ({ open, onClose }: SNBProps) => {
 			<FlexColBox className="gap-2">
 				<SNBItem href="/music" imageName="home">홈</SNBItem>
 			</FlexColBox>
-			<FlexColBox>
-				<div className="text-xs text-gray-400 px-1 mb-1">정규앨범</div>
-				<FlexColBox className="gap-2">
-					<SNBItem href="/music/album/growth-theory-repackage" imageName="yacht">
-						<Badge color="pink">7th</Badge>
-						Growth Theory
-						<Badge color="purple">RE</Badge>
-					</SNBItem>
-					<SNBItem href="/music/album/growth-theory" imageName="yacht">
-						<Badge color="pink">7th</Badge>
-						Growth Theory
-					</SNBItem>
-					<SNBItem href="/music/album/end-theory-repackage" imageName="rocket">
-						<Badge color="pink">6th</Badge>
-						End Theory
-						<Badge color="purple">RE</Badge>
-					</SNBItem>
-					<SNBItem href="/music/album/end-theory" imageName="rocket">
-						<Badge color="pink">6th</Badge>
-						End Theory
-					</SNBItem>
-					<SNBItem href="/music/album/rescuE" imageName="mailbox-closed-flag-up">
-						<Badge color="pink">5th</Badge>
-						RescuE
-					</SNBItem>
+			{albumSNB.map((album: AlbumSNB) => (
+				<FlexColBox>
+					<div className="text-xs text-gray-400 px-1 mb-1">{album.id}</div>
+					<FlexColBox className="gap-2">
+						{album.items.map((item) => (
+							<SNBItem href={item.href} imageName={item.imageName}>
+								<Badge>{item.badgeFirst}</Badge>
+								{item.title}
+								{item.badgeSecond && <Badge>{item.badgeSecond}</Badge>}
+							</SNBItem>
+						))}
+					</FlexColBox>
 				</FlexColBox>
-			</FlexColBox>
-			<FlexColBox>
-				<div className="text-xs text-gray-400 px-1 mb-1">미니앨범</div>
-				<FlexColBox className="gap-2">
-					<SNBItem href="/music/album/unstable-mindset" imageName="lullaby">
-						<Badge color="pink">5th</Badge>
-						Unstable Mindset
-					</SNBItem>
-					<SNBItem href="/music/album/stable-mindset" imageName="lullaby">
-						<Badge color="pink">4th</Badge>
-						Stable Mindset
-					</SNBItem>
-				</FlexColBox>
-			</FlexColBox>
+			))}
 			<FlexColBox>
 				<div className="text-xs text-gray-400 px-1 mb-1">응원법</div>
 				<FlexColBox className="gap-2">

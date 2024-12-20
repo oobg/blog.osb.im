@@ -14,7 +14,19 @@ interface AlbumData {
 	tracks: { title: string; duration: string }[];
 }
 
+interface AlbumSNB {
+	id: string;
+	items: {
+		href: string;
+		imageName: string;
+		title: string;
+		badgeFirst: string;
+		badgeSecond?: string | null;
+	}[],
+}
+
 export {
 	AlbumList,
 	AlbumData,
+	AlbumSNB,
 };
