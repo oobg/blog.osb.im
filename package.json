@@ -7,6 +7,7 @@
     "build": "next build && mv ./src/pages .",
     "start": "next start",
     "lint": "next lint",
+    "build:local": "next build",
     "build:standalone": "next build && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/",
     "start:standalone": "node .next/standalone/server.js"
   },
