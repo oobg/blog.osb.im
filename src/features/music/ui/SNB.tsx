@@ -51,11 +51,11 @@ const SNB = ({ open, onClose }: SNBProps) => {
 				<SNBItem href="/music" imageName="home">홈</SNBItem>
 			</FlexColBox>
 			{albumSNB.map((album: AlbumSNB) => (
-				<FlexColBox>
+				<FlexColBox key={album.id}>
 					<div className="text-xs text-gray-400 px-1 mb-1">{album.id}</div>
 					<FlexColBox className="gap-2">
 						{album.items.map((item) => (
-							<SNBItem href={item.href} imageName={item.imageName}>
+							<SNBItem key={item.title} href={item.href} imageName={item.imageName}>
 								<Badge>{item.badgeFirst}</Badge>
 								{item.title}
 								{item.badgeSecond && <Badge>{item.badgeSecond}</Badge>}
