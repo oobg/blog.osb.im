@@ -1,0 +1,102 @@
+---
+title: 동일 컨텍스트 간 상태 공유 (2)
+date: 2024-12-23 23:43:00 +0900
+tags: ["javascript"]
+---
+
+import { useState } from "react";
+
+export function BroadcastChannelExample() {
+	const channelName = "test_channel";
+	const defaultMessage = "모든 페이지에서 이 텍스트가 변경될 것 입니다...";
+
+	const bc = new BroadcastChannel(channelName);
+	const [message, setMessage] = useState(defaultMessage);
+
+	bc.onmessage = (event) => setMessage(event.data);
+	const handleClick = () => bc.postMessage("Hello, world! Hello, Broadcast Channel!");
+
+	return (
+		<div className={"border border-b-white p-2 flex flex-col justify-between gap-3"}>
+			<div>{message}</div>
+			<button
+				className={"bg-blue-900 hover:bg-blue-700 text-white p-2 rounded"}
+				onClick={handleClick
+			}>이 버튼을 눌러보세요!</button>
+		</div>
+	);
+}
+
+# 동일 컨텍스트 간 상태 공유 (2)
+
+이번 글에서는 **Broadcast Channel API**를 사용하여 동일 컨텍스트 간 상태 공유를 구현하는 방법에 대해 알아보겠습니다.
+
+## Broadcast Channel API
+
+**Broadcast Channel API**는 동일한 출처의 다른 창, 탭 또는 프레임 간에 메시지를 교환할 수 있는 API입니다.
+
+간단한 예제를 통해 Broadcast Channel API를 살펴보겠습니다.
+
+1. 사전 준비로, 현재 페이지를 두 개 이상 열어주세요.
+2. 열린 페이지 중, 아무 페이지에서 아래 버튼을 클릭해보시기 바랍니다.
+<br />
+
+<BroadcastChannelExample />
+
+버튼을 눌렀을때 다른 페이지에서도 메시지가 "Hello, world! Hello, Broadcast Channel!"로 변경되는 것을 확인할 수 있습니다.
+
+```javascript filename="BroadcastChannelExample.tsx" copy
+export function BroadcastChannelExample() {
+	const channelName = "test_channel";
+	const defaultMessage = "모든 페이지에서 이 텍스트가 변경될 것 입니다...";
+
+	const bc = new BroadcastChannel(channelName);
+	const [message, setMessage] = useState(defaultMessage);
+
+	bc.onmessage = (event) => setMessage(event.data);
+	const handleClick = () => bc.postMessage("Hello, world! Hello, Broadcast Channel!");
+
+	return (
+		<>
+			<div>{message}</div>
+			<button onClick={handleClick}>이 버튼을 눌러보세요!</button>
+		</>
+	);
+}
+```
+
+### 특징
+
+1. 동일 출저 (origin)의 다른 창, 탭 또는 프레임 간에 메시지를 교환할 수 있습니다.
+2. 실시간 통신을 지원하며, WebSocket 과 달리 서버를 거치지 않고 메시지를 교환할 수 있습니다.
+3. 브라우저에서 제공하는 API로, 별도의 라이브러리나 패키지를 설치할 필요가 없습니다.
+
+### 장점
+
+1. 구현이 간단하고 효율적입니다.
+2. 서버 요청이 필요 없어 네트워크 지연이 발생하지 않습니다.
+3. 브라우저 간 상태 공유가 가능하므로, 통합된 사용자 경험(UX)을 제공할 수 있습니다.
+
+### 사용법
+
+**Broadcast Channel API**는 다음과 같은 메서드를 제공합니다.
+
+- **BroadcastChannel()**: 새로운 Broadcast Channel을 생성합니다.
+- **postMessage()**: 다른 창, 탭 또는 프레임에 메시지를 보냅니다.
+- **onmessage**: 다른 창, 탭 또는 프레임에서 메시지를 수신할 때 실행할 이벤트 핸들러를 설정합니다.
+
+### 동작 원리
+
+1. 브라우저에서 동일 출저의 다른 창, 탭 또는 프레임 간에 메시지를 교환할 수 있도록 Broadcast Channel을 생성합니다.
+2. 메시지를 보내는 창, 탭 또는 프레임에서 postMessage() 메서드를 사용해 메시지를 전송합니다.
+3. 메시지를 수신하는 창, 탭 또는 프레임에서 onmessage 이벤트 핸들러를 설정해 메시지를 수신하고 처리합니다.
+
+```plantext
++------------------+          +------------------+
+|  Tab A           |          |  Tab B           |
+|                  |   --->   |                  |
+| postMessage()    |          | onmessage()      |
++------------------+          +------------------+
+```
+
+## 제한 사항
