@@ -40,15 +40,14 @@ const config: DocsThemeConfig = {
 		dark: "#000000",
 	},
 	head: () => {
-		const { asPath, defaultLocale, locale } = useRouter();
+		const { asPath } = useRouter();
 		const { frontMatter } = useConfig();
-		const formattedPath = asPath.replace("/posts", "");
-		const publicUrl = `${process.env.NEXT_PUBLIC_URL}`;
-		const wrapper = `${(defaultLocale === locale ? formattedPath : `/${locale}${formattedPath}`)}`;
-		const url = `${publicUrl}${wrapper}`;
 
+		const url = asPath;
 		const title = "[post] " + frontMatter.title || "baewoong's blog";
 		const description = frontMatter.description || 'baewoong 의 블로그 입니다!';
+		const image = frontMatter.image || "/assets/img/logo-3d.png";
+
 		return (
 			<>
 				<title>{title}</title>
@@ -57,6 +56,9 @@ const config: DocsThemeConfig = {
 				<meta property="og:url" content={url}/>
 				<meta property="og:title" content={title}/>
 				<meta property="og:description" content={description}/>
+				<meta property="og:image" content={image}/>
+				<meta property="og:type" content="article"/>
+				<meta property="og:site_name" content="baewoong's blog"/>
 			</>
 		)
 	},
