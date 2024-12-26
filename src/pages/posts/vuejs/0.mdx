@@ -1,0 +1,657 @@
+---
+title: 프로젝트 구조 만들기
+date: 2024-12-26 07:29:00 +0900
+tags: ["javascript"]
+---
+
+import { FileTree, Callout } from "nextra/components";
+
+# 프로젝트 구조 만들기
+
+처음 프로젝트를 생성하고, Vue.js 를 사용하기 위한 구조를 만들어보겠습니다.<br />
+개인적인 경험에 근거해 만드는 구조이며, 더 좋은 방법이 있다면 댓글로 언제든지 알려주세요.
+
+## 시작하기 전에...
+
+현재 문서는 작성일에 따릅니다.<br />
+2024년 12월 26일 기준입니다.
+
+Vue.js 3.x 버전을 사용하며, vite 를 사용하여 프로젝트를 생성합니다.
+
+Node.js 는 18.x 이후 버전을 사용합니다.<br />
+18 미만 버전은 EOL 로, 지원이 종료되었습니다.
+
+composition-api 작성 방식을 따릅니다.<br />
+options-api 를 사용하는 경우, 공식 문서를 참고하여 변경하시기 바랍니다.
+
+## 프로젝트 생성
+
+```sh copy
+npm create vue@latest
+```
+
+패키지 매니저를 사용하여 프로젝트를 생성합니다.<br />
+아래와 같은 프롬프트가 나타납니다.
+
+```ansi
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+각각의 프롬프트에 대한 설명과 개인적인 추천까지 말씀드리겠습니다.
+
+### Project name
+
+```ansi {1}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+프로젝트 이름입니다.
+해당 값에 따라 프로젝트 폴더가 생성됩니다.<br />
+만약 이미 프로젝트 폴더를 생성했고, 해당 폴더 내에서 프로젝트를 생성하고 싶다면, `.` 을 입력합니다.
+
+### Add TypeScript?
+
+```ansi {2}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+TypeScript 를 사용할 것인지 여부를 물어봅니다.<br />
+예외적인 상황이 아니라면 `Yes` 를 선택합니다.
+
+### Add JSX Support?
+
+```ansi {3}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+JSX 를 사용할 것인지 여부를 물어봅니다.<br />
+Vue.js 에서는 SFC (Single File Component) 를 별도의 확장자로 사용하므로, 예외적인 상황이 아니라면 `No` 를 선택합니다.
+
+### Add Vue Router for Single Page Application development?
+
+```ansi {4}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+SPA (Single Page Application) 을 개발할 때, Vue Router 를 사용할 것인지 물어봅니다.<br />
+예외적인 상황이 아니라면 `Yes` 를 선택합니다.
+
+### Add Pinia for state management?
+
+```ansi {5}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+상태 관리 라이브러리인 Pinia 를 사용할 것인지 물어봅니다.<br />
+전역 상태 관리를 위해 사용할 수 있으며, 예외적인 상황이 아니라면 `Yes` 를 선택합니다.
+
+### Add Vitest for Unit testing?
+
+```ansi {6}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+단위 테스트를 위한 Vitest 를 사용할 것인지 물어봅니다.
+
+### Add an End-to-End Testing Solution?
+
+```ansi {7}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+E2E (End-to-End) 테스트를 위한 도구를 사용할 것인지 물어봅니다.
+
+- 위 2개의 질문에 대한 답변은 개인적인 선호도 또는 회사 정책에 따라 다를 수 있습니다.
+
+### Add ESLint for code quality?
+
+```ansi {8}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+코드 품질을 위한 ESLint 를 사용할 것인지 물어봅니다.<br />
+다수의 개발자가 참여하는 프로젝트라면 `Yes` 를 권장합니다.
+
+### Add Prettier for code formatting?
+
+```ansi {9}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+코드 포맷팅을 위한 Prettier 를 사용할 것인지 물어봅니다.<br />
+다수의 개발자가 참여하는 프로젝트라면 `Yes` 를 권장합니다.
+
+### Add Vue DevTools 7 extension for debugging?
+
+```ansi {10}
+[32m✓[0m Project name: … <your-project-name>
+[32m✓[0m Add TypeScript? … [36mNo[0m / Yes
+[32m✓[0m Add JSX Support? … [36mNo[0m / Yes
+[32m✓[0m Add Vue Router for Single Page Application development? … [36mNo[0m / Yes
+[32m✓[0m Add Pinia for state management? … [36mNo[0m / Yes
+[32m✓[0m Add Vitest for Unit testing? … [36mNo[0m / Yes
+[32m✓[0m Add an End-to-End Testing Solution? … [36mNo[0m / Cypress / Nightwatch / Playwright
+[32m✓[0m Add ESLint for code quality? … [36mNo[0m / Yes
+[32m✓[0m Add Prettier for code formatting? … [36mNo[0m / Yes
+[32m✓[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mNo[0m / Yes
+```
+
+Vue DevTools 7 익스텐션을 사용할 것인지 물어봅니다.<br />
+개발자 도구에서 Vue.js 컴포넌트를 확인할 수 있으며, `Yes` 를 권장합니다.
+
+### 프롬프트 설정
+
+저의 경우는 다음과 같이 프롬프트를 설정하였습니다.<br />
+모든 설정은 추후에 언제든지 변경할 수 있습니다.
+
+```ansi
+[32m✔[0m Project name: … [36m.[0m
+[32m✔[0m Add TypeScript? … [36mYes[0m
+[32m✔[0m Add JSX Support? … [36mNo[0m
+[32m✔[0m Add Vue Router for Single Page Application development? … [36mYes[0m
+[32m✔[0m Add Pinia for state management? … [36mYes[0m
+[32m✔[0m Add Vitest for Unit testing? … [36mNo[0m
+[32m✔[0m Add an End-to-End Testing Solution? … [36mNo[0m
+[32m✔[0m Add ESLint for code quality? … [36mNo[0m
+[32m✔[0m Add Prettier for code formatting? … [36mNo[0m
+[32m✔[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mYes[0m
+```
+
+## 프로젝트 아키텍처
+
+프로젝트 아키텍처에 대해 기존 프로젝트 구조보다는 FSD (Feature Slices Design) 패턴을 사용합니다.<br />
+더욱 자세한 사항에 대해서는 아래 공식문서 링크를 참고해주세요.
+
+- [Documentation | Feature Slices Design](https://feature-sliced.design/kr/docs)
+
+## 폴더 구조
+
+전체적인 프로젝트 구조를 File Tree 형태로 보여드리겠습니다.
+모든 소스는 `src` 폴더 내에 위치하며, `public` 폴더는 정적 파일을 저장합니다.
+
+<FileTree>
+	<FileTree.Folder name="public" />
+	<FileTree.Folder name="src" defaultOpen>
+		<FileTree.Folder name="app" defaultOpen>
+			<FileTree.Folder name="plugins" defaultOpen>
+				<FileTree.Folder name="i18n">
+					<FileTree.File name="index.ts" />
+				</FileTree.Folder>
+				<FileTree.Folder name="pinia">
+					<FileTree.File name="index.ts" />
+				</FileTree.Folder>
+				<FileTree.Folder name="routes">
+					<FileTree.File name="index.ts" />
+				</FileTree.Folder>
+				<FileTree.File name="index.ts" />
+			</FileTree.Folder>
+			<FileTree.Folder name="styles">
+				<FileTree.File name="base.css" />
+				<FileTree.File name="main.css" />
+			</FileTree.Folder>
+			<FileTree.File name="App.vue" />
+			<FileTree.File name="Main.ts" />
+		</FileTree.Folder>
+		<FileTree.Folder name="pages" defaultOpen>
+			<FileTree.Folder name="User">
+				<FileTree.File name="ProfileView.vue" />
+				<FileTree.File name="SettingsView.vue" />
+			</FileTree.Folder>
+			<FileTree.File name="DefaultView.vue" />
+		</FileTree.Folder>
+		<FileTree.Folder name="widget" defaultOpen>
+			<FileTree.Folder name="footer">
+				<FileTree.File name="DefaultFooter.vue" />
+			</FileTree.Folder>
+			<FileTree.Folder name="header">
+				<FileTree.File name="DefaultHeader.vue" />
+			</FileTree.Folder>
+			<FileTree.Folder name="layout">
+				<FileTree.File name="DefaultLayout.vue" />
+				<FileTree.File name="BlankLayout.vue" />
+			</FileTree.Folder>
+		</FileTree.Folder>
+	</FileTree.Folder>
+	<FileTree.File name="index.html" />
+	<FileTree.File name="package-lock.json" />
+	<FileTree.File name="package.json" />
+</FileTree>
+
+### 진입점
+
+가장 먼저 프로젝트는 루트 경로에 있는 **index.html** 을 실행합니다.
+
+이는 **package.json** 에서 설정한 **main** 키값의 파일을 실행하는 것입니다.<br />
+기본값은 **index.html** 이며, 다른 파일을 사용하고자 한다면 **main** 키값을 수정합니다.
+따라서, **package.json** 파일 내에 명시되어 있지 않더라도 **index.html** 부터 시작되게 됩니다.
+
+**index.html** 파일 내에서 봐야할 것은 **id="app"** 인 div 태그와, **src** 속성에 **main.ts** 파일을 참조하는 script 태그입니다.
+이곳에서 Vue.js 의 진입점인 **main.ts** 파일을 실행합니다.
+
+위에서 File Tree 로 구조를 보여드렸듯이, `main.ts` 와 `App.vue` 파일은 **src/app** 폴더 내로 이동시킵니다.
+
+### Plugins
+
+Vue.js 에서 사용하는 플러그인을 모아둔 폴더입니다.
+
+초기 프로젝트를 생성할 시점에는 **pinia** 와 **vue-router** 만 존재합니다만, 추가적으로 **i18n** 등을 사용할 경우 해당 폴더에서 관리합니다.
+플러그인 관리를 위해서는 **index.ts** 파일을 생성하여 플러그인을 등록합니다.
+이후 **main.ts** 파일에서 플러그인을 사용하도록 파일을 변경해 보겠습니다.
+
+우선 플러그인 호출을 위해 **plugins/** 폴더 내에 **index.ts** 파일을 생성합니다.<br />
+이후, 다음과 같이 코드를 작성합니다.
+
+```typescript filename="src/app/plugins/index.ts" copy
+import type { App } from "vue";
+import { createPinia } from "pinia";
+import router from "./routes";
+
+export default function usePlugins(app: App) {
+  app.use(createPinia());
+  app.use(router);
+}
+```
+
+다음으로, **main.ts** 파일을 열어 **usePlugins** 함수를 호출하도록 수정합니다.
+
+```typescript filename="src/app/main.ts" copy
+import "@/app/styles/main.css";
+
+import { createApp } from "vue";
+import App from "@/app/App.vue";
+import usePlugins from "@/app/plugins";
+
+const app = createApp(App);
+
+usePlugins(app);
+
+app.mount("#app");
+```
+
+위와 같은 방식으로, 플러그인을 하나의 커스텀 함수로 관리하고, **main.ts** 파일에서 호출하도록 구조화합니다.
+
+### Router
+
+Vue Router 를 사용하여 라우팅을 관리합니다.
+
+다만 약간의 수정이 필요합니다.<br />
+index.ts 파일에서는 1개 세그먼트만을 사용하도록 설정합니다.
+추가로, meta 속성을 사용하여 라우터에 사용할 레이아웃 컴포넌트를 지정하는 것까지 구현하겠습니다.
+
+```typescript filename="src/app/routes/index.ts" copy
+import { createRouter, createWebHistory } from "vue-router";
+import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+import DefaultView from "@/pages/DefaultView.vue";
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: DefaultView,
+      meta: { layout: DefaultLayout },
+    },
+  ],
+})
+
+export default router;
+```
+
+위와 같이, **index.ts** 파일에서 라우터를 생성하고, **meta** 속성을 사용하여 레이아웃을 지정합니다.
+
+2개 이상의 세그먼트를 사용하려면, 새로운 파일을 생성하여 라우터를 관리하도록 합니다.
+예를 들어, user 라우터 밑에 profile, settings 등을 사용하고 싶다면, **user.ts** 파일을 생성합니다.
+
+```typescript filename="src/app/routes/user.ts" copy
+import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+
+export default {
+	path: "/user",
+	meta: { layout: DefaultLayout },
+	children: [
+		{
+			path: "/profile",
+			name: "profile",
+			component: () => import(/* webpackChunkName: "User" */ "@/pages/User/ProfileView.vue"),
+		},
+		{
+			path: "/settings",
+			name: "settings",
+			component: () => import(/* webpackChunkName: "User" */ "@/pages/User/SettingsView.vue"),
+		},
+	],
+}
+```
+
+위의 코드에서는 **user.ts** 파일을 생성하고, **profile** 과 **settings** 라우터를 추가합니다.
+children 속성을 사용하여 하위 라우터를 추가하는 방식을 사용했습니다.
+
+따라서 name 이 profile 인 라우터는 **/user/profile** 로 접근할 수 있고, name 이 settings 인 라우터는 **/user/settings** 로 접근할 수 있습니다.
+
+위와 같이 했을 경우 추가적인 장점이 있습니다.
+
+<Callout type="info">
+	컴포넌트를 비동기로 로딩하도록 설정했습니다.<br />
+	또한, Webpack Chunk Name 을 사용하여, 코드 스플리팅을 적용했습니다.
+</Callout>
+
+이후, **index.ts** 파일에서 **user.ts** 파일을 import 하여 사용합니다.
+
+```typescript filename="src/app/routes/index.ts" copy {4, 15}
+import { createRouter, createWebHistory } from "vue-router";
+import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+import DefaultView from "@/pages/DefaultView.vue";
+import user from "./user";
+
+const router = createRouter({
+	history: createWebHistory(import.meta.env.BASE_URL),
+	routes: [
+		{
+			path: "/",
+			name: "home",
+			component: DefaultView,
+			meta: { layout: DefaultLayout },
+		},
+		user,
+	],
+})
+
+export default router;
+```
+
+저는 Object 형태로 리턴하여 사용했지만, 배열로 리턴했다면 구조분해 할당을 하면 됩니다.<br />
+예를 들어 다음과 같이 배열로 리턴한 경우입니다.
+
+```typescript filename="src/app/routes/user.ts" copy
+import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+
+export default [
+	{
+		path: "/user/profile",
+		name: "profile",
+		component: () => import(/* webpackChunkName: "User" */ "@/pages/User/ProfileView.vue"),
+		meta: { layout: DefaultLayout },
+	},
+	{
+		path: "/user/settings",
+		name: "settings",
+		component: () => import(/* webpackChunkName: "User" */ "@/pages/User/SettingsView.vue"),
+		meta: { layout: DefaultLayout },
+	},
+];
+```
+
+호출은 **index.ts** 파일에서 **user.ts** 파일을 import 하여 다음과 같이 사용합니다.
+
+```typescript filename="src/app/routes/index.ts" copy {4, 15}
+import { createRouter, createWebHistory } from "vue-router";
+import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+import DefaultView from "@/pages/DefaultView.vue";
+import user from "./user";
+
+const router = createRouter({
+	history: createWebHistory(import.meta.env.BASE_URL),
+	routes: [
+		{
+			path: "/",
+			name: "home",
+			component: DefaultView,
+			meta: { layout: DefaultLayout },
+		},
+		...user,
+	],
+})
+
+export default router;
+```
+
+위 방식은 children 속성을 사용하지 않고, 배열로 리턴한 방식입니다.
+개인의 선호도에 따라 첫번쨰 방식과 두번째 방식 중 선택하면 됩니다.
+
+### Layout
+
+이제 레이아웃을 구성해 보겠습니다.
+
+레이아웃의 경우 **widget/layout** 폴더 내에 위치하며, **DefaultLayout.vue** 와 **BlankLayout.vue** 파일을 생성합니다.
+**shared** 폴더에 위치시키는 방법도 있지만, **widget** 폴더에 넣은 이유가 있습니다.
+FSD 패턴은 shared 에서 상위 요소 접근을 권장하지 않기 때문입니다.
+
+아래는 **DefaultLayout.vue** 파일의 예시 코드입니다.
+
+```vue filename="src/widget/layout/DefaultLayout.vue" copy
+<template>
+	<default-header />
+	<main>
+		<router-view />
+	</main>
+	<default-footer />
+</template>
+
+<script setup lang="ts">
+import DefaultHeader from "@/widget/header/DefaultHeader.vue";
+import DefaultFooter from "@/widget/footer/DefaultFooter.vue";
+</script>
+
+<style scoped></style>
+```
+
+위 코드에서 **DefaultLayout.vue**는 헤더, 메인 컨텐츠, 푸터로 구성된 일반적인 레이아웃을 정의합니다.
+이 레이아웃은 애플리케이션의 대부분의 페이지에서 사용될 수 있습니다.
+
+**\<router-view /\>** 태그의 경우, 라우터에서 지정한 컴포넌트를 랜더링하는 방법입니다.
+
+다양한 요구 사항에 따라 레이아웃을 분리해 관리하는 것이 좋습니다.
+예를 들어, 로그인과 같은 페이지에서는 헤더와 푸터 없이 단순히 메인 컨텐츠만 보여주는 **BlankLayout.vue** 와 같은 레이아웃이 필요할 수 있습니다.
+
+아래는 **BlankLayout.vue** 파일의 예시 코드입니다.
+
+```vue filename="src/widget/layout/BlankLayout.vue" copy
+<template>
+	<main>
+		<router-view />
+	</main>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped></style>
+```
+
+위 코드에서 **BlankLayout.vue**는 헤더와 푸터 없이 메인 컨텐츠만 보여주는 레이아웃을 정의합니다.
+
+이제 레이아웃을 사용하는 방법을 알아보겠습니다.
+라우터에서 **meta** 속성을 사용하여 레이아웃을 지정했습니다.
+이 레이아웃 변경은 **App.vue** 파일에서 처리합니다.
+
+```vue filename="src/app/App.vue" copy
+<template>
+  <component :is="layout" />
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+
+const route = useRoute();
+const layout = ref();
+
+watch (
+  () => route.meta.layout,
+  (newLayout) => {
+    layout.value = newLayout || DefaultLayout;
+  }
+);
+</script>
+
+<style scoped></style>
+```
+
+component 태그를 사용하여 레이아웃을 동적으로 변경하는 방법입니다.<br />
+동작 방식은 다음과 같습니다.
+
+1. **useRoute** 훅을 사용하여 현재 라우터 정보를 가져옵니다.
+2. **watch** 함수를 사용하여 라우터의 **meta.layout** 속성을 감시하고, 변경되면 **layout** 변수에 할당합니다.
+	- **meta.layout** 속성이 없을 경우, **DefaultLayout** 컴포넌트를 기본값으로 사용합니다.
+3. **component** 태그를 사용하여 **layout** 변수에 할당된 컴포넌트를 렌더링합니다.
+
+이렇게 함으로써, 라우터에서 **meta.layout** 속성을 사용하여 레이아웃을 지정하고, **App.vue** 파일에서 해당 레이아웃을 동적으로 변경할 수 있습니다.
+
+### CSS
+
+CSS 파일은 **src/app/styles** 폴더 내에 위치하며, **base.css** 와 **main.css** 파일을 사용합니다.
+
+**base.css** 파일은 전역 스타일을 정의하는 파일입니다.<br />
+예를 들면, `:root` 에서 전역 변수를 정의하거나, 모든 태그에 대한 스타일을 정의하는 등의 작업을 수행합니다.
+또는 기본적으로 정의된 스타일을 초기화하는 작업을 수행할 수 있습니다.
+
+아무런 작업도 하지 않았다면, **base.css** 파일에는 dark mode 를 위한 CSS 변수가 정의되어 있을 것입니다.
+필요한 경우, 해당 color scheme 을 수정하거나, 다른 스타일을 추가하시기 바랍니다.
+
+**main.css** 파일은 컴포넌트에 대한 스타일을 정의하는 파일입니다.<br />
+**base.css** 를 호출하여 전역 스타일을 상속받고, 컴포넌트에 대한 스타일을 정의하거나, 컴포넌트 간의 스타일 충돌을 방지하기 위한 작업을 수행합니다.
+그리고 진입점이 되는 `#app` 에 대한 스타일을 정의하는 등의 작업을 수행합니다.
+
+```css filename="src/app/styles/main.css" copy
+@import "./base.css";
+
+body {
+	// 기존 요소들은 초기화하거나, 추가적인 스타일을 정의합니다.
+}
+
+#app {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 100dvw;
+	height: 100dvh;
+
+	overflow: hidden;
+}
+
+#app > main {
+	flex: 1;
+	overflow: auto;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+}
+```
+
+레이아웃 요소를 지정할 때, main 요소를 화면 중앙에 위치하도록 정의했습니다.
+
+몇 가지 주요 스타일을 살펴보겠습니다.
+
+**1. 화면 크기와 단위**
+
+화면 전체를 차지하도록 설정하려면, 흔히 vw(viewport width)와 vh(viewport height)를 사용합니다. 하지만 이러한 단위는 브라우저의 주소창이나 상태바 같은 UI 요소를 고려하지 않아, 요소가 겹치거나 보이지 않는 문제가 발생할 수 있습니다.
+
+이를 해결하기 위해 CSS 에서는 dvw 와 dvh 단위를 제공합니다.
+- dvw: 동적 뷰포트 너비를 기준으로, 주소창과 같은 요소를 제외한 가시 영역의 너비.
+- dvh: 동적 뷰포트 높이를 기준으로, 주소창과 상태바를 제외한 가시 영역의 높이.
+
+따라서 #app 요소에 width: 100dvw; height: 100dvh;를 적용하면, 가시 영역을 완전히 차지하면서도 UI 요소와 겹치지 않는 안정적인 레이아웃을 만들 수 있습니다.
+
+**2. Flexbox 를 활용한 레이아웃 배치**
+
+#app 요소를 **Flex 컨테이너**로 설정하면 자식 요소를 유연하게 배치할 수 있습니다.
+또한, main 요소에 **flex: 1;** 을 적용하여, main 요소가 남은 공간을 모두 차지하도록 설정했습니다.
+
+## 마무리
+
+이상으로 Vue.js 프로젝트 구조를 설계하는 방법에 대해 알아보았습니다.<br />
+궁금하신 점이나 더 좋은 방법이 있다면, 언제든지 댓글로 남겨주세요.

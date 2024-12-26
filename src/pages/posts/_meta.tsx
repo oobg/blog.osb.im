@@ -19,6 +19,7 @@ export default {
   },
   nodejs: "Node.js",
   javascript: "JavaScript",
+  vuejs: "Vue.js",
   css: "CSS",
   separator2: {
     title: cursorDefault("서버"),

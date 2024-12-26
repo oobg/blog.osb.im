@@ -16,10 +16,18 @@ import NextraIcon from "/public/assets/nextra-icon/icons";
 		{ title: "Node.js", href: "nodejs", icon: "nodejs", size: 22 },
 		{ title: "CSS", href: "css", icon: "css", size: 26 },
 		{ title: "Javascript", href: "javascript", icon: "javascript", size: 20 },
+		{ title: "Vue.js", href: "vuejs", icon: "vuejs", extension: "webp", size: 22 },
 	].map((card, index) => (
 		<Cards.Card
 			key={index}
-			icon={<NextraIcon name={card.icon} width={card.size} height={card.size} />}
+			icon={
+				<NextraIcon
+					name={card.icon}
+					width={card.size}
+					height={card.size}
+					extension={card.extension ?? undefined}
+				/>
+			}
 			title={card.title}
 			href={"/posts/" + card.href}
 			children=""

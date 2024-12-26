@@ -1,0 +1,25 @@
+---
+title: Vue.js 목차
+date: 2024-12-26 07:22:00 +0900
+tags: ['navigation']
+---
+
+import { Cards, Card } from "nextra/components";
+import NextraIcon from "/public/assets/nextra-icon/icons";
+
+# Vue.js
+
+<Cards>
+	{[
+		{ title: "프로젝트 구조 만들기" },
+	].map((card, index) => (
+		<Cards.Card
+			key={index}
+			icon={<NextraIcon name="text" />}
+			title={card.title}
+			href={"/posts/vuejs/" + index.toString()}
+			children=""
+			arrow
+		/>
+	))}
+</Cards>
