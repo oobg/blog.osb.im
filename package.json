@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && mv ./src/pages .",
+    "build": "next build && mkdir pages && mv ./src/pages/posts ./pages/posts",
     "start": "next start",
     "lint": "next lint",
     "build:local": "next build",
