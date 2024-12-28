@@ -1,7 +1,7 @@
 ---
 title: 프로젝트 구조 만들기
 date: 2024-12-26 07:29:00 +0900
-tags: ["javascript"]
+tags: ["Vue.js"]
 description: Vue.js 프로젝트를 최초로 생성하고, 구조를 만들어보았습니다.
 ---
 
@@ -11,6 +11,10 @@ import { FileTree, Callout } from "nextra/components";
 
 처음 프로젝트를 생성하고, Vue.js 를 사용하기 위한 구조를 만들어보겠습니다.<br />
 개인적인 경험에 근거해 만드는 구조이며, 더 좋은 방법이 있다면 댓글로 언제든지 알려주세요.
+
+아래 소개할 내용을 토대로 깃허브에 보일러플레이트를 만들어두었습니다.<br />
+필요하신 분들은 아래 링크를 참고해주세요.
+- [Vuyah - Vue3 Boilerplate | Github](https://github.com/oobg/Vuyah)
 
 ## 시작하기 전에...
 
@@ -243,8 +247,8 @@ Vue DevTools 7 익스텐션을 사용할 것인지 물어봅니다.<br />
 [32m✔[0m Add Pinia for state management? … [36mYes[0m
 [32m✔[0m Add Vitest for Unit testing? … [36mNo[0m
 [32m✔[0m Add an End-to-End Testing Solution? … [36mNo[0m
-[32m✔[0m Add ESLint for code quality? … [36mNo[0m
-[32m✔[0m Add Prettier for code formatting? … [36mNo[0m
+[32m✔[0m Add ESLint for code quality? … [36mYes[0m
+[32m✔[0m Add Prettier for code formatting? … [36mYes[0m
 [32m✔[0m Add Vue DevTools 7 extension for debugging? (experimental) … [36mYes[0m
 ```
 
@@ -268,9 +272,6 @@ Vue DevTools 7 익스텐션을 사용할 것인지 물어봅니다.<br />
 				<FileTree.Folder name="i18n">
 					<FileTree.File name="index.ts" />
 				</FileTree.Folder>
-				<FileTree.Folder name="pinia">
-					<FileTree.File name="index.ts" />
-				</FileTree.Folder>
 				<FileTree.Folder name="routes">
 					<FileTree.File name="index.ts" />
 				</FileTree.Folder>
@@ -284,7 +285,7 @@ Vue DevTools 7 익스텐션을 사용할 것인지 물어봅니다.<br />
 			<FileTree.File name="Main.ts" />
 		</FileTree.Folder>
 		<FileTree.Folder name="pages" defaultOpen>
-			<FileTree.Folder name="User">
+			<FileTree.Folder name="user">
 				<FileTree.File name="ProfileView.vue" />
 				<FileTree.File name="SettingsView.vue" />
 			</FileTree.Folder>
@@ -298,8 +299,9 @@ Vue DevTools 7 익스텐션을 사용할 것인지 물어봅니다.<br />
 				<FileTree.File name="DefaultHeader.vue" />
 			</FileTree.Folder>
 			<FileTree.Folder name="layout">
-				<FileTree.File name="DefaultLayout.vue" />
 				<FileTree.File name="BlankLayout.vue" />
+				<FileTree.File name="ContentLayout.vue" />
+				<FileTree.File name="DefaultLayout.vue" />
 			</FileTree.Folder>
 		</FileTree.Folder>
 	</FileTree.Folder>
@@ -395,21 +397,23 @@ export default router;
 예를 들어, user 라우터 밑에 profile, settings 등을 사용하고 싶다면, **user.ts** 파일을 생성합니다.
 
 ```typescript filename="src/app/routes/user.ts" copy
-import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+import { defineAsyncComponent } from "vue";
+
+const BlankLayout = defineAsyncComponent(() => import("@/widget/layout/BlankLayout.vue"));
 
 export default {
 	path: "/user",
-	meta: { layout: DefaultLayout },
+	meta: { layout: BlankLayout },
 	children: [
 		{
-			path: "/profile",
+			path: "profile",
 			name: "profile",
-			component: () => import(/* webpackChunkName: "User" */ "@/pages/User/ProfileView.vue"),
+			component: () => import(/* webpackChunkName: "user" */ "@/pages/user/ProfileView.vue"),
 		},
 		{
-			path: "/settings",
+			path: "settings",
 			name: "settings",
-			component: () => import(/* webpackChunkName: "User" */ "@/pages/User/SettingsView.vue"),
+			component: () => import(/* webpackChunkName: "user" */ "@/pages/user/SettingsView.vue"),
 		},
 	],
 }
@@ -420,18 +424,18 @@ children 속성을 사용하여 하위 라우터를 추가하는 방식을 사�
 
 따라서 name 이 profile 인 라우터는 **/user/profile** 로 접근할 수 있고, name 이 settings 인 라우터는 **/user/settings** 로 접근할 수 있습니다.
 
-위와 같이 했을 경우 추가적인 장점이 있습니다.
+위와 같이 파일을 별도로 분리하여 관리했을 경우, 관리의 용이성 이외에도 추가적인 이점이 있습니다.
 
 <Callout type="info">
-	컴포넌트를 비동기로 로딩하도록 설정했습니다.<br />
-	또한, Webpack Chunk Name 을 사용하여, 코드 스플리팅을 적용했습니다.
+	레이아웃과 뷰 컴포넌트를 동적으로 로딩할 수 있습니다.<br />
+	Webpack Chunk Name 을 사용하여, 코드 스플리팅을 적용했습니다.
 </Callout>
 
 이후, **index.ts** 파일에서 **user.ts** 파일을 import 하여 사용합니다.
 
 ```typescript filename="src/app/routes/index.ts" copy {4, 15}
+import { defineAsyncComponent } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
-import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
 import DefaultView from "@/pages/DefaultView.vue";
 import user from "./user";
 
@@ -441,8 +445,7 @@ const router = createRouter({
 		{
 			path: "/",
 			name: "home",
-			component: DefaultView,
-			meta: { layout: DefaultLayout },
+			component: defineAsyncComponent(() => import("@/pages/DefaultView.vue")),
 		},
 		user,
 	],
@@ -455,20 +458,22 @@ export default router;
 예를 들어 다음과 같이 배열로 리턴한 경우입니다.
 
 ```typescript filename="src/app/routes/user.ts" copy
-import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
+import { defineAsyncComponent } from "vue";
+
+const BlankLayout = defineAsyncComponent(() => import("@/widget/layout/BlankLayout.vue"));
 
 export default [
 	{
 		path: "/user/profile",
 		name: "profile",
-		component: () => import(/* webpackChunkName: "User" */ "@/pages/User/ProfileView.vue"),
-		meta: { layout: DefaultLayout },
+		component: () => import(/* webpackChunkName: "user" */ "@/pages/user/ProfileView.vue"),
+		meta: { layout: BlankLayout },
 	},
 	{
 		path: "/user/settings",
 		name: "settings",
-		component: () => import(/* webpackChunkName: "User" */ "@/pages/User/SettingsView.vue"),
-		meta: { layout: DefaultLayout },
+		component: () => import(/* webpackChunkName: "user" */ "@/pages/user/SettingsView.vue"),
+		meta: { layout: BlankLayout },
 	},
 ];
 ```
@@ -551,6 +556,28 @@ import DefaultFooter from "@/widget/footer/DefaultFooter.vue";
 
 위 코드에서 **BlankLayout.vue**는 헤더와 푸터 없이 메인 컨텐츠만 보여주는 레이아웃을 정의합니다.
 
+footer 가 main 의 자식과 같은 레벨에 위치해야 할 경우도 있습니다.
+이를 위해 **ContentLayout.vue** 와 같은 레이아웃을 추가로 생성하여 사용할 수 있습니다.
+
+```vue filename="src/widget/layout/ContentLayout.vue" copy
+<template>
+  <default-header />
+  <main>
+    <router-view />
+    <flex-spacer />
+    <default-footer />
+  </main>
+</template>
+
+<script setup lang="ts">
+import DefaultHeader from "@/widget/header/DefaultHeader.vue";
+import DefaultFooter from "@/widget/footer/DefaultFooter.vue";
+import FlexSpacer from "@/shared/ui/FlexSpacer.vue"
+</script>
+
+<style scoped></style>
+```
+
 이제 레이아웃을 사용하는 방법을 알아보겠습니다.
 라우터에서 **meta** 속성을 사용하여 레이아웃을 지정했습니다.
 이 레이아웃 변경은 **App.vue** 파일에서 처리합니다.
@@ -561,19 +588,12 @@ import DefaultFooter from "@/widget/footer/DefaultFooter.vue";
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 import DefaultLayout from "@/widget/layout/DefaultLayout.vue";
 
 const route = useRoute();
-const layout = ref();
-
-watch (
-  () => route.meta.layout,
-  (newLayout) => {
-    layout.value = newLayout || DefaultLayout;
-  }
-);
+const layout = computed(() => route.meta.layout || DefaultLayout);
 </script>
 
 <style scoped></style>
@@ -583,7 +603,7 @@ component 태그를 사용하여 레이아웃을 동적으로 변경하는 방�
 동작 방식은 다음과 같습니다.
 
 1. **useRoute** 훅을 사용하여 현재 라우터 정보를 가져옵니다.
-2. **watch** 함수를 사용하여 라우터의 **meta.layout** 속성을 감시하고, 변경되면 **layout** 변수에 할당합니다.
+2. **computed** 함수를 사용하여 라우터의 **meta.layout** 속성을 감시하고, 변경되면 **layout** 변수에 할당합니다.
 	- **meta.layout** 속성이 없을 경우, **DefaultLayout** 컴포넌트를 기본값으로 사용합니다.
 3. **component** 태그를 사용하여 **layout** 변수에 할당된 컴포넌트를 렌더링합니다.
 
@@ -607,10 +627,6 @@ CSS 파일은 **src/app/styles** 폴더 내에 위치하며, **base.css** 와 **
 ```css filename="src/app/styles/main.css" copy
 @import "./base.css";
 
-body {
-	// 기존 요소들은 초기화하거나, 추가적인 스타일을 정의합니다.
-}
-
 #app {
 	display: flex;
 	flex-direction: column;
@@ -630,6 +646,11 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
+}
+
+#app header,
+#app footer {
+  width: 100%;
 }
 ```
 
@@ -656,3 +677,7 @@ body {
 
 이상으로 Vue.js 프로젝트 구조를 설계하는 방법에 대해 알아보았습니다.<br />
 궁금하신 점이나 더 좋은 방법이 있다면, 언제든지 댓글로 남겨주세요.
+
+지금까지 소개했던 내용을 토대로 깃허브에 보일러플레이트를 만들어두었습니다.<br />
+필요하신 분들은 아래 링크를 참고해주세요.
+- [Vuyah - Vue3 Boilerplate | Github](https://github.com/oobg/Vuyah)
