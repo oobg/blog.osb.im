@@ -76,8 +76,11 @@ export default function Page() {
 				<table className={"w-full table-fixed"}>
 					<tbody>
 					{data.tracks.map((track: { title: string; duration: string }, index: number) => (
-						<tr key={index} className={"odd:bg-[rgb(42,42,42)] hover:bg-[rgb(55,55,55)] h-12"}>
-							<td className={"text-center w-14 rounded-l-md"}>{index + 1}</td>
+						<tr key={index} className={"odd:bg-[rgb(42,42,42)] group hover:bg-[rgb(55,55,55)] h-12"}>
+							<td className={"text-center w-14 rounded-l-md align-middle"}>
+								<span className={"group-hover:hidden"}>{index + 1}</span>
+								<span className={"hidden group-hover:inline text-red-500 hover:text-red-700 hover:cursor-pointer text-xl"}>▶</span>
+							</td>
 							<td className={"text-left flex-1 w-full truncate"}>{track.title}</td>
 							<td className={"text-center w-20 rounded-r-md"}>{track.duration}</td>
 						</tr>
