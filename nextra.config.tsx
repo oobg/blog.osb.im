@@ -44,7 +44,7 @@ const config: DocsThemeConfig = {
 		const { frontMatter } = useConfig();
 
 		const url = asPath;
-		const title = "[post] " + frontMatter.title || "baewoong's blog";
+		const title = `[post] ${frontMatter.title} | ${frontMatter.tags[0]}` || "baewoong's blog";
 		const description = frontMatter.description || 'baewoong 의 블로그 입니다!';
 		const image = frontMatter.image || "/assets/img/logo-3d.png";
 
