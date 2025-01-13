@@ -1,5 +1,5 @@
 import { Cards } from "nextra/components";
-import NextraIcon from "../../../../public/assets/nextra-icon/icons";
+import NextraIcon from "@/../public/assets/nextra-icon/icons";
 
 interface IMetaItem {
 	title: string;
@@ -41,7 +41,6 @@ export default function CustomCard({
 						title={metaItem.title}
 						href={`/posts/${href}/${key}`}
 						icon={<NextraIcon name={iconName} extension={iconExtension} width={width} height={height} />}
-						children=""
 						arrow
 					/>
 				);
