@@ -1,5 +1,5 @@
 import { Cards } from "nextra/components";
-import NextraIcon from "@/../public/assets/nextra-icon/icons";
+import NextraIcon from "../../../../public/assets/nextra-icon/icons";
 
 interface IMetaItem {
 	title: string;
