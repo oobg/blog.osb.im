@@ -5,24 +5,13 @@ tags: ['navigation']
 description: Javascript 목차 페이지입니다.
 ---
 
-import { Cards, Card } from "nextra/components";
-import NextraIcon from "/public/assets/nextra-icon/icons";
+import CustomCard from "../../shared/ui/nextra/CustomCard";
+import _meta from "./javascript/_meta";
 
 # Javascript
 
-<Cards>
-	{[
-		{ title: "페이지 이동 로직" },
-		{ title: "동일 컨텍스트 간 상태 공유 (1)" },
-		{ title: "동일 컨텍스트 간 상태 공유 (2)" },
-	].map((card, index) => (
-		<Cards.Card
-			key={index}
-			icon={<NextraIcon name="text" />}
-			title={card.title}
-			href={"/posts/javascript/" + index.toString()}
-			children=""
-			arrow
-		/>
-	))}
-</Cards>
+<CustomCard
+	_meta={_meta}
+	href={"javascript"}
+	iconName={"text"}
+/>

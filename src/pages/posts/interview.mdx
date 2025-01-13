@@ -5,22 +5,15 @@ tags: ['navigation']
 description: 기술 면접 목차 페이지입니다.
 ---
 
-import { Cards } from "nextra/components";
-import NextraIcon from "/public/assets/nextra-icon/icons";
+import CustomCard from "../../shared/ui/nextra/CustomCard";
+import _meta from "./interview/_meta";
 
 # 기술 면접
 
-<Cards>
-	{[
-		{ title: "Javascript" },
-	].map((card, index) => (
-		<Cards.Card
-			key={index}
-			icon={<NextraIcon name="javascript" width={18} height={18} />}
-			title={card.title}
-			href={"/posts/interview/javascript"}
-			children=""
-			arrow
-		/>
-	))}
-</Cards>
+<CustomCard
+	_meta={_meta}
+	href={"interview"}
+	iconName={"javascript"}
+	width={18}
+	height={18}
+/>

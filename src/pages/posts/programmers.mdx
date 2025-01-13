@@ -5,45 +5,13 @@ tags: ['navigation']
 description: 프로그래머스 목차 페이지입니다.
 ---
 
-import { Cards } from "nextra/components";
-import NextraIcon from "/public/assets/nextra-icon/icons";
+import CustomCard from "../../shared/ui/nextra/CustomCard";
+import _meta from "./programmers/_meta";
 
 # 프로그래머스
 
-<Cards>
-	{[
-		{ title: "짝수와 홀수의 개수" },
-		{ title: "문자열 뒤집기" },
-		{ title: "점의 위치 구하기" },
-		{ title: "삼각형의 완성조건 (1)" },
-		{ title: "편지" },
-		{ title: "머쓱이보다 키 큰 사람" },
-		{ title: "특정 문자 제거하기" },
-		{ title: "배열 뒤집기" },
-		{ title: "배열 원소의 길이" },
-		{ title: "중복된 숫자 개수" },
-		{ title: "배열의 유사도" },
-		{ title: "양꼬치" },
-		{ title: "피자 나눠 먹기 (1)" },
-		{ title: "피자 나눠 먹기 (2)" },
-		{ title: "피자 나눠 먹기 (3)" },
-		{ title: "배열 자르기" },
-		{ title: "최댓값 만들기(1)" },
-		{ title: "최댓값 만들기(2)" },
-		{ title: "아이스 아메리카노" },
-		{ title: "중앙값 구하기" },
-		{ title: "삼각형의 완성조건 (2)" },
-		{ title: "문자 반복 출력하기" },
-		{ title: "세균 증식" },
-		{ title: "자릿수 더하기" },
-	].map((card, index) => (
-		<Cards.Card
-			key={index}
-			icon={<NextraIcon name="code" />}
-			title={card.title}
-			href={"/posts/programmers/" + index.toString()}
-			children=""
-			arrow
-		/>
-	))}
-</Cards>
+<CustomCard
+	_meta={_meta}
+	href={"programmers"}
+	iconName={"code"}
+/>
