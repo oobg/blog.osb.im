@@ -5,25 +5,37 @@ tags: ["javascript"]
 description: Broadcast Channel API 를 사용해 동일 컨텍스트 간 상태를 공유하는 방법을 알아봅니다.
 ---
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function BroadcastChannelExample() {
 	const channelName = "test_channel";
 	const defaultMessage = "모든 페이지에서 이 텍스트가 변경될 것 입니다...";
 
-	const bc = new BroadcastChannel(channelName);
 	const [message, setMessage] = useState(defaultMessage);
 
-	bc.onmessage = (event) => setMessage(event.data);
-	const handleClick = () => bc.postMessage("Hello, world! Hello, Broadcast Channel!");
+	useEffect(() => {
+		const bc = new BroadcastChannel(channelName);
+		bc.onmessage = (event) => setMessage(event.data);
+		return () => {
+			bc.close();
+		};
+	}, []);
+
+	const handleClick = () => {
+		const bc = new BroadcastChannel(channelName);
+		bc.postMessage("Hello, world! Hello, Broadcast Channel!");
+		bc.close();
+	};
 
 	return (
-		<div className={"border border-b-white p-2 flex flex-col justify-between gap-3"}>
+		<div className={"border border-neutral-700 _rounded-md p-4 flex flex-col justify-between gap-3"}>
 			<div>{message}</div>
 			<button
 				className={"bg-blue-900 hover:bg-blue-700 text-white p-2 rounded"}
-				onClick={handleClick
-			}>이 버튼을 눌러보세요!</button>
+				onClick={handleClick}
+			>
+				이 버튼을 눌러보세요!
+			</button>
 		</div>
 	);
 }
@@ -52,11 +64,21 @@ export function BroadcastChannelExample() {
 	const channelName = "test_channel";
 	const defaultMessage = "모든 페이지에서 이 텍스트가 변경될 것 입니다...";
 
-	const bc = new BroadcastChannel(channelName);
 	const [message, setMessage] = useState(defaultMessage);
 
-	bc.onmessage = (event) => setMessage(event.data);
-	const handleClick = () => bc.postMessage("Hello, world! Hello, Broadcast Channel!");
+	useEffect(() => {
+		const bc = new BroadcastChannel(channelName);
+		bc.onmessage = (event) => setMessage(event.data);
+		return () => {
+			bc.close();
+		};
+	}, []);
+
+	const handleClick = () => {
+		const bc = new BroadcastChannel(channelName);
+		bc.postMessage("Hello, world! Hello, Broadcast Channel!");
+		bc.close();
+	};
 
 	return (
 		<>
