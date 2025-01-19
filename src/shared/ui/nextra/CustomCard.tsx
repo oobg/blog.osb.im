@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Cards } from "nextra/components";
 import NextraIcon from "/public/assets/nextra-icon/icons";
 
@@ -25,22 +26,31 @@ export default function CustomCard({
 	iconExtension = undefined,
 	width = undefined,
 	height = undefined,
-}: CustomCardProps): JSX.Element {
-	const filteredMeta = Object.keys(_meta).filter((key) => key !== "*");
+}: CustomCardProps): ReactNode {
+	const filteredMeta: string[] = Object.keys(_meta).filter((key: string): boolean => key !== "*");
 
 	return (
 		<Cards>
-			{filteredMeta.map((key, index) => {
-				const metaItem = _meta[key];
+			{filteredMeta.map((key: string, index: number): ReactNode => {
+				const metaItem: IMetaItem | undefined = _meta[key];
 
-				if (!metaItem) return null;
+				if (!metaItem) return <></>;
+
+				const CardIcon: ReactNode = (
+					<NextraIcon
+						name={iconName}
+						extension={iconExtension}
+						width={width}
+						height={height}
+					/>
+				);
 
 				return (
 					<Cards.Card
 						key={index}
 						title={metaItem.title}
 						href={`/posts/${href}/${key}`}
-						icon={<NextraIcon name={iconName} extension={iconExtension} width={width} height={height} />}
+						icon={CardIcon}
 						arrow
 					/>
 				);
