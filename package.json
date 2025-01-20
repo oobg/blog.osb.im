@@ -9,7 +9,8 @@
     "lint": "next lint",
     "build:local": "next build",
     "build:standalone": "next build && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/",
-    "start:standalone": "node .next/standalone/server.js"
+    "start:standalone": "node .next/standalone/server.js",
+    "merge": "git checkout main && git merge dev && git push origin main && git checkout dev"
   },
   "dependencies": {
     "@next/third-parties": "^14.2.14",
