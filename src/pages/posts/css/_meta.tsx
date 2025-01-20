@@ -4,5 +4,6 @@ export default {
       pagination: true
     }
   },
-  0: "Flexbox"
+  0: "Flexbox",
+  1: "Layout",
 }
