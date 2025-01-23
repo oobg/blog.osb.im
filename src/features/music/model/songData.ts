@@ -58,6 +58,51 @@ const songData = [
 			}
 		]
 	},
+	{
+		albumId: "growth-theory",
+		songs: [
+			{
+				id: "맹그로브",
+				youtubeId: "GsY9XSwZmxg"
+			},
+			{
+				id: "죽음의 나선",
+				youtubeId: "Kv_zcoq6190"
+			},
+			{
+				id: "케이프 혼",
+				youtubeId: "MvWEe3Q89GE"
+			},
+			{
+				id: "은화",
+				youtubeId: "UzFh_xQgkxs"
+			},
+			{
+				id: "로켓방정식의 저주",
+				youtubeId: "rVuq_24eEMs"
+			},
+			{
+				id: "태양물고기",
+				youtubeId: "3VwfUp1UYqw"
+			},
+			{
+				id: "코리올리 힘",
+				youtubeId: "CfJQpm8UZWo"
+			},
+			{
+				id: "라이프리뷰",
+				youtubeId: "BX1eb-NGO0Q"
+			},
+			{
+				id: "구름의 그림자",
+				youtubeId: "GiyZ0yQ4090"
+			},
+			{
+				id: "새녘바람",
+				youtubeId: "4Juw2Vi2p6A"
+			},
+		]
+	}
 ];
 
 export default songData;
