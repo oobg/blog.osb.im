@@ -102,7 +102,26 @@ const songData = [
 				youtubeId: "4Juw2Vi2p6A"
 			},
 		]
-	}
+	},
+	{
+		albumId: "end-theory-repackage",
+		songs: [
+			{ id: "오르트구름", youtubeId: "bfXsQ9k9PtY" },
+			{ id: "살별", youtubeId: "jOw9TBDNnIg" },
+			{ id: "물의 여행", youtubeId: "MISEYe2gjjg" },
+			{ id: "반짝, 빛을 내", youtubeId: "ZlrRdvF_pEc" },
+			{ id: "6년 230일", youtubeId: "LFa-VPIAcuo" },
+			{ id: "P.R.R.W.", youtubeId: "VSH_oSsIbsA" },
+			{ id: "나는 계획이 있다", youtubeId: "D4VPGBBmEJI" },
+			{ id: "Truly", youtubeId: "-c00z06FNMM" },
+			{ id: "별의 조각", youtubeId: "1_9NINZ-Wd8" },
+			{ id: "하나의 달", youtubeId: "1KFaHzd_nM4" },
+			{ id: "사건의 지평선", youtubeId: "j1uXcHwLhHM" },
+			{ id: "Black hole", youtubeId: "3XZLVtZeNFw" },
+			{ id: "Savior", youtubeId: "3-6rBJE2TeI" },
+			{ id: "잘 지내", youtubeId: "xIHoT16_gc0" },
+		],
+	},
 ];
 
 export default songData;
