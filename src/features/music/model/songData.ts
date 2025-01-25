@@ -53,6 +53,22 @@ const songData = [
 			{ id: "잘 지내", youtubeId: "xIHoT16_gc0" },
 		],
 	},
+	{
+		albumId: "end-theory",
+		songs: [
+			{ title: "P.R.R.W.", youtubeId: "QIB714JSz1k" },
+			{ title: "나는 계획이 있다", youtubeId: "46YuYoiyBcA" },
+			{ title: "오르트구름", youtubeId: "58IEh6YkuzQ" },
+			{ title: "물의 여행", youtubeId: "UYV2QZcZSe8" },
+			{ title: "잘 지내", youtubeId: "RS4l3OO9R38" },
+			{ title: "반짝, 빛을 내", youtubeId: "GtaorDNm8iA" },
+			{ title: "6년 230일", youtubeId: "UlB5JRdUb4M" },
+			{ title: "Truly", youtubeId: "J5FxHnJGTMQ" },
+			{ title: "별의 조각", youtubeId: "194g0izPfdA" },
+			{ title: "하나의 달", youtubeId: "Tdiq7edlvHM" },
+			{ title: "Savior", youtubeId: "SJeK598YeQQ" },
+		],
+	},
 ];
 
 export default songData;
