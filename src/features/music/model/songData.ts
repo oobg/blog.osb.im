@@ -69,6 +69,22 @@ const songData = [
 			{ title: "Savior", youtubeId: "SJeK598YeQQ" },
 		],
 	},
+	{
+		albumId: "rescuE",
+		songs: [
+			{ title: "RescuE", youtubeId: "ThyVyzvrW-s" },
+			{ title: "종이비행기 (feat. pH-1)", youtubeId: "8W8eII-sstc" },
+			{ title: "Parade", youtubeId: "BoTVJvvXNnc" },
+			{ title: "없던 일처럼", youtubeId: "RN1xuMWSQQk" },
+			{ title: "Airplane Mode", youtubeId: "ZHIK_3-OW8w" },
+			{ title: "예지몽", youtubeId: "h2CmZF_ub4Y" },
+			{ title: "Feel (feat. 챈슬러)", youtubeId: "lhARSgayP6Y" },
+			{ title: "Drive", youtubeId: "T4An5oxRJ4w" },
+			{ title: "가", youtubeId: "j6mlQuUjGCo" },
+			{ title: "답을 찾지 못한 날", youtubeId: "iL7eEVpJ9WA" },
+			{ title: "Propose", youtubeId: "GxuLJlPVFvI" },
+		],
+	},
 ];
 
 export default songData;
