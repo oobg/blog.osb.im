@@ -95,6 +95,16 @@ const songData = [
 			{ title: "26", youtubeId: "eUqwF1-jjwQ" },
 		],
 	},
+	{
+		albumId: "stable-mindset",
+		songs: [
+			{ title: "사계", youtubeId: "vjk_4EodLEQ" },
+			{ title: "Lonely", youtubeId: "dejKNQJbI-Q" },
+			{ title: "비가 내리는 날에는", youtubeId: "IZw7AUIeypU" },
+			{ title: "어려운 일", youtubeId: "s-HyBDrdHek" },
+			{ title: "Rainy Night", youtubeId: "RZA5iYSOsNU" },
+		],
+	},
 ];
 
 export default songData;
