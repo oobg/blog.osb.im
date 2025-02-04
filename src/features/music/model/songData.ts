@@ -85,6 +85,16 @@ const songData = [
 			{ title: "Propose", youtubeId: "GxuLJlPVFvI" },
 		],
 	},
+	{
+		albumId: "unstable-mindset",
+		songs: [
+			{ title: "Winter Flower (feat. RM)", youtubeId: "D-WEeTsh-ls" },
+			{ title: "먹구름", youtubeId: "o6W9VLK77nY" },
+			{ title: "다음에 봐", youtubeId: "HNUnIwx7iqs" },
+			{ title: "스무살 어느 날", youtubeId: "-Vskj7divWk" },
+			{ title: "26", youtubeId: "eUqwF1-jjwQ" },
+		],
+	},
 ];
 
 export default songData;
