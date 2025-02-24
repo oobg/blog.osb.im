@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { AlbumData } from "@/features/music/lib/types";
 import axios from "axios";
 
-export default function useRenderAlbum(id: string) {
+export default function useRenderAlbum(id: string, delay = 500) {
 	const [data, setData] = useState<AlbumData | null>(null); // 서버에서 가져온 데이터 저장
 	const [loading, setLoading] = useState(true); // 로딩 상태
 
@@ -17,7 +17,7 @@ export default function useRenderAlbum(id: string) {
 		} catch (error) {
 			console.error("Failed to fetch album data:", error);
 		} finally {
-			setTimeout(() => setLoading(false), 500);
+			setTimeout(() => setLoading(false), delay);
 		}
 	}, [id]);
 
